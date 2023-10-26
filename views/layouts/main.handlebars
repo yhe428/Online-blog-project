@@ -1,22 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    {{!-- {{#if title}
+    {{#if title}}
     <title>{{title}}</title>
     {{else}}
     <title>Default title.</title>
-    {{/if}} --}}
-    <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="./css/newAccount.css">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
-    <script src="./javascript/home.js"></script>
-    <script src="./javascript/verify-password.js"></script>
+    {{/if}}
 </head>
 
 <body>
-    {{{body}}}
+    <header id="header">
+        <h1>Dazzling Duck's <br><span class="logo">Photography<span></h1>
+        <nav>
+            <ul>
+                <li><a href="/views/home.handlebars">Home</a></li>
+                <li><a href="/views/blog.handlebars">Blog</a></li>
+
+    <!--TO DO. Category and login are different colours until anchored- not sure where yet.-->            
+                <li>Category</li>
+                <li><a href="/views/search.handlebars">Search</a></li>
+                <li><a href="/views/photographers.handlebars">Photographers</a></li>
+                <li>Login</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer id="footer">
+        <p> &copy; Dazzling Ducks </p>
+    </footer>
 </body>
 
 </html>
+<!DOCTYPE html>
