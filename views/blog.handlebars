@@ -1,0 +1,91 @@
+<script src="./js/client.js"></script>
+
+<div class="container">
+
+    <div class="card-container short">
+        <img class="card-images" src="./images/pancakep.jpg" alt="pancakes">
+        <h3>Life </h3>
+        <h2>The best pancakes around</h2>
+        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
+            veritatis
+            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
+            harum fugit incidunt accusamus
+        </p>
+
+        <div class="flavicon-author_container">
+            <img src="./images/red_hair_female_avatarp.png" alt="female avatar flavicon" width="40" height="40">
+            <h4 class="author">Deborah Smith</h4>
+            <p>2</p>
+            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+
+        </div>
+
+        <div class="card-container tallest">
+            <img class="card-images" src="./images/tulipsp.jpg" alt="tulips">
+            <h3>Nature</h3>
+            <h2>Check out the beautiful tulips!</h2>
+            <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
+                veritatis
+                consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
+                harum fugit incidunt accusamus doloremque aliquid rerum</p>
+
+            <div class="flavicon-author_container">
+                <img src="./images/male_avatarp.png" alt="male avatar flavicon" width="40" height="40">
+                <h4 class="author">Brett Sayles</h4>
+                <p>1</p>
+                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            </div>
+        </div>
+
+        <div class="card-container tall">
+            <img class="card-images" src="./images/british_blue_catp.jpg" alt="british blue cat">
+            <h3>Nature</h3>
+            <h2>A pretty british blue cat</h2>
+            <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
+                veritatis
+                consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
+                harum fugit incidunt accusamus doloremque aliquid rerum</p>
+
+            <div class="flavicon-author_container">
+                <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
+                <h4 class="author">Josie Walker</h4>
+                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            </div>
+        </div>
+
+        <div class="card-container short">
+            <img class="card-images" src="./images/womanp.jpg" alt="woman">
+            <h3 class="category">Portrait </h3>
+            <h2>Her eyes are stunning!</h2>
+            <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
+                veritatis
+                consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
+                harum fugit incidunt accusamus doloremque aliquid rerum</p>
+
+            <div class="flavicon-author_container">
+                <img src="./images/red_hair_female_avatarp.png" alt="female avatar flavicon" width="40" height="40">
+                <h4 class="author">Hannah Charles</h4>
+                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            </div>
+        </div>
+        <!--NOTE!!!  if picture is a landscape put variable = "short";
+if picture is a very tall portrait put variable = "tallest"
+if its a standard sized portrait put variable = "tall"-->
+
+        <div class="card-container {{pictureOrientation}}">
+            <img class="card-images" src="{{imageUrl}}">
+            <h3>{{category}}</h3>
+            <h2>{{heading}}</h2>
+            <p class="article">{{article}}</p>
+
+            <div class="flavicon-author_container">
+                <img src="{{flaviconAvatar}}" alt="avatar flavicon" width="40" height="40">
+                <h4 class="author">{{author}}</h4>
+                <p>{{numberOfComments}}</p>
+                <img class="flavicon-comment" src="{{flaviconComment}}" alt="Comment bubble">
+
+                <!--NOTE!!!!!    AVATORS, this flavicon is from https://    icon-icons.com/download/120520/PNG/512/  They do .ico downloads too!!! I can change this avatar into a .ico - can do that if you want -->
+            </div>
+        </div>
+    </div>
+</div>

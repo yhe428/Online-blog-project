@@ -9,30 +9,44 @@
     --dark: #12100e;
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--dark);   
-    margin: 0px;
-    padding: 0px;
+/* Shared */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 100%;
 }
 
+body {
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav a,
+h3,
+.logo,
+#header {
+    text-transform: uppercase;
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    color: var(--medium);
+}
+
+footer,
+#header {
+    height: 85px;
+}
 
 /*------------------------------ HEADER ------------------------------*/
 
 /*--1. Logo- Dazzling Duck's Photography --*/
 
 #header>h1 {
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 3px;
     font-size: 26px;
     color: var(--dark);
     text-transform: none;
-}
-
-.logo {
-    font-size: 16px;
-    color: var(--medium);
-    font-family: 'Spectral', serif;
-    text-transform: uppercase;
 }
 
 /*-- Navigation --*/
@@ -40,23 +54,17 @@ body {
 #header {
     padding-right: 50px;
     padding-left: 90px;
-    height: 85px;
     display: flex;
     align-items: center;
     border-bottom: 2px solid var(--light);
-    font-family: 'Spectral', serif;
-    text-transform: uppercase;
-    color: var(--medium);
 }
 
-nav ul li a {
+nav ul li {
     display: inline-block;
-    
 }
 
 nav li {
     margin: 40px;
-    
 }
 
 nav {
@@ -64,26 +72,99 @@ nav {
 }
 
 nav a {
-    
     text-decoration: none;
 }
 
+/*------------------------------ Blog ------------------------------*/
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    grid-auto-rows: 7rem;
+    grid-gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 25px;
+}
 
+.card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px 10px;
+}
 
+/* NOTE!!! These classes to be added to articles div and car-container,based on condition of landscape, portrait and large portait */
 
+.short {
+    grid-row: span 5;
+}
 
+.tall {
+    grid-row: span 7;
+}
 
+.tallest {
+    grid-row: span 8;
+}
 
+/* --cards */
+.card-container .card-images {
+    border-radius: 14px 14px 0px 0px;
+}
 
+.card-container h2,
+.card-container h3,
+.card-container p {
+    padding: 5px;
+}
+
+.article {
+    --max-lines: 6;
+    --line-height: 1.4;
+    height: calc(var(--max-lines) * 1em * var(--line-height));
+    line-height: var(--line-height);
+    overflow: hidden;
+    position: relative;
+}
+
+.article::before {
+    content: "";
+    position: absolute;
+    height: calc(2em * var(--line-height));
+    width: 100%;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+.card-container h2 {
+    font-size: 24px
+}
+
+/* --- avatar/author/comment container --- */
+
+.flavicon-author_container {
+    display: flex;
+    padding: 15px 0 40px 0;
+    align-items: center;
+    border-bottom: 3px solid var(--light);
+}
+
+.author {
+    padding: 0 10px;
+}
+
+.flavicon-comment {
+    width: 15px;
+    height: 17px;
+}
 
 /*------------------------------ Footer ------------------------------*/
-
 #footer {
     text-align: right;
     background: var(--light);
-    height: 80px;
- 
 }
+
 #footer>p {
     padding-top: 28px;
     padding-right: 86px;
