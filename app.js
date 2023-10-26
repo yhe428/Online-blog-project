@@ -34,6 +34,9 @@ app.use(require("./middleware/toaster-middleware.js"));
 // Setup routes
 app.use(require("./routes/application-routes.js"));
 
+//new account route
+app.use(require("./routes/newAccount.js"));
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);

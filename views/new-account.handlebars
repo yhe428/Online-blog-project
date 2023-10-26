@@ -1,0 +1,53 @@
+<div id="register-box">
+
+    <div class="left">
+        <img src="./images/newAccount-image.jpg" alt="new account image">
+    </div>
+
+    <div class="form-div">
+        <div class="content">
+            <h3>Create your account</h3>
+            <p>Create an account to view and manage your photos</p>
+        </div>
+
+        <form action="/newAccount" method="POST">
+            
+            <label for="username">Username</label>
+            <input class="ipt" type="text" name="username" id="txtUsername"required>
+            <span id="ifCanUse" class="message"></span>
+            
+            <label for="firstname">First name</label>
+            <input class="ipt" type="text" name="firstname" required>
+            
+            <label for="lastname">Last name</label>
+            <input class="ipt" type="text" name="lastname" required>
+            
+            <label for="password">Password</label>
+            <input class="ipt" type="password" name="password" id="txtPassword"required>
+            
+            <label for="re-password">Confirm password</label>
+            <input class="ipt" type="password" name="re-password" id="confirmPassword"required>
+            <span id="remind" class="message"></span>
+
+            <label for="birth">Date of birth</label>
+            <input class="ipt" type="text" name="birth" required>
+
+            <label for="address">Address</label>
+            <input class="ipt" type="text" name="address" required>
+
+            <label for="phone">Phone</label>
+            <input class="ipt" type="text" name="phone" required>
+
+            <label for="email">Email</label>
+            <input class="ipt" type="text" name="email" required>
+
+            <label for="description">Description</label>
+            <input class="ipt" type="text" name="description" required>
+
+            <button id="submit" type="submit">Create your account</button>
+        
+        </form>
+
+    </div>
+    
+</div>
