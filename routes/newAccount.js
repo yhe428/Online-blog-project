@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { v4: uuid } = require("uuid");
+//const bcrypt = require("bcrypt");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
+//const testDao = require("../modules/test-dao.js")
 
 //route handler deal with new account creation
 router.get("/newAccount", function(req,res){
@@ -69,5 +72,32 @@ router.get("/verifyUsername", async function(req, res){
     }
 
 })
+
+router.get("/login", function(req, res) {
+    //console.log("In get login")
+    if (res.locals.user) {
+        res.redirect("/");
+    }
+    else {
+        res.render("login");
+    }
+});
+
+router.post("/login", async function(req, res) {
+    console.log("In post login")
+    const username = req.body.username;
+    console.log("In post username " + username)
+    const password = req.body.password;
+   // const user = await userDao.retrieveUserWithCredentials(username, password);
+    const user = await userDao.retrieveUserByName(username, password);
+   if(user) {
+    res.locals.user = user;
+    console.log("Success going to home page");
+    res.redirect("/")
+   } else {
+    res.setToastMessage("Wrong username or password");
+    res.redirect("./login");
+   }
+});
 
 module.exports = router;

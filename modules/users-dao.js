@@ -24,8 +24,18 @@ async function retrieveUserByName(username) {
     return user;
 }
 
+async function retrieveUserWithCredentials(username, password) {
+    //console.log("In UD - retrieveUserWithCredentials")
+    const db = await dbPromise;
+    const user = await db.get(SQL`
+        select * from users
+        where username = ${username} and password = ${password} `);
+    return user;
+}
+
 module.exports = {
     createAccount,
-    retrieveUserByName
+    retrieveUserByName,
+    retrieveUserWithCredentials
 
 };
