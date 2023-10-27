@@ -25,7 +25,6 @@ async function retrieveUserByName(username) {
 }
 
 async function retrieveUserWithCredentials(username, password) {
-    //console.log("In UD - retrieveUserWithCredentials")
     const db = await dbPromise;
     const user = await db.get(SQL`
         select * from users
