@@ -3,7 +3,7 @@ drop table if exists Articles;
 drop table if exists Categories;
 drop table if exists Users;
 
- create table Users (
+ create table if not exists Users (
  userId integer not null primary key,
  password char(72) not null,
  username varchar(64) unique not null,
@@ -13,16 +13,17 @@ drop table if exists Users;
  userDescription varchar(255),
  email varchar(254),
  address varchar(64),
- phone varchar(15)
+ phone varchar(15),
+ birthDate date
  );
  
- create table Categories (
+ create table if not exists Categories (
  categoryId integer not null primary key,
  name varchar(32),
  catDescription varchar(255)
  );
  
- create table Articles (
+ create table if not exists Articles (
  articleId integer not null primary key,
  title varchar(32),
  articleContent varchar(3000),
@@ -34,7 +35,7 @@ drop table if exists Users;
  foreign key (categoryId) references Categories(categoryId)
  );
  
- create table Comments (
+ create table if not exists Comments (
  commentId integer not null primary key,
  parentId integer,
  commentDateTime timestamp not null,
@@ -45,10 +46,10 @@ drop table if exists Users;
  foreign key (articleCommented) references Articles(articleId)
  );
  
- insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone) VALUES
- (1, 'password1', 'user1', 'Derek', 'Hughes', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum viverra mauris. Quisque suscipit ipsum nec tortor accumsan, sed pellentesque sapien porta. Donec eleifend vehicula sodales. Mauris auctor est eu mattis feugiat. Nunc viverra nulla id magna tempor, ut feugiat massa viverra. Nam ut nunc nec felis pretium malesuada. Duis dignissim nibh nec arcu sagittis vestibulum.', 'darkroom@derek.co.nz', '116 Lemon Street, New Plymouth 4312', '0276580327'),
- (2, 'password2', 'user2', 'Daniel', 'Murray', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam elit odio, nec maximus turpis suscipit eget. Duis vel venenatis libero. Vestibulum gravida erat a dapibus imperdiet. Suspendisse sagittis massa mauris, id sollicitudin enim mollis id. Aliquam id pulvinar neque. Praesent facilisis vulputate dui accumsan ornare. Vivamus vehicula fringilla diam, ac dictum dui mattis vel. Mauris accumsan volutpat sapien, quis scelerisque mi finibus et.', 'danielmurray@somewhere.com', '456 Someplace Street, Christchurch 8011', '0211231234'),
- (3, 'password3', 'user3', 'Meghan', 'Maloney', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis dui justo, a ornare enim scelerisque in. In quis congue libero, vel euismod ligula. In sit amet tristique ligula. Pellentesque vitae neque non ligula dictum condimentum. Fusce et ligula sed ligula accumsan iaculis. Aenean sagittis commodo libero, sed vulputate odio vestibulum ut. Pellentesque malesuada malesuada quam. Aenean non velit dictum, viverra nisl eu, ultricies nisi. Aenean a tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim tempor justo. Mauris vel velit non libero luctus ullamcorper id fringilla turpis.', 'meghanmaloney@someplace.co.nz', '78 Place Road, Cambridge 3283', '0274567890'); 
+ insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate) VALUES
+ (1, 'password1', 'user1', 'Derek', 'Hughes', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum viverra mauris. Quisque suscipit ipsum nec tortor accumsan, sed pellentesque sapien porta. Donec eleifend vehicula sodales. Mauris auctor est eu mattis feugiat. Nunc viverra nulla id magna tempor, ut feugiat massa viverra. Nam ut nunc nec felis pretium malesuada. Duis dignissim nibh nec arcu sagittis vestibulum.', 'darkroom@derek.co.nz', '116 Lemon Street, New Plymouth 4312', '0276580327', '1980-01-01'),
+ (2, 'password2', 'user2', 'Daniel', 'Murray', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam elit odio, nec maximus turpis suscipit eget. Duis vel venenatis libero. Vestibulum gravida erat a dapibus imperdiet. Suspendisse sagittis massa mauris, id sollicitudin enim mollis id. Aliquam id pulvinar neque. Praesent facilisis vulputate dui accumsan ornare. Vivamus vehicula fringilla diam, ac dictum dui mattis vel. Mauris accumsan volutpat sapien, quis scelerisque mi finibus et.', 'danielmurray@somewhere.com', '456 Someplace Street, Christchurch 8011', '0211231234', '1986-05-01'),
+ (3, 'password3', 'user3', 'Meghan', 'Maloney', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis dui justo, a ornare enim scelerisque in. In quis congue libero, vel euismod ligula. In sit amet tristique ligula. Pellentesque vitae neque non ligula dictum condimentum. Fusce et ligula sed ligula accumsan iaculis. Aenean sagittis commodo libero, sed vulputate odio vestibulum ut. Pellentesque malesuada malesuada quam. Aenean non velit dictum, viverra nisl eu, ultricies nisi. Aenean a tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim tempor justo. Mauris vel velit non libero luctus ullamcorper id fringilla turpis.', 'meghanmaloney@someplace.co.nz', '78 Place Road, Cambridge 3283', '0274567890', '1990-10-05'); 
  
  insert into Categories (categoryId, name, catDescription) VALUES
  (1, 'Nature', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a cursus purus. Curabitur pulvinar tempor ligula sed luctus. Nam id justo vel eros ultrices placerat. Mauris vehicula odio a fringilla sollicitudin.'),
