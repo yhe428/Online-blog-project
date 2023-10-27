@@ -45,6 +45,10 @@
             <input class="ipt" type="text" name="description" required>
 
             <button id="submit" type="submit">Create your account</button>
+            
+            {{#if toastMessage}}
+            <p> {{toastMessage}}</p>
+            {{/if}}
         
         </form>
 
