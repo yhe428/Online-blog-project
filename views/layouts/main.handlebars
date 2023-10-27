@@ -8,26 +8,34 @@
     {{else}}
     <title>Default title.</title>
     {{/if}}
+    {{!--
     <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="./css/newAccount.css">
+    <link rel="stylesheet" href="./css/newAccount.css"> --}}
     <link rel="stylesheet" href="./css/style.css">
     <script src="./javascript/home.js"></script>
     <script src="./javascript/verify-password.js"></script>
     <script src="./javascript/verify-username.js"></script>
+     <script src="https://kit.fontawesome.com/3cd9bc84f9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header id="header">
-        <h1>Dazzling Duck's <br><span class="logo">Photography<span></h1>
+        <h2><a href="/" class="home">Dazzling Duck's <br><span class="logo">Photography</span></a></h2>
         <nav>
             <ul>
-                <li><a href="/views/home.handlebars">Home</a></li>
-                <li><a href="/views/blog.handlebars">Blog</a></li>
-
-    <!--TO DO. Category and login are different colours until anchored- not sure where yet.-->            
-                <li>Category</li>
-                <li><a href="/views/search.handlebars">Search</a></li>
-                <li><a href="/views/photographers.handlebars">Photographers</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        <li>Category</li>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/nature.html">Nature</a>
+                        <a href="/portrait.html">Portrait</a>
+                        <a href="/life.html">Life</a>
+                    </div>
+                </div>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/photographers">Photographers</a></li>
                 <li>Login</li>
             </ul>
         </nav>
@@ -37,7 +45,7 @@
         {{{body}}}
     </main>
 
-    <footer id="footer">
+    <footer id="footer" class="clear">
         <p> &copy; Dazzling Ducks </p>
     </footer>
 </body>
