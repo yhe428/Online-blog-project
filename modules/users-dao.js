@@ -16,10 +16,46 @@ async function createAccount(user){
 
 async function retrieveUserByName(username) {
     const db = await dbPromise;
-
     const user = await db.get(SQL`
     select * from Users
     where username = ${username}`);
+    return user;
+}
+
+async function retrieveUserWithCredentials(username, password) {
+    const db = await dbPromise;
+    const user = await db.get(SQL`
+        select * from Users
+        where username = ${username} and password = ${password} `);
+    return user;
+}
+
+async function retrieveUserWithAuthToken(authToken) {
+   
+   const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from Users
+        where authToken = ${authToken}`);
+    return user;
+}
+
+async function updateUser(user) {
+
+        const db = await dbPromise;
+
+        await db.run(SQL`
+            update users
+            set authToken = ${user.authToken}
+            where userId = ${user.userId}`);
+}
+
+async function retrieveUserById(id) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from users
+        where id = ${id}`);
 
     return user;
 }
@@ -43,6 +79,9 @@ async function retrieveUserWithAuthToken(authToken) {
 module.exports = {
     createAccount,
     retrieveUserByName,
-    retrieveUserWithAuthToken
+    retrieveUserWithCredentials,
+    retrieveUserWithAuthToken,
+    updateUser,
+    retrieveUserById
 
 };

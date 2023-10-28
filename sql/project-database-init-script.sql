@@ -1,3 +1,15 @@
+drop table if exists test;
+
+create table test (
+    id integer not null primary key,
+    stuff text  
+);
+
+insert into test (stuff) values
+    ('Things'),
+    ('More things');
+
+
 drop table if exists Comments;
 drop table if exists Articles;
 drop table if exists Categories;
