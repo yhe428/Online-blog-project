@@ -32,9 +32,34 @@ async function retrieveUserWithCredentials(username, password) {
     return user;
 }
 
+async function retrieveUserWithAuthToken(authToken) {
+    console.log("in UD retrieveUserWithAuthToken");
+    // const db = await dbPromise;
+
+    // const user = await db.get(SQL`
+    //     select * from users
+    //     where authToken = ${authToken}`);
+
+    return user;
+}
+
+async function updateUser(user) {
+    console.log("in UD updateUser");
+    //will this work with out other values?
+    // const db = await dbPromise;
+
+    // await db.run(SQL`
+    //     update users
+    //     set username = ${user.username}, password = ${user.password},
+    //         name = ${user.name}, authToken = ${user.authToken}
+    //     where id = ${user.id}`);
+}
+
 module.exports = {
     createAccount,
     retrieveUserByName,
-    retrieveUserWithCredentials
+    retrieveUserWithCredentials,
+    retrieveUserWithAuthToken,
+    updateUser
 
 };
