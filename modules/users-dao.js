@@ -31,7 +31,6 @@ async function retrieveUserWithCredentials(username, password) {
 }
 
 async function retrieveUserWithAuthToken(authToken) {
-    //console.log("in UD retrieveUserWithAuthToken");
    
    const db = await dbPromise;
 
@@ -42,7 +41,6 @@ async function retrieveUserWithAuthToken(authToken) {
 }
 
 async function updateUser(user) {
-    console.log("in UD updateUser");
 
         const db = await dbPromise;
 
