@@ -87,11 +87,16 @@ router.post("/login", async function (req, res) {
     const user = await userDao.retrieveUserWithCredentials(username, password);
     if (user) {
         res.locals.user = user;
-         console.log(" in post authToken");
-        // const authToken = uuid();
-        // user.authToken = authToken;
-        // console.log("authToken");
-        // await userDao.updateUser(user);
+        const authToken = uuid();// not crashing!
+        
+        user.authToken = authToken;// not crashing!
+        console.log(" in nA - authToken received!" + authToken);//ok!
+        console.log(" in nA - user.authToken: " + user.authToken); //ok!
+        await userDao.updateUser(user);// 2 - ok blank - crash with select!
+       //  first - CRASHED! not such column name in SQLite? from update?, error 288?
+       //new release
+
+        console.log(" in nA -  post authToken");
         // res.cookie("authToken", authToken);
         // res.locals.user = user;
 

@@ -16,43 +16,40 @@ async function createAccount(user){
 
 async function retrieveUserByName(username) {
     const db = await dbPromise;
-
     const user = await db.get(SQL`
     select * from Users
     where username = ${username}`);
-
     return user;
 }
 
 async function retrieveUserWithCredentials(username, password) {
     const db = await dbPromise;
     const user = await db.get(SQL`
-        select * from users
+        select * from Users
         where username = ${username} and password = ${password} `);
     return user;
 }
 
 async function retrieveUserWithAuthToken(authToken) {
     console.log("in UD retrieveUserWithAuthToken");
-    // const db = await dbPromise;
+   
+   const db = await dbPromise;
 
-    // const user = await db.get(SQL`
-    //     select * from users
-    //     where authToken = ${authToken}`);
-
+    const user = await db.get(SQL`
+        select * from Users
+        where authToken = ${authToken}`);
     return user;
 }
 
 async function updateUser(user) {
     console.log("in UD updateUser");
-    //will this work with out other values?
-    // const db = await dbPromise;
 
-    // await db.run(SQL`
-    //     update users
-    //     set username = ${user.username}, password = ${user.password},
-    //         name = ${user.name}, authToken = ${user.authToken}
-    //     where id = ${user.id}`);
+        const db = await dbPromise;
+
+        await db.run(SQL`
+            update users
+            set authToken = ${user.authToken}
+            where userId = ${user.userId}`);
 }
 
 module.exports = {
