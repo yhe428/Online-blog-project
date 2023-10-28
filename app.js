@@ -31,6 +31,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use the toaster middleware
 app.use(require("./middleware/toaster-middleware.js"));
 
+//auth middleware
+const { addUserToLocals } = require("./middleware/auth-middleware.js");
+app.use(addUserToLocals);
+
+//Set auth route - not sure this is needed -user-dao retrieve
+// const authRouter = require("./routes/auth-routes.js");
+// app.use(authRouter);
+
 // Setup routes
 app.use(require("./routes/application-routes.js"));
 
