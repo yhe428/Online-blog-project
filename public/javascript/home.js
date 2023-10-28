@@ -1,8 +1,8 @@
 window.addEventListener('load', function(){
-    // let createAccountButton = this.document.querySelector('#create-account');
-    // createAccountButton.addEventListener('click',function(){
-    //     window.location.href = "/newAccount";
-    // });
+    let createAccountButton = this.document.querySelector('#create-account');
+    createAccountButton.addEventListener('click',function(){
+        window.location.href = "/newAccount";
+    });
 
     let loginButton = document.querySelector('#login');
     loginButton.addEventListener('click',function(){
