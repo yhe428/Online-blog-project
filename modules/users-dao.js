@@ -31,7 +31,7 @@ async function retrieveUserWithCredentials(username, password) {
 }
 
 async function retrieveUserWithAuthToken(authToken) {
-    console.log("in UD retrieveUserWithAuthToken");
+    //console.log("in UD retrieveUserWithAuthToken");
    
    const db = await dbPromise;
 
@@ -52,11 +52,22 @@ async function updateUser(user) {
             where userId = ${user.userId}`);
 }
 
+async function retrieveUserById(id) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from users
+        where id = ${id}`);
+
+    return user;
+}
+
 module.exports = {
     createAccount,
     retrieveUserByName,
     retrieveUserWithCredentials,
     retrieveUserWithAuthToken,
-    updateUser
+    updateUser,
+    retrieveUserById
 
 };

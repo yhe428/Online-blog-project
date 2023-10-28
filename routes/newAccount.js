@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
 //const bcrypt = require("bcrypt");
+const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
@@ -59,24 +60,23 @@ router.post("/newAccount", async function (req, res) {
 
 });
 
-router.get("/verifyUsername", async function (req, res) {
-    let usernameToBeVerify = req.query.username;
+//router.get("/verifyUsername", async function (req, res) {
+//     let usernameToBeVerify = req.query.username;
 
-    let returnedUser = await userDao.retrieveUserByName(usernameToBeVerify);
+//     let returnedUser = await userDao.retrieveUserByName(usernameToBeVerify);
 
-    if (returnedUser) {
-        res.send(true);
-    } else {
-        res.send(false);
-    }
+//     if (returnedUser) {
+//         res.send(true);
+//     } else {
+//         res.send(false);
+//     }
 
-})
+// })
 
 router.get("/login", function (req, res) {
     if (res.locals.user) {
-        res.render("/yourPage");
-    }
-    else {
+        res.redirect("./yourPage");
+    } else {
         res.render("login");
     }
 });
@@ -87,19 +87,11 @@ router.post("/login", async function (req, res) {
     const user = await userDao.retrieveUserWithCredentials(username, password);
     if (user) {
         res.locals.user = user;
-        const authToken = uuid();// not crashing!
-        
-        user.authToken = authToken;// not crashing!
-        console.log(" in nA - authToken received!" + authToken);//ok!
-        console.log(" in nA - user.authToken: " + user.authToken); //ok!
-        await userDao.updateUser(user);// 2 - ok blank - crash with select!
-       //  first - CRASHED! not such column name in SQLite? from update?, error 288?
-       //new release
-
-        console.log(" in nA -  post authToken");
-        // res.cookie("authToken", authToken);
-        // res.locals.user = user;
-
+        const authToken = uuid();
+        user.authToken = authToken;
+        await userDao.updateUser(user);
+        res.cookie("authToken", authToken);
+        res.locals.user = user;
         res.redirect("/yourPage")
     } else {
         res.setToastMessage("Wrong username or password");
@@ -107,14 +99,13 @@ router.post("/login", async function (req, res) {
     }
 });
 
-router.get("/yourPage", function (req, res) {
-
+router.get("/yourPage", verifyAuthenticated, async function (req, res) {
     res.render("yourPage");
 });
 
 router.get("/logout", function (req, res) {
-    // res.clearCookie("authToken");
-    // res.locals.user = null;
+    res.clearCookie("authToken");
+    res.locals.user = null;
     res.setToastMessage("Successfully logged out!");
     res.redirect("./login");
 });
