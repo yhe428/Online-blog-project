@@ -22,10 +22,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-nav a,
+nav a, 
 h3,
-.logo,
-#header {
+.logo, .dropdown-btn, .login-btn, #header, .btn{
     text-transform: uppercase;
     font-family: 'Spectral', serif;
     font-size: 16px;
@@ -41,14 +40,19 @@ footer,
 
 /*--1. Logo- Dazzling Duck's Photography --*/
 
-#header>h1 {
+#header>h2 {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 3px;
-    font-size: 26px;
-    color: var(--dark);
+    font-size: 24px;
     text-transform: none;
 }
-
+.home {
+    text-decoration: none;
+    color: var(--dark);
+}
+/* #header>h3 {
+    font-size: 14px;
+} */
 /*-- Navigation --*/
 
 #header {
@@ -75,6 +79,169 @@ nav a {
     text-decoration: none;
 }
 
+/* Hoverable dropdown menu  */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--pale);
+    min-width: 170px;
+    z-index: 1;
+    /* border-radius: 14px; */
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-btn, .login-btn {
+    background-color: var(--pale);
+    height: 80px;
+    border: white;
+}
+a:hover, .dropdown-btn:hover, .login-btn:hover{
+    color: #B8BDB5;
+}
+/*------------------------------ Home ------------------------------*/
+.home-content-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    gap: 50px;
+}
+
+.home-content-container .left-content img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.home-content-container .right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.home-content-container h1 {
+    margin: 0;
+    font-size: 2em;
+    text-transform: uppercase;
+    /* font-family: 'Merriweather',serif; */
+}
+
+.home-content-container .description {
+    color: gray;
+}
+
+.home-content-container button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.home-content-container button:hover {
+    background-color: #555;
+}
+
+/*------------------------------ new account ------------------------------*/
+
+/* body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    
+} */
+#register-box{
+    display:flex;
+    margin: 50px auto;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    width:100%;
+    /* overflow:hidden; */
+}
+.left, .form-div {
+    box-shadow: 0px 0px 15px var(--shadow);
+}
+.left{
+    flex:0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* overflow: hidden; */
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+    min-width: 300px;
+
+}
+.left img{
+    max-width: 100%;
+    margin:0;
+    height:auto;
+    
+}
+.form-div{
+    flex:1;
+    max-width: 500px;
+    height:auto;
+    /* margin: 50px auto; */
+    margin-top:100px auto;
+    background-color: var(--pale);
+    padding: 40px;
+    /* box-shadow: 0px 0px 15px var(--shadow); */
+    border-radius: 8px;
+    
+}
+.form-div h3{
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.form-div p{
+    /* color: #888; */
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.form-div label{
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.ipt{
+    width: 100%;
+    padding: 15px;
+    margin-top: 5px;
+    /* border: 1px solid #e0e0e0; */
+    border: 1px solid var(--light);
+    border-radius: 4px;
+}
+button:disabled{
+    /* background-color: #cccccc; 
+    color: #888888;           */
+    cursor: not-allowed;      
+}
+
 /*------------------------------ Blog ------------------------------*/
 .container {
     display: grid;
@@ -91,12 +258,12 @@ nav a {
     flex-direction: column;
     margin: 0;
     padding: 20px 10px;
-}
+} */
 
 /* NOTE!!! These classes to be added to articles div and car-container,based on condition of landscape, portrait and large portait */
 
-.short {
-    grid-row: span 5;
+ .short {
+    grid-row: span 7;
 }
 
 .tall {
@@ -141,6 +308,13 @@ nav a {
     font-size: 24px
 }
 
+.btn {
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    box-shadow: 1px 1px 1px;
+    padding: 5px 10px;
+    border: none;
+} */
 /* --- avatar/author/comment container --- */
 
 .flavicon-author_container {
@@ -154,17 +328,96 @@ nav a {
     padding: 0 10px;
 }
 
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
 .flavicon-comment {
     width: 15px;
     height: 17px;
 }
 
+/* -----------------------------Full article ------------------------ */
+ /* .full-article-container {
+
+    max-width: 1300px;
+    margin: 60px auto;
+}
+
+.full-article-container p {
+    text-align: justify;
+    font-size: 18px;
+}
+
+.heading {
+    font-size: 24px;
+    padding: 35px 0 20px 0;
+}
+
+.full-article-container .flavicon-author_container {
+    border: none;
+    margin-bottom: 225px;
+}
+
+.written {
+    font-size: 14px;
+    padding-right: 7px;
+}
+
+.full-image {
+    float: right;
+    width: 50%;
+    margin: 40px;
+    border-radius: 8px;
+    box-shadow: 8px 8px 8px 1px var(--medium);
+} */
+ /*------------------------------ Photographer ------------------------------*/
+ .photographer-container{
+   display: flex;
+   width: 1300px;
+   margin: auto; 
+   /* box-shadow: 1px 1px 4px 1px ; */
+  }
+ .photographer-heading {
+    text-align: center;
+    color: var(--medium);
+    font-size:  30px;
+    padding: 30px 0;
+   
+ }
+ .contact-icons ul{
+    padding: 20px;
+   list-style-type: none;
+ }
+ 
+ .contact-icons li, i{
+    padding: 10px;
+ }
+ .contact-icons i {
+    padding: 0, 15px;
+ }
+ 
+ .article-container {
+    width: 60%;
+    text-align: start;
+    margin: auto;
+    padding: 30px;
+    border-left: 2px solid var(--light);
+    line-height: 1.6;
+ }
+.article-container>p {
+    padding-left: 50px;
+}
+
 /*------------------------------ Footer ------------------------------*/
 #footer {
+   
     text-align: right;
     background: var(--light);
 }
-
+.clear {
+     clear: right;
+}
 #footer>p {
     padding-top: 28px;
     padding-right: 86px;
