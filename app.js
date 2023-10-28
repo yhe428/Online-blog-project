@@ -31,11 +31,17 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use the toaster middleware
 app.use(require("./middleware/toaster-middleware.js"));
 
+//use the auth middleware
+// app.use(require("./middleware/auth-middleware.js"));
+
 // Setup routes
 app.use(require("./routes/application-routes.js"));
 
 //new account route
 app.use(require("./routes/newAccount.js"));
+
+//comment
+app.use(require("./routes/commentHandle.js"));
 
 // Start the server running.
 app.listen(port, function () {
