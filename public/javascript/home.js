@@ -4,10 +4,4 @@ window.addEventListener('load', function(){
         window.location.href = "/newAccount";
     });
 
-    let loginButton = document.querySelector('#login');
-    loginButton.addEventListener('click',function(){
-        //alert("You clicked login")
-        window.location.href = "/login";
-    });
-
 });
