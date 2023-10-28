@@ -18,7 +18,7 @@ router.post("/newAccount", async function (req, res) {
     const username = req.body.username.trim();
     const firstname = req.body.firstname.trim();
     const lastname = req.body.lastname.trim();
-    const password = req.body.password.trim();
+   // const password = req.body.password.trim();
     const birth = req.body.birth.trim();
     const address = req.body.address.trim();
     const phone = req.body.phone.trim();
@@ -26,8 +26,7 @@ router.post("/newAccount", async function (req, res) {
     const description = req.body.description.trim();
 
     //bcrypt    
-    const hashPassword = await bcrypt.hash(req.body.password, 5)
-    console.log("In new account - hash: " + hashPassword);
+    const hashPassword = await bcrypt.hash(req.body.password, 10)
 
     //make the properties from user into object 
     const obj = {
@@ -72,6 +71,7 @@ router.post("/newAccount", async function (req, res) {
 //     }
 // })
 
+
 router.get("/login", function (req, res) {
     if (res.locals.user) {
         res.redirect("./yourPage");
@@ -81,30 +81,29 @@ router.get("/login", function (req, res) {
 });
 
 router.post("/login", async function (req, res) {
-    const username = req.body.username;
-    const password = req.body.password;
-    console.log("req password: " + password);
-   // const user = await userDao.retrieveUserWithCredentials(username, password);
-    const user = await userDao.retrieveUserByName(username);
- 
-    if (user) {
-        const validPass = await bcrypt.compare(password, user.password);
-        if (validPass) {
-            res.setToastMessage("Valid password");
-        } else {
-            res.setToastMessage("Password didn't match!");
-            res.redirect("./login");
+    try{
+        const username = req.body.username;
+        const password = req.body.password;     
+        const user = await userDao.retrieveUserByName(username);
+        if (user) {
+            const validPassword = await bcrypt.compare(password, user.password);
+            if (validPassword) {
+                res.locals.user = user;
+                const authToken = uuid();
+                user.authToken = authToken;
+                await userDao.updateUser(user);
+                res.cookie("authToken", authToken);
+                res.locals.user = user;
+                res.setToastMessage("Valid password");
+            } else {
+                res.setToastMessage("Password was not correct!");
+                res.redirect("./login");
+            }
+            res.redirect("/yourPage")
         }
-        res.locals.user = user;
-        const authToken = uuid();
-        user.authToken = authToken;
-        await userDao.updateUser(user);
-        res.cookie("authToken", authToken);
-        res.locals.user = user;
-        res.redirect("/yourPage")
-    } else {
-        res.setToastMessage("Wrong username or password");
-        res.redirect("./login");
+    } catch ({ name, message }) {
+            console.log(name); 
+           // console.log(message);
     }
 });
 
