@@ -1,6 +1,6 @@
 <div class="container">
 
-    {{!-- <div class="card-container short">
+    <div class="card-container short">
         <img class="card-images" src="./images/pancakep.jpg" alt="pancakes">
         <h3>Life </h3>
         <h2>The best pancakes around</h2>
@@ -9,14 +9,14 @@
             consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
             harum fugit incidunt accusamus
         </p>
-
-        <div class="flavicon-author_container">
-           <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
+            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
             <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
             <p>2</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
         </div>
-    </div> --}}
+    </div>
 
     <div class="card-container tallest">
         <img class="card-images" src="./images/tulipsp.jpg" alt="tulips">
@@ -26,8 +26,8 @@
             veritatis
             consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
             harum fugit incidunt accusamus doloremque aliquid rerum</p>
-       <a href="./full_article.html"><button class="btn">Full Article</button></a>
-        <div class="flavicon-author_container">
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
             <img src="./images/male_avatarp.png" alt="male avatar flavicon" width="40" height="40">
             <h4 class="author">Brett Sayles</h4>
             <p>1</p>
@@ -43,44 +43,66 @@
             veritatis
             consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
             harum fugit incidunt accusamus doloremque aliquid rerum</p>
-   <a href="./full_article.html"><button class="btn">Full Article</button></a>
-        <div class="flavicon-author_container">
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
             <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
             <h4 class="author">Josie Walker</h4>
+            <p>2</p>
+            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+        </div>
+    </div>
+    <div class="card-container short">
+        <img class="card-images" src="./images/womanp.jpg">
+        <h3>Life </h3>
+        <h2>The best pancakes around</h2>
+        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
+            veritatis
+            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
+            harum fugit incidunt accusamus
+        </p>
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
+            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
+            <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
+            <p>2</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
         </div>
     </div>
 
-    {{!-- <div class="card-container short">
-        <img class="card-images" src="./images/womanp.jpg" alt="woman">
-        <h3 class="category">Portrait </h3>
-        <h2>Her eyes are stunning!</h2>
+    <div class="card-container short">
+        <img class="card-images" src="./images/mount_taranaki2.jpg">
+        <h3>Life </h3>
+        <h2>The best pancakes around</h2>
         <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
             veritatis
             consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-
-        <div class="flavicon-author_container">
-             <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author">Hannah Charles</h4>
+            harum fugit incidunt accusamus
+        </p>
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
+            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
+            <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
+            <p>2</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
         </div>
-    </div> --}}
-    <!--NOTE!!!  if picture is a landscape put variable = "short";
-            if picture is a very tall portrait put variable = "tallest"
-            if its a standard sized portrait put variable = "tall"-->
+    </div>
 
-    {{!-- <div class="card-container {{pictureOrientation}}">
+    {{!-- {{#each articles}} --}}
+    <div class="card-container {{pictureOrientation}}">
         <img class="card-images" src="{{imageUrl}}">
         <h3>{{category}}</h3>
         <h2>{{heading}}</h2>
         <p class="article">{{article}}</p>
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
 
-        <div class="flavicon-author_container">
-            <img src="{{flaviconAvatar}}" alt="avatar flavicon" width="40" height="40">
-            <h4 class="author">{{author}}</h4>
+        <div class="flavicon-container">
+            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+
+            <h4 class="author"> {{fName}}{{lName}}</h4>
+
             <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="{{flaviconComment}}" alt="Comment bubble">
         </div>
-    </div> --}}
+    </div>
+    {{!-- {{/each}} --}}
 </div>

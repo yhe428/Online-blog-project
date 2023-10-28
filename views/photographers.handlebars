@@ -1,63 +1,5 @@
-<h2 class="photographer-heading">Derek Hughes</h2>
-<div class="photographer-container">
-    <div class="contact-icons">
-        <ul>
 
-            <li><i class="fa-solid fa-phone"></i>027 7694 327 </li>
-            <li><i class="fa-solid fa-location-dot"></i> Lemon Street, New Plymouth 4312</li>
-            <li><i class="fa-solid fa-envelope"></i>darkroom@xtra.co.nz</li>
-        </ul>
-    </div>
-    <div class="article-container">
-        <p class="photographer-article">I got my first camera at 10 - a Brownie 127 - still have it and
-            it still works! Most of my own photography is inspired by Nature.
-            Our natural environment needs protecting.
-            If my photographs make someone appreciate what
-            we have a little bit more then I’m well rewarded.
-            Photography for me is my relaxation technique.
-            The view through the camera becomes my focus for a while
-            and lets me shut out the cluttered world we live in.
-        </p>
-    </div>
-</div>
-<div class="container">
-   <div class="card-container tallest">
-        <img class="card-images" src="./images/mount_taranaki.jpg">
-        <h3>Nature</h3>
-        <h2>Mount Taranaki</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-       <a href="./full-article"><button class="btn">Full Article</button></a>
-    </div>
-
-    <div class="card-container short">
-        <img class="card-images" src="./images/mount_taranaki2.jpg">
-        <h3>Nature</h3>
-        <h2>Mount Taranaki</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-    <a href="./full-article"><button class="btn">Full Article</button></a>
-    </div>
-
-       <div class="card-container tall">
-        <img class="card-images" src="./images/mount_taranaki3.jpg">
-        <h3>Nature</h3>
-        <h2>Mount Taranaki</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-    <a href="./full-article"><button class="btn">Full Article</button></a>
-    </div>
-</div>
-
-
-{{!--  Attention LUCY !! this is the layout for dynamic loading of handlebars, you could use derek hughes as first showing when opened, then overwrite him with the loaded one --}}
-
+<article>
 <h2 class="photographer-heading">{{name}}</h2>
 <div class="photographer-container">
     <div class="contact-icons">
@@ -81,13 +23,8 @@
         <p class="article">{{article}}
         </p>
         <a href="./full_article.html"><button class="btn">Full Article</button></a>
-        <div class="flavicon-author_container">
-            <img src="./image/red_hair_female_avatarp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author"><a href="./photographers.html">{{name}}</a></h4>
-            <p>2</p>
-            <i class="fa-regular fa-comment"></i>
-        </div>
     </div>
 
 
 </div>
+</article>
