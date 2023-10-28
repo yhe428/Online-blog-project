@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const dbPromise = require("./database.js");
+const dbPromise = require("../modules/database.js");
 const SQL = require("sql-template-strings");
 
 const commentDao = require("../modules/comment-dao.js");
