@@ -50,6 +50,15 @@ async function updateUser(user) {
             where userId = ${user.userId}`);
 }
 
+async function getAllUsers() {
+    const db = await dbPromise;
+
+    const users = await db.all(SQL`select * from Users`);
+    return users;
+};
+
+
+
 async function retrieveUserById(id) {
     const db = await dbPromise;
 
@@ -66,6 +75,7 @@ module.exports = {
     retrieveUserWithCredentials,
     retrieveUserWithAuthToken,
     updateUser,
+    getAllUsers,
     retrieveUserById
 
 };
