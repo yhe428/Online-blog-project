@@ -30,5 +30,20 @@ router.get("/blog", function (req, res) {
 });
 
 
+//router.get("/photographers", function (req, res){
+    //res.render("photographers");
+//})
+
+/*router.get("/photographers", async function(req, res) {
+
+    const users = await userDao.getAllUsers();
+    res.locals.users = users;
+
+    const firstPhotographer = await userDao.retrieveUserById(1);
+    res.locals.photographer = firstPhotographer;
+
+    res.render("photographers");
+
+});*/
 
 module.exports = router;

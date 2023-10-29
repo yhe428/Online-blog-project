@@ -1,4 +1,7 @@
 window.addEventListener('load', function(){
+  let pathname = window.location.pathname;
+
+  if(pathname === '/photographers'){
 
     const buttonArray = document.querySelectorAll(".name-button");
     buttonArray.forEach(function(button) {
@@ -15,6 +18,7 @@ window.addEventListener('load', function(){
     displayPhotographerDetails(currentPhotographer);
   }
 
+  //this is just testing, can ignore what the innerHTML is
   function displayPhotographerDetails(photographer) {
     const photographerDisplayDiv = document.querySelector(".article-container");
     photographerDisplayDiv.innerHTML =`
@@ -23,5 +27,5 @@ window.addEventListener('load', function(){
     <p>${photographer.userDescription}</p>`
   }
 
-
+  }
 });
