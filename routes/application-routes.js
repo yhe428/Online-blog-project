@@ -29,9 +29,6 @@ router.get("/blog", function (req, res) {
 
 });
 
-router.get("/photographers", function (req, res) {
-    
-    res.render("photographers", photographer);
-});
+
 
 module.exports = router;
