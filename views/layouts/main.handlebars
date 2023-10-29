@@ -13,10 +13,14 @@
     <link rel="stylesheet" href="./css/newAccount.css"> --}}
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/commentDisplay.css">
+    <link rel="stylesheet" href="./css/post.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="./javascript/home.js"></script>
     <script src="./javascript/verify-password.js"></script>
     <script src="./javascript/verify-username.js"></script>
-     <script src="https://kit.fontawesome.com/3cd9bc84f9.js" crossorigin="anonymous"></script>
+    <script src="./javascript/quill.js"></script>
+    <script src="https://kit.fontawesome.com/3cd9bc84f9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -37,7 +41,22 @@
                 </div>
                 <li><a href="/search">Search</a></li>
                 <li><a href="/photographers">Photographers</a></li>
-                <li><a href="/login">Login</a></li>
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        {{#if userLogIn}}
+                        <li><a href="/yourPage">{{user.username}}</a></li>
+                        {{else}}
+                        <li><a href="/login">Login</a></li>
+                        {{/if}}
+                        
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="">edit account</a>
+                        <a href="">delete account</a>
+                        <a href="/logout">logout</a>
+                    </div>
+                </div>
+                
             </ul>
         </nav>
     </header>

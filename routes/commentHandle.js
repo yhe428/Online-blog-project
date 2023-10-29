@@ -5,32 +5,34 @@ const SQL = require("sql-template-strings");
 
 const commentDao = require("../modules/comment-dao.js");
 
-// const verifyAuthenticated = require("../modules/auth-middleware.js");
+const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+
 
 const userDao = require("../modules/users-dao.js");
 
-router.get("/createComment", function(req,res){
+router.get("/createComment", verifyAuthenticated, function(req,res){
     res.render("comments");
 })
 
-router.post("/createComment", async function(req,res){
+router.post("/createComment", verifyAuthenticated, async function(req,res){
 
-    let articleId = req.body.postId;
-    console.log(articleId);
+
+    let posterId = req.body.postId;
+    console.log(posterId);
 
     let content = req.body.commentContent;
     console.log(content);
+    //-------(hold part below)--------------------
 
     let parentId = req.body.parentId;
     console.log(parentId);
 
     
-
     const comment = {
         parentId: parentId,
         content:content,
         articleCommented:articleId,
-        posterId:req.session.user.id//need auth middleware
+        posterId:posterId
     
     }
 

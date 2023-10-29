@@ -8,6 +8,8 @@
             </div>
         {{/if}} --}}
 
+        {{user.userId}} <h1>TEST</h1>
+
         <div class="showComments">
             <h3>Comments: </h3>
             
@@ -25,7 +27,7 @@
 
                     <div class="replyForm" id="replyForm-{{this.commentId}}">
                         <form action="./createComment" method="post">
-                            <input type="text" name="postId" value="{{../id}}" hidden>
+                            <input type="text" name="postId" value="{{user.userId}}" hidden>
                             <input type="text" name="parentId" value="{{this.commentId}}" hidden>
                             <textarea name="commentContent"></textarea>
                             <button type="submit">Reply</button>
@@ -40,7 +42,7 @@
     <div class="displayComment">
         <h2>Create a Comment</h2>
         <form action="./createComment" method="post">
-            <input type="text" name="postId" value="{{id}}" hidden>
+            <input type="text" name="postId" value="{{user.userId}}" hidden>
             <textarea name="commentContent"></textarea>
             <button type="submit">Post Comment</button>
         </form>

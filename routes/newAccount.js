@@ -2,14 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
 //const bcrypt = require("bcrypt");
-const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", function (req, res) {
-
     res.render("new-account");
 });
 
@@ -85,27 +83,26 @@ router.post("/login", async function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
     const user = await userDao.retrieveUserWithCredentials(username, password);
+
     if (user) {
-        res.locals.user = user;
-        const authToken = uuid();
-        user.authToken = authToken;
-        await userDao.updateUser(user);
-        res.cookie("authToken", authToken);
-        res.locals.user = user;
-        res.redirect("/yourPage")
+        //no authToken, so this user is new
+        if(!user.authToken){
+            user.authToken = uuid();
+            await userDao.updateUser(user);
+        }
+        res.cookie("authToken", user.authToken);
+        res.cookie("user", user);
+        res.redirect("./yourPage")
     } else {
         res.setToastMessage("Wrong username or password");
         res.redirect("./login");
     }
 });
 
-router.get("/yourPage", verifyAuthenticated, async function (req, res) {
-    res.render("yourPage");
-});
 
 router.get("/logout", function (req, res) {
     res.clearCookie("authToken");
-    res.locals.user = null;
+    res.clearCookie("user");
     res.setToastMessage("Successfully logged out!");
     res.redirect("./login");
 });
