@@ -63,8 +63,8 @@ async function retrieveUserById(id) {
     const db = await dbPromise;
 
     const user = await db.get(SQL`
-        select * from users
-        where id = ${id}`);
+        select * from Users
+        where userId = ${id}`);
 
     return user;
 }

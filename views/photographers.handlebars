@@ -1,20 +1,21 @@
 <script src="./js/photographers-client.js"></script>
 
 <article>
-<h2 class="photographer-heading">{{users.name}}</h2>
+<h2 class="photographer-heading">{{photographer.name}}</h2>
 <div class="photographer-container">
     <div class="contact-icons">
         <ul>
-            <li><i class="fa-solid fa-phone"></i>{{phone}}</li>
-            <li><i class="fa-solid fa-location-dot"></i> {{address}}</li>
-            <li><i class="fa-solid fa-envelope"></i>{{email}}</li>
+            <li><i class="fa-solid fa-phone"></i>{{photographer.phone}}</li>
+            <li><i class="fa-solid fa-location-dot"></i> {{photographer.address}}</li>
+            <li><i class="fa-solid fa-envelope"></i>{{photographer.email}}</li>
         </ul>
     </div>
     <div class="article-container">
-        <p class="photographer-article">{{description}}
+        <p class="photographer-article">{{photographer.description}}
         </p>
     </div>
 </div>
+
 <div class="container">
 
     <div class="card-container short">
