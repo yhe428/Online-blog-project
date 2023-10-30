@@ -80,7 +80,7 @@ async function retrieveAllArticles() {
     const db = await dbPromise;
 
 
-    const articles = await db.all(SQL` SELECT a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
+    const articles = await db.all(SQL` SELECT a.articleId, a.imageUrl, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
    from Users as u, Articles as a, Categories as c
     where u.userId = a.writerId
    and c.categoryID = a.categoryId`);

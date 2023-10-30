@@ -34,7 +34,8 @@ router.post("/submit-article", upload.single("image"), async function(req,res){
     fs.renameSync(oldFileName, newFileName);
     
     const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
-    // console.log(imageName);working
+    // console.log(imageName);working  
+    // VT:  noticed console.log shows the file of the other image in account
 
 
     //get image height from user uploaded picture

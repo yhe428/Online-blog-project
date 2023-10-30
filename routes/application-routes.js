@@ -12,8 +12,11 @@ router.get("/", function (req, res) {
 router.get("/blog", async function (req, res) {
 
     const articles = await userDao.retrieveAllArticles();
+   
+   
+     console.log(articles[6].imageUrl);
     res.locals.articles = articles;
-
+    
     res.render("blog");
 });
 
