@@ -2,7 +2,7 @@
 
 <ul>
   {{#each users}}
-    <a href="/photographers?userId={{this.userId}}"><li><button
+    <a href="/photographers/{{this.userId}}"><li><button
           class="name-button"
           data-id="{{this.userId}}"
         >{{this.fName}} {{this.lName}}</button></li></a>
@@ -29,12 +29,15 @@
   <div class="container">
 
     <div class="card-container short">
-      <img class="card-images" src="{{imageUrl}}" />
-      <h3>Life </h3>
-      <h2>{{heading}}</h2>
-      <p class="article">{{article}}
+
+    {{#each articles}} 
+      <img class="card-images" src="{{this.imageUrl}}" />
+      <h3>{{this.categoryId}}</h3>
+      <h2>{{this.title}}</h2>
+      <p>{{this.articleContent}}
       </p>
       <a href="./full_article.html"><button class="btn">Full Article</button></a>
+     {{/each}}
     </div>
 
   </div>
