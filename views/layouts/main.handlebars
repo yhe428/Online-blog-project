@@ -43,11 +43,9 @@
                 <li><a href="/photographers">Photographers</a></li>
                 <div class="dropdown">
                     <button class="dropdown-btn">
-                        {{#if userLogIn}}
+                        {{#if user}}
                         <li><a href="/yourPage">{{user.username}}</a></li>
                         {{else}}
-                         <div class="dropdown">
-                    <button class="dropdown-btn">
                         <li><a href="/login">Login</a></li>
                         {{/if}}
                         
@@ -55,7 +53,7 @@
                     <div class="dropdown-content">
                         <a href="">edit account</a>
                         <a href="">delete account</a>
-                        <a href="/logout">logout</a>
+                        <a href="./logout">logout</a>
                     </div>
                 </div>
                 

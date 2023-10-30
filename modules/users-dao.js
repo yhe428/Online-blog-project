@@ -50,12 +50,21 @@ async function updateUser(user) {
             where userId = ${user.userId}`);
 }
 
+async function getAllUsers() {
+    const db = await dbPromise;
+
+    const users = await db.all(SQL`select * from Users`);
+    return users;
+};
+
+
+
 async function retrieveUserById(id) {
     const db = await dbPromise;
 
     const user = await db.get(SQL`
-        select * from users
-        where id = ${id}`);
+        select * from Users
+        where userId = ${id}`);
 
     return user;
 }
@@ -70,12 +79,11 @@ async function retrieveUserWithAuthToken(authToken) {
     const db = await dbPromise;
 
     const user = await db.get(SQL`
-        select * from users
-        where authToken = ${authToken}`);
+        select * from Users
+        where userId = ${id}`);
 
     return user;
 }
-
 async function retrieveAllArticles() {
     const db = await dbPromise;
 
@@ -134,6 +142,7 @@ module.exports = {
     retrieveUserWithCredentials,
     retrieveUserWithAuthToken,
     updateUser,
+    getAllUsers,
     retrieveUserById,
     retrieveAllArticles,
     retrieveNatureArticles,
