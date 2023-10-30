@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const userDao = require("../modules/users-dao.js");
+const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/photographers", async function(req, res) {
 
@@ -12,7 +13,7 @@ router.get("/photographers", async function(req, res) {
         const firstPhotographer = await userDao.retrieveUserById(1);
         res.locals.photographer = firstPhotographer;
 
-        const articlesArray = await userDao.retrieveArticlesByUserId(1);
+        const articlesArray = await articlesDao.retrieveArticlesByUserId(1);
         res.locals.articles = articlesArray;
 
         res.render("photographers");
@@ -34,7 +35,7 @@ router.get("/photographers/:userId", async function (req, res) {
     const users = await userDao.getAllUsers();
         res.locals.users = users;
 
-    const articlesArray = await userDao.retrieveArticlesByUserId(id);
+    const articlesArray = await articlesDao.retrieveArticlesByUserId(id);
     res.locals.articles = articlesArray;
 
     res.render("photographers");
