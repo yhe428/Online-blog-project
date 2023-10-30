@@ -1,31 +1,15 @@
 window.addEventListener('load', function(){
-  let pathname = window.location.pathname;
+  //let pathname = window.location.pathname;
 
-  if(pathname === '/photographers'){
+  //if(pathname == '/photographers'){
 
     const buttonArray = document.querySelectorAll(".name-button");
     buttonArray.forEach(function(button) {
       button.addEventListener("click", async function() {
         const photographerId = button.dataset.id;
-        getPhotographerById(photographerId);
+        await fetch(`./photographers/${photographerId}`); 
     });
   });
-  
-  async function getPhotographerById(photographerId) {
-    const response = await fetch(`./photographers/${photographerId}`);
-    let currentPhotographer = await response.json();
-    console.log(currentPhotographer);
-    displayPhotographerDetails(currentPhotographer);
-  }
 
-  //this is just testing, can ignore what the innerHTML is
-  function displayPhotographerDetails(photographer) {
-    const photographerDisplayDiv = document.querySelector(".article-container");
-    photographerDisplayDiv.innerHTML =`
-    <p>${photographer.phone}</p>
-    <h2>${photographer.fName} ${photographer.lName}'s Description</h2>
-    <p>${photographer.userDescription}</p>`
-  }
 
-  }
 });
