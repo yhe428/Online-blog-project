@@ -43,11 +43,11 @@
                 <li><a href="/photographers">Photographers</a></li>
                 <div class="dropdown">
                     <button class="dropdown-btn">
-                        {{#if userLogIn}}
+                        {{#if user}}
                         <li><a href="/yourPage">{{user.username}}</a></li>
                         {{else}}
-                         <div class="dropdown">
-                    <button class="dropdown-btn">
+                        <div class="dropdown">
+                        <button class="dropdown-btn">
                         <li><a href="/login">Login</a></li>
                         {{/if}}
                         
