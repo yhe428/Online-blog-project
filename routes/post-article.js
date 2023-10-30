@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
-const { v4: uuid } = require("uuid");
+const postDao = require("../modules/post-dao.js");
+const path = require("path");
 
 // Import required middleware and packages
-const upload = require("../middleware/multer.js");
+const upload = require("../middleware/multer-uploader.js");
 const fs = require("fs");
 const jimp = require("jimp");
 
@@ -16,34 +17,57 @@ router.get("/yourPage", async function (req, res) {
     res.render("yourpage");
 });
 
-router.post("/submit-article", upload.single("imageFile"), async function(req,res){
+router.post("/submit-article", upload.single("image"), async function(req,res){
+
+
+    
+    //retrieve title from user
+    const title = req.body.title;
+    // console.log(title); working
+    //retrieve content from user
+    const content = req.body.content;
+    // console.log(content); working
+
     const fileInfo = req.file;
-
-    // Move the image into the images folder
     const oldFileName = fileInfo.path;
-    const id = uuid();
-    //this is to make sure the image id is unique in case same image name
-    const newFileName = `./public/images/${fileInfo.originalname}${id}`;
+    const newFileName = `./public/images/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
+    
+    const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
+    // console.log(imageName);working
 
-    // Using jimp, read in the image, resize it, and save it to the thumbnails folder.
-    // "read" and "write" are async functions so we can use "await" (which means we must
-    // declare this route handler function to also be async).
+
+    //get image height from user uploaded picture
     const image = await jimp.read(newFileName);
-    image.resize(320, jimp.AUTO);
-    // image.sepia(); // Bonus
-    await image.writeAsync(`./public/images/thumbnails/${fileInfo.originalname}${id}`);
+    const height = image.bitmap.height;
+    // console.log(height); working
+    const userId = req.cookies.user.userId;
+    // console.log(userId);working
 
-    // Get some information about the file and send it to the uploadDetails view for rendering.
-    res.locals.fileName = fileInfo.originalname;
-    // res.render("uploadDetails");
+    const obj = {
+        title: title,
+        content: content,
+        imageName:imageName,
+        imageUrl: newFileName,
+        imageHeight: height,
+        userId: userId,
+        categoryId: 1 
 
-    // Redirect back to the homepage.
-    res.redirect("/");
+    }
 
+    try{
+        const postId = await postDao.createPost(obj);
+        if(postId){
+            res.redirect("/blog");
+        }
+        
+    }catch(error){
+        console.log(error);
+        res.setToastMessage("Create post fail, try again");
+        res.redirect("./yourPage");
+    }
 
-})
-
+});
 
 
 module.exports = router;
