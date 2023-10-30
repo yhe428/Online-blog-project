@@ -1,4 +1,11 @@
-<script src="./js/photographers-client.js"></script>
+<script src="./javascript/photographers-client.js"></script>
+
+<ul>
+    {{#each users}}
+    <a href="/photographers/{{this.userId}}"><li><button class="name-button" data-id="{{this.userId}}">{{this.fName}} {{this.lName}}</button></li></a>
+    {{/each}}
+</ul>
+
 
 <article>
 <h2 class="photographer-heading">{{photographer.name}}</h2>
@@ -11,7 +18,7 @@
         </ul>
     </div>
     <div class="article-container">
-        <p class="photographer-article">{{photographer.description}}
+        <p class="photographer-article">{{photographer.userDescription}}
         </p>
     </div>
 </div>
