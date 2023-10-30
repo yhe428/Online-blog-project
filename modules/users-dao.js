@@ -136,6 +136,17 @@ async function retrieveLifeArticles() {
     return lifeArticles;
 }
 
+async function retrieveArticlesByUserId(userId) {
+    const db = await dbPromise;
+
+    const articlesArray = await db.all(SQL`select a.articleId, a.title, a.articleContent
+    from Articles as a, Users as u
+    where a.writerId = u.userId
+    and u.userId = ${userId}`);
+
+    return articlesArray;
+}
+
 module.exports = {
     createAccount,
     retrieveUserByName,
@@ -147,5 +158,6 @@ module.exports = {
     retrieveAllArticles,
     retrieveNatureArticles,
     retrievePortraitArticles,
-    retrieveLifeArticles
+    retrieveLifeArticles,
+    retrieveArticlesByUserId
 };
