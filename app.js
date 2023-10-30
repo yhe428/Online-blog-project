@@ -47,6 +47,8 @@ app.use(require("./routes/commentHandle.js"));
 //post article route
 app.use(require("./routes/post-article.js"));
 
+app.use(require("./routes/photographer-routes.js"));
+
 //edit account route
 app.use(require("./routes/editAccount.js"));
 
