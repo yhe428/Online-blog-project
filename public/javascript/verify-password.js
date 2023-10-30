@@ -2,19 +2,25 @@ window.addEventListener("load", function() {
     let pathname = window.location.pathname;
 
     if(pathname == '/newAccount'){
-        const input = document.querySelector('#confirmPassword');
+        const originalPasswordInput = document.querySelector("#txtPassword");
+        const confirmPasswordInput = document.querySelector("#confirmPassword");
+        const submitButton = document.querySelector("#submit-account");
+        const remindMessage = document.querySelector("#remind");
 
-        input.addEventListener("blur", function(){
-            const password1 = document.querySelector("#txtPassword").value;
-            const password2 = document.querySelector("#confirmPassword").value;
-            if(password1 == password2){
-                document.querySelector("#submit").disabled = false;
-            }else{
-                document.querySelector("#remind").innerHTML = "<span style ='color:red'>passwords do not match, please type again</span>";
-                document.querySelector("#submit").disabled = true;
+        function checkPasswordsMatch() {
+            const originalPassword = originalPasswordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (originalPassword && confirmPassword && originalPassword === confirmPassword) {
+                remindMessage.innerHTML = "";
+                submitButton.disabled = false;
+            } else {
+                remindMessage.innerHTML = "<span style='color:red'>passwords do not match, please type again</span>";
+                submitButton.disabled = true;
             }
-
-        });
-
+        }
+        originalPasswordInput.addEventListener("blur", checkPasswordsMatch);
+        confirmPasswordInput.addEventListener("blur", checkPasswordsMatch);
+        
     }
-})
+});

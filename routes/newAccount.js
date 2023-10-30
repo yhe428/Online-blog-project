@@ -9,7 +9,6 @@ const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", function (req, res) {
-
     res.render("new-account");
 });
 
@@ -59,17 +58,17 @@ router.post("/newAccount", async function (req, res) {
 
 });
 
-// router.get("/verifyUsername", async function (req, res) {
-//     let usernameToBeVerify = req.query.username;
+router.get("/verifyUsername", async function (req, res) {
+    let usernameToBeVerify = req.query.username;
 
-//     let returnedUser = await userDao.retrieveUserByName(usernameToBeVerify);
+    let returnedUser = await userDao.retrieveUserByName(usernameToBeVerify);
 
-//     if (returnedUser) {
-//         res.send(true);
-//     } else {
-//         res.send(false);
-//     }
-// })
+    if (returnedUser) {
+        res.send(true);
+    } else {
+        res.send(false);
+    }
+})
 
 
 router.get("/login", function (req, res) {
@@ -87,33 +86,34 @@ router.post("/login", async function (req, res) {
         const user = await userDao.retrieveUserByName(username);
         if (user) {
             const validPassword = await bcrypt.compare(password, user.password);
+
             if (validPassword) {
-                res.locals.user = user;
-                const authToken = uuid();
-                user.authToken = authToken;
-                await userDao.updateUser(user);
-                res.cookie("authToken", authToken);
-                res.locals.user = user;
-                res.setToastMessage("Valid password");
+                if (!user.authToken) {
+                    user.authToken = uuid();
+                    await userDao.updateUser(user);
+                }
+                
+                res.cookie("authToken", user.authToken);
+                res.cookie("user", user);  
+                res.redirect("./yourPage");
             } else {
-                res.setToastMessage("Password was not correct!");
+                res.setToastMessage("Wrong username or password");
                 res.redirect("./login");
             }
-            res.redirect("/yourPage")
+        } else {
+            res.setToastMessage("cannot find user");
+            res.redirect("./login");
         }
-    } catch ({ name, message }) {
-            console.log(name); 
-           // console.log(message);
+    } catch (error) {
+        console.log(error);
+        res.setToastMessage("An error occurred during login");
+        res.redirect("./login");
     }
-});
-
-router.get("/yourPage", verifyAuthenticated, async function (req, res) {
-    res.render("yourPage");
 });
 
 router.get("/logout", function (req, res) {
     res.clearCookie("authToken");
-    res.locals.user = null;
+    res.clearCookie("user");
     res.setToastMessage("Successfully logged out!");
     res.redirect("./login");
 });

@@ -11,7 +11,8 @@ function verifyAuthenticated(req, res, next) {
         next();
     }
     else {
-        res.redirect("/login");
+        res.redirect("./login");
+        console.log("===============");
     }
 }
 
