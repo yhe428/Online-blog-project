@@ -45,6 +45,9 @@ app.use(require("./routes/commentHandle.js"));
 //post article route
 app.use(require("./routes/post-article.js"));
 
+//edit account route
+app.use(require("./routes/editAccount.js"));
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);
