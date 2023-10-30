@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 //introduce users DAO
@@ -9,7 +9,6 @@ const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", function (req, res) {
-
     res.render("new-account");
 });
 
@@ -18,23 +17,22 @@ router.post("/newAccount", async function (req, res) {
     const username = req.body.username.trim();
     const firstname = req.body.firstname.trim();
     const lastname = req.body.lastname.trim();
-    const password = req.body.password.trim();
+   // const password = req.body.password.trim();
     const birth = req.body.birth.trim();
     const address = req.body.address.trim();
     const phone = req.body.phone.trim();
     const email = req.body.email.trim();
     const description = req.body.description.trim();
 
-    //Greta: password hashed and salted, if you compeleted encryption, then you can 
-    //change my password in obj into hashed and salted one
-
+    //bcrypt    
+    const hashPassword = await bcrypt.hash(req.body.password, 10)
 
     //make the properties from user into object 
     const obj = {
         username: username,
         firstname: firstname,
         lastname: lastname,
-        password: password,
+        password: hashPassword,
         birth: birth,
         address: address,
         phone: phone,
@@ -70,8 +68,8 @@ router.get("/verifyUsername", async function (req, res) {
     } else {
         res.send(false);
     }
-
 })
+
 
 router.get("/login", function (req, res) {
     if (res.locals.user) {
@@ -82,30 +80,40 @@ router.get("/login", function (req, res) {
 });
 
 router.post("/login", async function (req, res) {
-    const username = req.body.username;
-    const password = req.body.password;
-    const user = await userDao.retrieveUserWithCredentials(username, password);
-    if (user) {
-        res.locals.user = user;
-        const authToken = uuid();
-        user.authToken = authToken;
-        await userDao.updateUser(user);
-        res.cookie("authToken", authToken);
-        res.locals.user = user;
-        res.redirect("/yourPage")
-    } else {
-        res.setToastMessage("Wrong username or password");
+    try{
+        const username = req.body.username;
+        const password = req.body.password;     
+        const user = await userDao.retrieveUserByName(username);
+        if (user) {
+            const validPassword = await bcrypt.compare(password, user.password);
+
+            if (validPassword) {
+                if (!user.authToken) {
+                    user.authToken = uuid();
+                    await userDao.updateUser(user);
+                }
+                
+                res.cookie("authToken", user.authToken);
+                res.cookie("user", user);  
+                res.redirect("./yourPage");
+            } else {
+                res.setToastMessage("Wrong username or password");
+                res.redirect("./login");
+            }
+        } else {
+            res.setToastMessage("cannot find user");
+            res.redirect("./login");
+        }
+    } catch (error) {
+        console.log(error);
+        res.setToastMessage("An error occurred during login");
         res.redirect("./login");
     }
 });
 
-router.get("/yourPage", verifyAuthenticated, async function (req, res) {
-    res.render("yourPage");
-});
-
 router.get("/logout", function (req, res) {
     res.clearCookie("authToken");
-    res.locals.user = null;
+    res.clearCookie("user");
     res.setToastMessage("Successfully logged out!");
     res.redirect("./login");
 });

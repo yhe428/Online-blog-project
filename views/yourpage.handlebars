@@ -1,14 +1,50 @@
+
 <div class="container">
-    <div class="short">
-        <p> </p>
-        <h1>Your Page & Articles</h1>
-    <div class="article">
+    <p> welcome! {{user.username}}</p>
+    <h1>Your Page & Articles</h1>
+    
+    {{#if articles}}
+        {{#each articles}}
+        <div class="card-container tall">
+        <img class="card-images" src="./images/{{aricles.imageUrl}}" alt="british blue cat">
+        <h3>{{article.category}}</h3>
+        <h2>{{article.title}}</h2>
+        <p class="article">{{article.content}}</p>
+        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+        <div class="flavicon-container">
+            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
+            <h4 class="author">Josie Walker</h4>
+            <p>2</p>
+            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+        </div>
+        {{/each}}
+    
+    {{else}}
+    <p>You haven't uploaded any images yet. Please use the form below to add some!</p>
+    {{/if}}
 
-    </div>
+
+    <form action="/submit-article" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="content">Content:</label>
+        <textarea id="editor-textarea" name="content" hidden></textarea>
+        <div id="editor">
+            <p>Hello world!</p>
+
+        </div>
+
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
 
 
-<p>Click <a href="./logout">here</a> to log out.</p>
-    </div>
+
 
     {{#if toastMessage}}
     <p>{{toastMessage}}</p>

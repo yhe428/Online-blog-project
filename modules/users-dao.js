@@ -1,7 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-async function createAccount(user){
+async function createAccount(user) {
     const db = await dbPromise;
 
     const result = await db.run(SQL`
@@ -31,8 +31,8 @@ async function retrieveUserWithCredentials(username, password) {
 }
 
 async function retrieveUserWithAuthToken(authToken) {
-   
-   const db = await dbPromise;
+
+    const db = await dbPromise;
 
     const user = await db.get(SQL`
         select * from Users
@@ -42,9 +42,9 @@ async function retrieveUserWithAuthToken(authToken) {
 
 async function updateUser(user) {
 
-        const db = await dbPromise;
+    const db = await dbPromise;
 
-        await db.run(SQL`
+    await db.run(SQL`
             update users
             set authToken = ${user.authToken}
             where userId = ${user.userId}`);
@@ -69,6 +69,22 @@ async function retrieveUserById(id) {
     return user;
 }
 
+/**
+ * Gets the user with the given authToken from the database.
+ * If there is no such user, undefined will be returned.
+ * 
+ * @param {string} authToken the user's authentication token
+ */
+async function retrieveUserWithAuthToken(authToken) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from Users
+        where userId = ${id}`);
+
+    return user;
+}
+
 module.exports = {
     createAccount,
     retrieveUserByName,
@@ -76,6 +92,9 @@ module.exports = {
     retrieveUserWithAuthToken,
     updateUser,
     getAllUsers,
-    retrieveUserById
-
+    retrieveUserById,
+    retrieveAllArticles,
+    retrieveNatureArticles,
+    retrievePortraitArticles,
+    retrieveLifeArticles
 };
