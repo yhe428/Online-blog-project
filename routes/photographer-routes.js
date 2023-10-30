@@ -9,8 +9,10 @@ router.get("/photographers", async function(req, res) {
         const users = await userDao.getAllUsers();
         res.locals.users = users;
 
-        const firstPhotographer = await userDao.retrieveUserById(1);
-        res.locals.photographer = firstPhotographer;
+        let id = req.query.userId;
+        const currentPhotographer = await userDao.retrieveUserById(id);
+
+        res.locals.photographer = currentPhotographer;
 
         res.render("photographers");
 
@@ -21,15 +23,15 @@ router.get("/photographers", async function(req, res) {
 
 });
 
-router.get("/photographers/:userId", async function (req, res) {
+// router.get("/photographers", async function (req, res) {
     
-    let id = req.params['userId'];
-    const currentPhotographer = await userDao.retrieveUserById(id);
-  
-    res.locals.photographer = currentPhotographer;
+//     let id = req.query.userId;
+//     const currentPhotographer = await userDao.retrieveUserById(id);
 
-    res.render("photographers");
-});
+//     res.locals.photographer = currentPhotographer;
+
+//     res.render("photographers");
+// });
 
 
 module.exports = router;

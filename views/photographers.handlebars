@@ -1,39 +1,41 @@
 <script src="./javascript/photographers-client.js"></script>
 
 <ul>
-    {{#each users}}
-    <a href="/photographers/{{this.userId}}"><li><button class="name-button" data-id="{{this.userId}}">{{this.fName}} {{this.lName}}</button></li></a>
-    {{/each}}
+  {{#each users}}
+    <a href="/photographers?userId={{this.userId}}"><li><button
+          class="name-button"
+          data-id="{{this.userId}}"
+        >{{this.fName}} {{this.lName}}</button></li></a>
+  {{/each}}
 </ul>
 
-
 <article>
-<h2 class="photographer-heading">{{photographer.name}}</h2>
-<div class="photographer-container">
+  <h2 class="photographer-heading">{{photographer.name}}</h2>
+  <div class="photographer-container">
     <div class="contact-icons">
-        <ul>
-            <li><i class="fa-solid fa-phone"></i>{{photographer.phone}}</li>
-            <li><i class="fa-solid fa-location-dot"></i> {{photographer.address}}</li>
-            <li><i class="fa-solid fa-envelope"></i>{{photographer.email}}</li>
-        </ul>
+      <ul>
+        <li><i class="fa-solid fa-phone"></i>{{photographer.phone}}</li>
+        <li><i class="fa-solid fa-location-dot"></i>
+          {{photographer.address}}</li>
+        <li><i class="fa-solid fa-envelope"></i>{{photographer.email}}</li>
+      </ul>
     </div>
     <div class="article-container">
-        <p class="photographer-article">{{photographer.userDescription}}
-        </p>
+      <p class="photographer-article">{{photographer.userDescription}}
+      </p>
     </div>
-</div>
+  </div>
 
-<div class="container">
+  <div class="container">
 
     <div class="card-container short">
-        <img class="card-images" src="{{imageUrl}}">
-        <h3>Life </h3>
-        <h2>{{heading}}</h2>
-        <p class="article">{{article}}
-        </p>
-        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+      <img class="card-images" src="{{imageUrl}}" />
+      <h3>Life </h3>
+      <h2>{{heading}}</h2>
+      <p class="article">{{article}}
+      </p>
+      <a href="./full_article.html"><button class="btn">Full Article</button></a>
     </div>
 
-
-</div>
+  </div>
 </article>
