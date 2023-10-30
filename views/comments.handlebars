@@ -1,0 +1,50 @@
+<div class="display_total">
+    <div class="displayPost">
+        {{!-- {{#if title}}
+            <h2 class="diplay_h2">{{title}}</h2>
+            <div class="display_time">{{time}}</div>
+            <div class="commentDisplayPost">
+                {{{content}}}
+            </div>
+        {{/if}} --}}
+
+        {{user.userId}} <h1>TEST</h1>
+
+        <div class="showComments">
+            <h3>Comments: </h3>
+            
+            {{#each comments}}
+            <div class="comment">
+                <p>{{this.commentContent}}</p>
+                <div class="replyButton" data-id="{{this.commentId}}">Reply</div>
+
+                <div class="replies">
+                    {{#each this.replies}}
+                    <div class="reply">
+                        <p>{{this.commentContent}}</p>
+                    </div>
+                    {{/each}}
+
+                    <div class="replyForm" id="replyForm-{{this.commentId}}">
+                        <form action="./createComment" method="post">
+                            <input type="text" name="postId" value="{{user.userId}}" hidden>
+                            <input type="text" name="parentId" value="{{this.commentId}}" hidden>
+                            <textarea name="commentContent"></textarea>
+                            <button type="submit">Reply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="displayComment">
+        <h2>Create a Comment</h2>
+        <form action="./createComment" method="post">
+            <input type="text" name="postId" value="{{user.userId}}" hidden>
+            <textarea name="commentContent"></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    </div>
+</div>
