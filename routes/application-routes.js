@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 //introduce users DAO
-const articleDao = require("../modules/articles-dao.js");
+const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/", function (req, res) {
     res.locals.title = "Dazzling Duck Photography"

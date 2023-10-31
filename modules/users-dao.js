@@ -101,6 +101,8 @@ async function updatePassword(user){
 async function deleteUser(id){
     const db = await dbPromise;
 
+    await db.run(SQL`delete from Articles where writerId = ${id}`);
+
     const result = await db.run(SQL`
     delete from Users where userId = ${id}
     `)
