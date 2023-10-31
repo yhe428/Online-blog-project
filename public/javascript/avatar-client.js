@@ -1,5 +1,17 @@
 window.addEventListener('load', function () {
-    console.log("in avatar-client")
+    
+    const popupButton = document.querySelector("#popup-button");
+    const popupWindow = document.querySelector("#popup-window")
+
+    popupButton.addEventListener("click", function(){
+        popupWindow.style.display = "block";
+    });
+
+    const closeButton = document.querySelector("#close-button");
+    closeButton.addEventListener("click", function(){
+        popupWindow.style.display = "none";
+    });
+
 
     getAvatarArray();
 
@@ -20,7 +32,7 @@ window.addEventListener('load', function () {
         return buttonName
     }
     
-    avatarViewDisplay();
+    //avatarViewDisplay();
 
 
     function avatarViewDisplay() {

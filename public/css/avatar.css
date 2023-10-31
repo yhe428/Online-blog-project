@@ -9,7 +9,7 @@
     top: 105px;
     left: 75px;
     z-index: 10px;
-    display: block;
+    display: none;
     box-shadow: 10px 10px 10px hsl(60, 5%, 50%);
 }
 
