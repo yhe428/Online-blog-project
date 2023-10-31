@@ -34,27 +34,21 @@ router.post("/editAccount", verifyAuthenticated, async function (req, res){
 
     try{
         const changes = await userDao.editUserAccount(user);
-        console.log(changes);
 
         if(changes){
             const userById = await userDao.retrieveUserById(id);
-            console.log(userById);
             res.locals.user = userById;
             res.cookie('user',userById);
             res.setToastMessage("Edit account successful");
             res.redirect("/editAccount");
-            
-            
-            
+        
         }
 
     }catch(error){
         console.log(error);
         res.setToastMessage("Edit account fail! Try again");
         res.redirect("/editAccount");
-
     }
-
 
 });
 
