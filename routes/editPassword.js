@@ -6,6 +6,7 @@ const userDao = require("../modules/users-dao.js");
 const { verifyAuthenticated }= require("../middleware/auth-middleware.js");
 
 router.get("/editPassword", verifyAuthenticated, function (req,res){
+    res.locals.title = "Edit account";
     res.render("edit-password");
 
 });

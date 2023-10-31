@@ -8,6 +8,7 @@ const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", function (req, res) {
+    res.locals.title = "Create your account";
     res.render("new-account");
 });
 
@@ -71,6 +72,7 @@ router.get("/verifyUsername", async function (req, res) {
 
 
 router.get("/login", function (req, res) {
+    res.locals.title = "Log in";
     if (res.locals.user) {
         res.redirect("./yourPage");
     } else {

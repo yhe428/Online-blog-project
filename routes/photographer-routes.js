@@ -6,6 +6,8 @@ const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/photographers", async function(req, res) {
 
+    res.locals.title = "Photographers";
+
     try{
         const users = await userDao.getAllUsers();
         res.locals.users = users;
@@ -26,10 +28,10 @@ router.get("/photographers", async function(req, res) {
 });
 
 router.get("/photographers/:userId", async function (req, res) {
-    
+    res.locals.title = "Photographers";
     let id = req.params['userId'];
     const currentPhotographer = await userDao.retrieveUserById(id);
-  
+
     res.locals.photographer = currentPhotographer;
 
     const users = await userDao.getAllUsers();
