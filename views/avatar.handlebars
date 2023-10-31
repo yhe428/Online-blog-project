@@ -1,18 +1,26 @@
 <div class="tall">
-    <div>
-        <div id="top-stuff">
-            <h1> Avatars choice page: </h1>
-        <button id="display-avatar" style="height: 30px">Display</button>
-        <form action="./avatar" method="post">
-        <label for="avatarNameinput">type in avatar name</label>
-        <input type="text" name="avatarName" id="avatarNameinput">
-        <button type="submit">submit</button>
-        </form>
-        <p id="message-place">Here</p>
+
+    <button id="popup-button">Popup </button>
+    <button id="close"> close</button>
+   
+
+    <div id="popup-window">
+        <div id="header">
+            <h1> Pick an avatars: </h1>
+
+            
+            <form action="./avatar" method="post">
+            <p id="message-place"> : </p>
+                <label for="avatarNameinput">type in avatar name</label>
+                <input type="text" name="avatarName" id="avatarNameinput">
+                <button type="submit">submit</button>
+                <button id="display-avatar" style="height: 30px">Display</button>
+            </form>
+            
         </div>
-        
-        <div id="display-div">     </div>
-        <div class="flex-container">
+
+        <div id="display-div"> </div>
+        <div id="flex-container">
             <div class="items-div">
 
                 {{#each avatarListCompact}}
@@ -26,6 +34,6 @@
 </div>
 <div>
     {{#if toastMessage}}
-<p>{{toastMessage}}</p>
-{{/if}}
+    <p>{{toastMessage}}</p>
+    {{/if}}
 </div>
