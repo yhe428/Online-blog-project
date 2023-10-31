@@ -52,6 +52,12 @@ app.use(require("./routes/photographer-routes.js"));
 //edit account route
 app.use(require("./routes/editAccount.js"));
 
+//delete account route
+app.use(require("./routes/deleteAccount.js"));
+
+//edit password route
+app.use(require("./routes/editPassword.js"));
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);

@@ -11,16 +11,12 @@ const jimp = require("jimp");
 
 router.get("/yourPage", async function (req, res) {
     const user = req.cookies.user;
-    //console.log(user); 
     res.locals.user= user; 
-    res.locals.userLogIn = true;
     res.render("yourpage");
 });
 
 router.post("/submit-article", upload.single("image"), async function(req,res){
 
-
-    
     //retrieve title from user
     const title = req.body.title;
     // console.log(title); working

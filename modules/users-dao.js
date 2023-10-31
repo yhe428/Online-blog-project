@@ -22,43 +22,6 @@ async function retrieveUserByName(username) {
     return user;
 }
 
-async function retrieveUserWithCredentials(username, password) {
-    const db = await dbPromise;
-    const user = await db.get(SQL`
-        select * from Users
-        where username = ${username} and password = ${password} `);
-    return user;
-}
-
-async function retrieveUserWithAuthToken(authToken) {
-
-    const db = await dbPromise;
-
-    const user = await db.get(SQL`
-        select * from Users
-        where authToken = ${authToken}`);
-    return user;
-}
-
-async function updateUser(user) {
-
-    const db = await dbPromise;
-
-    await db.run(SQL`
-            update users
-            set authToken = ${user.authToken}
-            where userId = ${user.userId}`);
-}
-
-async function getAllUsers() {
-    const db = await dbPromise;
-
-    const users = await db.all(SQL`select * from Users`);
-    return users;
-};
-
-
-
 async function retrieveUserById(id) {
     const db = await dbPromise;
 
@@ -69,33 +32,94 @@ async function retrieveUserById(id) {
     return user;
 }
 
-/**
- * Gets the user with the given authToken from the database.
- * If there is no such user, undefined will be returned.
- * 
- * @param {string} authToken the user's authentication token
- */
+async function retrieveUserWithCredentials(username, password) {
+    const db = await dbPromise;
+    const user = await db.get(SQL`
+        select * from Users
+        where username = ${username} and password = ${password} `);
+    return user;
+}
+
 async function retrieveUserWithAuthToken(authToken) {
     const db = await dbPromise;
 
     const user = await db.get(SQL`
         select * from Users
-        where userId = ${id}`);
+        where authToken = ${authToken}`);
 
     return user;
 }
+async function updateUser(user) {
+
+    const db = await dbPromise;
+
+    await db.run(SQL`
+            update users
+            set authToken = ${user.authToken}
+            where userId = ${user.userId}`);
+}
+
+async function editUserAccount(user){
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
+        UPDATE Users 
+        SET 
+            username = ${user.username},
+            fName = ${user.fname},
+            lName = ${user.lname},
+            userDescription = ${user.description},
+            email = ${user.email},
+            address = ${user.address},
+            phone = ${user.phone},
+            birthDate = ${user.birthDate}
+            WHERE userId = ${user.userId}
+    `);
+
+    return result.changes;
+    
+}
+
+async function getAllUsers() {
+    const db = await dbPromise;
+
+    const users = await db.all(SQL`select * from Users`);
+    return users;
+};
+
+async function updatePassword(user){
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
+    update Users set password = ${user.password} where userId = ${user.userId};
+    
+    `)
+    return result.changes;
+
+}
+
+async function deleteUser(id){
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
+    delete from Users where userId = ${id}
+    `)
+    return result.changes;
+}
+
+
+/*--------------------------------------------------*/
 async function retrieveAllArticles() {
     const db = await dbPromise;
 
 
     const articles = await db.all(SQL` SELECT a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
-   from Users as u, Articles as a, Categories as c
+    from Users as u, Articles as a, Categories as c
     where u.userId = a.writerId
-   and c.categoryID = a.categoryId`);
+    and c.categoryID = a.categoryId`);
 
     return articles
 }
-
 
 async function retrieveNatureArticles() {
 
@@ -143,6 +167,9 @@ module.exports = {
     retrieveUserWithAuthToken,
     updateUser,
     getAllUsers,
+    editUserAccount,
+    deleteUser,
+    updatePassword,
     retrieveUserById,
     retrieveAllArticles,
     retrieveNatureArticles,

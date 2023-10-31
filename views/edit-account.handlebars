@@ -1,7 +1,7 @@
 <div class="edit_box">
     
-    {{#if message}}
-        {{message}}
+    {{#if toastMessage}}
+    <p> {{toastMessage}}</p>
     {{/if}}
     <form class="form_new1" autocapitalize="off" action="./editAccount" method="post">
         <h1 class="Edit">Editor</h1>
@@ -20,19 +20,35 @@
 
         <div class="item_edit">
             <i class="fa fa-audio-description" aria-hidden="true"></i>
-            <input class="textarea-edit" type="text" placeholder="First Name" name="fname" id="firstName" value="{{user.fname}}" required>
+            <input class="textarea-edit" type="text" placeholder="First Name" name="fname" id="firstName" value="{{user.fName}}" required>
         </div>
         <div class="item_edit">
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-            <input class="textarea-edit" type="text" placeholder="Last Name" name="lname" id="lastName" value="{{user.lname}}"required>
+            <input class="textarea-edit" type="text" placeholder="Last Name" name="lname" id="lastName" value="{{user.lName}}"required>
         </div>
         <div class="item_edit">
             <i class="fa fa-calendar" aria-hidden="true"></i>
             <input class="textarea-edit" type="date" placeholder="Date Of Birth" name="birthDate" id="birth" value="{{user.birthDate}}"required>
         </div>
+
+        <div class="item_edit">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <input class="textarea-edit" type="text" placeholder="Address" name="address" id="address" value="{{user.address}}"required>
+        </div>
+
+        <div class="item_edit">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <input class="textarea-edit" type="text" placeholder="Phone" name="phone" id="phone" value="{{user.phone}}"required>
+        </div>
+
+        <div class="item_edit">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <input class="textarea-edit" type="text" placeholder="Email" name="email" id="email" value="{{user.email}}"required>
+        </div>
+
         <div class="item_edit">
             <i class="fa fa-audio-description" aria-hidden="true"></i>
-            <textarea class="textarea-edit" width="400" height="225"  placeholder="Description" name="description" id="desc" value="{{user.description}}"required></textarea>
+            <textarea class="textarea-edit" width="400" height="225"  placeholder="Description" name="description" id="desc" required>{{user.userDescription}}</textarea>
         </div>
 
 
@@ -45,7 +61,7 @@
 
     <form id="form_delete" action="./deleteAccount">
         <div class="edit_ipt">
-        <button id="delete_button1" class="button submit" id="delete">delete Account</button>
+        <button id="delete_button" class="button submit">delete Account</button>
         </div>
     </form>
 

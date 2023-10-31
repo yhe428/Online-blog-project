@@ -45,8 +45,8 @@ drop table if exists Users;
  imageHeight integer,
  writerId integer not null,
  categoryId integer not null,
- foreign key (writerId) references Users(userId),
- foreign key (categoryId) references Categories(categoryId)
+ foreign key (writerId) references Users(userId) ON DELETE CASCADE,
+ foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
  
  create table if not exists Comments (
@@ -56,8 +56,8 @@ drop table if exists Users;
  content varchar(255),
  posterId integer not null,
  articleCommented integer not null,
- foreign key (posterId) references Users(userId),
- foreign key (articleCommented) references Articles(articleId)
+ foreign key (posterId) references Users(userId) ON DELETE CASCADE,
+ foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE
  );
  
  insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate) VALUES
@@ -85,4 +85,3 @@ drop table if exists Users;
  (4, datetime('now'), 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 1, 1),
  (5, datetime('now'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit hendrerit dolor, id vulputate arcu pretium interdum. Aenean aliquam vel ipsum ut ornare.', 2, 3),
  (6, datetime('now'), 'Vestibulum in nunc ac leo eleifend pretium eu at mi. Morbi pharetra ornare sollicitudin. Maecenas et ligula nisi. Vestibulum in gravida quam. Suspendisse interdum dui pretium est dictum suscipit. Integer pretium ante vel mi pellentesque convallis.', 3, 2);
- 
