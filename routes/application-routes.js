@@ -3,8 +3,7 @@ const router = express.Router();
 
 
 //introduce users DAO
-//const userDao = require("../modules/users-dao.js");
-const articlesDao = require("../modules/articles-dao.js");
+const articleDao = require("../modules/articles-dao.js");
 
 router.get("/", function (req, res) {
     res.locals.title = "Dazzling Duck Photography"
@@ -24,11 +23,9 @@ router.get("/full-article", function (req, res) {
 
     const fullArticle = {
 
-        imageUrl: "./images/mount_taranaki.jpg",
-
-        heading: "I like buttercups",
-
-        article: "Munchkin cougar lion persian havana brown. singapura forest american shorthair. Panther. Tom. Savannah. Leopard.Munchkin cougar lion persian havana brown. Norwegian forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. Burmese sphynx singapura forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. ",
+        imageName: "mount_taranaki.jpg",
+        title: "I like buttercups",
+        articleContent: "Munchkin cougar lion persian havana brown. singapura forest american shorthair. Panther. Tom. Savannah. Leopard.Munchkin cougar lion persian havana brown. Norwegian forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. Burmese sphynx singapura forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. ",
         flaviconAvatarUrl: "./images/male_avatarp.png",
         fName: "Mickey",
         lName: "Mouse",

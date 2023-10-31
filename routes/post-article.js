@@ -22,21 +22,27 @@ router.post("/submit-article", upload.single("image"), async function(req,res){
     // console.log(title); working
     //retrieve content from user
     const content = req.body.content;
-    // console.log(content); working
+    //console.log(content); working
 
     const fileInfo = req.file;
     const oldFileName = fileInfo.path;
     const newFileName = `./public/images/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
     
-    const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
-    // console.log(imageName);working
+    // const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
+    // console.log(imageName);
+    // wasnt giving .jpg, etc 
 
-
+     const imageName = fileInfo.originalname; 
+   
     //get image height from user uploaded picture
     const image = await jimp.read(newFileName);
     const height = image.bitmap.height;
+    const width = image.bitmap.width;
+    
     // console.log(height); working
+    // console.log(width); working
+    
     const userId = req.cookies.user.userId;
     // console.log(userId);working
 
@@ -46,9 +52,9 @@ router.post("/submit-article", upload.single("image"), async function(req,res){
         imageName:imageName,
         imageUrl: newFileName,
         imageHeight: height,
+        imageWidth: width,
         userId: userId,
         categoryId: 1 
-
     }
 
     try{
