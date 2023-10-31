@@ -43,6 +43,7 @@ drop table if exists Users;
  imageName varchar(64),
  imageUrl varchar(64),
  imageHeight integer,
+ imageWidth integer,
  writerId integer not null,
  categoryId integer not null,
  foreign key (writerId) references Users(userId),

@@ -5,9 +5,8 @@ async function createPost(post){
     const db = await dbPromise;
 
     const result = await db.run(SQL`
-    insert into Articles (title, articleContent, articleDate, imageName, imageUrl, imageHeight, writerId, categoryId) VALUES
-    (${post.title}, ${post.content},datetime ('now'),${post.imageName}, ${post.imageUrl}, ${post.imageHeight}, ${post.userId}, ${post.categoryId})
-    
+    insert into Articles (title, articleContent, articleDate, imageName, imageUrl, imageHeight, imageWidth, writerId, categoryId) VALUES
+    (${post.title}, ${post.content}, date('now'),${post.imageName}, ${post.imageUrl}, ${post.imageHeight}, ${post.imageWidth},${post.userId}, ${post.categoryId})    
     `);
     post.articleId = result.lastID;
     return post.articleId;
@@ -27,5 +26,4 @@ async function retrieveImageHeight(articleId) {
 module.exports = {
     createPost,
     retrieveImageHeight
-
 };

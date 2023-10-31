@@ -1,15 +1,15 @@
 
 <div class="full-article-container">
 
-    <img class="full-image" src="{{imageUrl}}">
+    <img class="full-image" src="./images/{{imageName}}">
     <div class="article-item">
 
         <h2 class="heading">{{title}}</h2>
-        <p class="full-article">{{articleContent}}</p>
+        <div class="full-article">{{{articleContent}}}
 
         <div class="flavicon-container">
             <img src="{{flaviconAvatarUrl}}" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author"><a href="./photographers.html">{{fname}} {{lname}}</a></h4>
+            <a href="./photographers"><h4 class="author">{{fname}} {{lname}}</h4></a>
             <h4 class="written">{{articleDate}} </h4>
             <i class="fa-regular fa-comment"></i>
         </div>
