@@ -13,9 +13,9 @@ window.addEventListener("load", function(){
             let usernameObj = await responsePromise.json();
             //judge if exists
             if(usernameObj == true){
-                document.querySelector("#ifCanUse").innerHTML = "The username was used by another user!"
+                document.querySelector("#ifCanUse").innerHTML = "<span style='color:red'>That username was used by another user!</span>"
             }else{
-                document.querySelector("#ifCanUse").innerText = "The username can be use."
+                document.querySelector("#ifCanUse").innerText = ""; //"Username is available."
             }
 
         })
