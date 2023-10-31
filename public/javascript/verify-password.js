@@ -10,17 +10,22 @@ window.addEventListener("load", function() {
         function checkPasswordsMatch() {
             const originalPassword = originalPasswordInput.value;
             const confirmPassword = confirmPasswordInput.value;
-
-            if (originalPassword && confirmPassword && originalPassword === confirmPassword) {
+            
+            if(confirmPassword){
+                if (originalPassword && confirmPassword && originalPassword === confirmPassword) {
                 remindMessage.innerHTML = "";
                 submitButton.disabled = false;
-            } else {
+                } else {
                 remindMessage.innerHTML = "<span style='color:red'>passwords do not match, please type again</span>";
                 submitButton.disabled = true;
+                }
+            }else{
+                remindMessage.innerHTML = "";
             }
+            
         }
-        originalPasswordInput.addEventListener("blur", checkPasswordsMatch);
-        confirmPasswordInput.addEventListener("blur", checkPasswordsMatch);
+        originalPasswordInput.addEventListener("input", checkPasswordsMatch);
+        confirmPasswordInput.addEventListener("input", checkPasswordsMatch);
         
     }
 });
