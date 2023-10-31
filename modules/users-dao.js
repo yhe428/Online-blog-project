@@ -68,22 +68,6 @@ async function retrieveUserById(id) {
     return user;
 }
 
-/**
- * Gets the user with the given authToken from the database.
- * If there is no such user, undefined will be returned.
- * 
- * @param {string} authToken the user's authentication token
- */
-async function retrieveUserWithAuthToken(authToken) {
-    const db = await dbPromise;
-
-    const user = await db.get(SQL`
-        select * from Users
-        where userId = ${id}`);
-
-    return user;
-}
-
 
 module.exports = {
     createAccount,

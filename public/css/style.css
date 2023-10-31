@@ -160,51 +160,7 @@ a:hover, .dropdown-btn:hover, .login-btn:hover{
 .home-content-container button:hover {
     background-color: #555;
 }
-/* }
-.home-content-container {
-    max-width: 1200px;
-    margin: 50px auto;
-    display: flex;
-    gap: 50px;
-}
 
-.home-content-container .left-content img{
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.home-content-container .right-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-}
-
-.home-content-container h1 {
-    margin: 0;
-    font-size: 2em;
-    text-transform: uppercase;
-    /* font-family: 'Merriweather',serif; 
-}
-
-.home-content-container .description {
-    color: gray;
-}
-
-.home-content-container button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.home-content-container button:hover {
-    background-color: #555;
-} */
 /*------------------------------ new account ------------------------------*/
 
 #register-box{
@@ -293,15 +249,18 @@ button:disabled{
 /* NOTE!!! These classes to be added to articles div and car-container,based on condition of landscape, portrait and large portait */
 
  .short {
-    grid-row: span 5;
+    grid-row: span 6;
 }
-
-.tall {
+.medium {
     grid-row: span 7;
 }
 
-.tallest {
+.tall {
     grid-row: span 8;
+}
+
+.tallest {
+    grid-row: span 9;
 }
 
 /* --cards */
@@ -315,7 +274,7 @@ button:disabled{
     padding: 5px;
 }
 
-.article {
+#article p {
     --max-lines: 6;
     --line-height: 1.4;
     height: calc(var(--max-lines) * 1em * var(--line-height));
@@ -323,8 +282,7 @@ button:disabled{
     overflow: hidden;
     position: relative;
 }
-
-.article::before {
+#article p::before {
     content: "";
     position: absolute;
     height: calc(2em * var(--line-height));
@@ -341,15 +299,19 @@ button:disabled{
 .btn {
     text-transform: capitalize;
     letter-spacing: 2px;
-    box-shadow: 1px 1px 1px;
+    /* box-shadow: 1px 1px 1px; */
     padding: 5px 10px;
     border: none;
+    margin-top: 10px;
+    text-align: start;
+    width: 130px;
 } 
 /* --- avatar/author/comment container --- */
 .flavicon-container{
     display:flex;
+    justify-content: flex-start;
     align-items: center;
-    padding: 15px 0 40px 0;
+    padding: 20px 0 40px 0;
     border-bottom: 3px solid var(--light);
 }
 

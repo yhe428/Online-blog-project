@@ -3,7 +3,7 @@
     <p> welcome! {{user.username}}</p>
     <h1>Your Page & Articles</h1>
     
-    {{#if articles}}
+    {{!-- {{#if articles}}
         {{#each articles}}
         <div class="card-container tall">
         <img class="card-images" src="./images/{{aricles.imageUrl}}" alt="british blue cat">
@@ -21,7 +21,7 @@
     
     {{else}}
     <p>You haven't uploaded any images yet. Please use the form below to add some!</p>
-    {{/if}}
+    {{/if}} --}}
 
 
     <form action="/submit-article" method="post" enctype="multipart/form-data">
