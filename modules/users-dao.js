@@ -86,6 +86,7 @@ async function getAllUsers() {
     const users = await db.all(SQL`select * from Users`);
     return users;
 };
+
 async function updatePassword(user){
     const db = await dbPromise;
 
@@ -115,9 +116,7 @@ module.exports = {
     updateUser,
     getAllUsers,
     retrieveUserById,
-    retrieveAllArticles,
-    retrieveNatureArticles,
-    retrievePortraitArticles,
-    retrieveLifeArticles,
-    retrieveArticlesByUserId
+    deleteUser,
+    updatePassword,
+    editUserAccount
 };
