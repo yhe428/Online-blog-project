@@ -1,14 +1,14 @@
 #popup-window{
-    background-color: hsl(60, 15%, 97%);
-    position: fixed;
+    /* background-color: hsl(60, 15%, 97%); */
+  
+    position: fixed; */
     width: 90%;
-    height: 90%;
-    /* border: green solid 1px; */
+    height: 90vh;
     padding: 10px;
     margin: auto;
     top: 105px;
     left: 75px;
-    z-index: 10px;
+    z-index: 1;
     display: none;
     box-shadow: 10px 10px 10px hsl(60, 5%, 50%);
 }
@@ -22,10 +22,12 @@
     box-sizing: border-box;
     display: flex;
     border: lightgrey solid 1px;
+    background-color: plum;
 }
 
 .items-div {
-    background-color: hsl(77, 3%, 90%);
+    /* background-color: hsl(77, 3%, 90%); */
+    background-color: pink;
     gap: 10px;
     display: flex;
     flex-flow: row wrap;
@@ -34,14 +36,13 @@
 }
 
 .avatar-button {
-    border: linen solid 1px;
-    background-color:  hsl(60, 15%, 97%);;
+    border: black solid 1px;
+    /* background-color:  hsl(60, 15%, 97%); */
+    background-color: red;
 }
 
 .avatar-button img {
     height: 150px;
-
-
 }
 
 .no-click {pointer-events: none;}

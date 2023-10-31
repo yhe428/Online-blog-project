@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    
+
     const popupButton = document.querySelector("#popup-button");
     const popupWindow = document.querySelector("#popup-window")
 
