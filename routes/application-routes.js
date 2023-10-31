@@ -35,7 +35,7 @@ router.get("/full-article", function (req, res) {
 });
 
 router.get("/nature", async function (req, res) {
-    const natureArticles = await userDao.retrieveNatureArticles();
+    const natureArticles = await articlesDao.retrieveNatureArticles();
     res.locals.articles = natureArticles;
     res.render("nature");
 });

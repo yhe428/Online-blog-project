@@ -19,8 +19,8 @@ window.addEventListener("load", function() {
                 submitButton.disabled = true;
             }
         }
-        originalPasswordInput.addEventListener("blur", checkPasswordsMatch);
-        confirmPasswordInput.addEventListener("blur", checkPasswordsMatch);
+        originalPasswordInput.addEventListener("input", checkPasswordsMatch);
+        confirmPasswordInput.addEventListener("input", checkPasswordsMatch);
         
     }
 });
