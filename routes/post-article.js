@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 const postDao = require("../modules/post-dao.js");
 const path = require("path");
 
@@ -10,10 +9,9 @@ const fs = require("fs");
 const jimp = require("jimp");
 
 router.get("/yourPage", async function (req, res) {
+    res.locals.title = "Your page"
     const user = req.cookies.user;
-    //console.log(user); 
     res.locals.user= user; 
-    res.locals.userLogIn = true;
     res.render("yourpage");
 });
 
