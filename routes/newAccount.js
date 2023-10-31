@@ -45,13 +45,13 @@ router.post("/newAccount", async function (req, res) {
 
         if (userId) {
             //save sucessful in database, redirect to login and set message
-            res.setToastMessage("Create account successfully");
+            res.setToastMessage("Account created successfully!");
             res.redirect("./login")
         }
 
     } catch (error) {
         console.log(error);
-        res.setToastMessage("Create account fail, try again");
+        res.setToastMessage("Create account failed, please try again");
         res.redirect("./newAccount");
 
     }
