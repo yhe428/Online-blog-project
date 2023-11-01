@@ -1,0 +1,26 @@
+<form action="./search" method="POST">
+
+<label for="searchquery">Search</label>
+<input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+
+<button type="submit" id="search-button">Search!</button>
+
+</form>
+
+<div id="results-display">
+
+    <p>Results will be displayed here</p>
+
+    {{#each results}}
+    <p>{{this.categoryName}}</p>
+    <p>{{this.title}}</p>
+    <p>{{this.content}}</p>
+    <p>{{this.authorfName}} {{this.authorlName}}</p>
+    {{/each}}
+
+
+    {{#if toastmessage}} 
+    <p>{{toastmessage}}</p>
+    {{/if}}
+
+</div>
