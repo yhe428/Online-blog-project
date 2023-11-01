@@ -15,24 +15,35 @@ router.get("/blog", async function (req, res) {
 
     res.render("blog");
 });
+// router.get("/full-article/:articleId", async function(req, res)
 
-router.get("/full-article", function (req, res) {
-    res.locals.title = "Full article";
+router.get("/full-article/:articleId", async function(req, res) {
+     let id = req.params['articleId'];
+    const article = await articlesDao.retrieveArticleByArticleId(id);
+    // console.log(article);
+    // res.locals.article = article;
+    
+    res.render("full-article", article);
 
-    const fullArticle = {
-
-        imageName: "mount_taranaki.jpg",
-        title: "I like buttercups",
-        articleContent: "Munchkin cougar lion persian havana brown. singapura forest american shorthair. Panther. Tom. Savannah. Leopard.Munchkin cougar lion persian havana brown. Norwegian forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. Burmese sphynx singapura forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. ",
-        flaviconAvatarUrl: "./images/male_avatarp.png",
-        fName: "Mickey",
-        lName: "Mouse",
-        numberOfComments: 9,
-        date: "18 October 2023",
-
-    }
-    res.render("full-article", fullArticle);
 });
+
+// router.get("/full-article", function (req, res) {
+//     res.locals.title = "Full article";
+
+//     const fullArticle = {
+
+//         imageName: "mount_taranaki.jpg",
+//         title: "I like buttercups",
+//         articleContent: "Munchkin cougar lion persian havana brown. singapura forest american shorthair. Panther. Tom. Savannah. Leopard.Munchkin cougar lion persian havana brown. Norwegian forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. Burmese sphynx singapura forest american shorthair. Panther. Tom. Savannah. Leopard. Norwegian forest devonshire rex or savannah. Cheetah burmese but tiger yet cougar russian blue. Grimalkin leopard yet sphynx for ragdoll. ",
+//         flaviconAvatarUrl: "./images/male_avatarp.png",
+//         fName: "Mickey",
+//         lName: "Mouse",
+//         numberOfComments: 9,
+//         date: "18 October 2023",
+
+//     }
+//     res.render("full-article", fullArticle);
+// });
 
 router.get("/nature", async function (req, res) {
     res.locals.title = "Nature";

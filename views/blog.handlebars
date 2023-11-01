@@ -8,15 +8,15 @@
         <div id="article">
         {{{articleContent}}}    
             </div>
-            <button class="btn" data-site="{{articleId}}"> <a href="./full-article">Full Article</a></button>
+           
         
         <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
-                            {{!-- Maybe add #with  -- look at it later --}}
             <h4 class="author"><a href="/photographers">{{fName}} {{lName}}</a></h4>
             <p>{{articleDate}}</p>
             <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            
+            <button class="btn blog-button" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
         </div>
     </div>
     {{/each}}
