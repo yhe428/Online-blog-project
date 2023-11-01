@@ -5,8 +5,8 @@
     /* main colours */
     --pale: #fffffe;
     --light: #E0E2DB;
-    --medium: #889696;
-    --dark: #12100e;
+    --medium: rgb(136, 150, 150);
+    --dark: rgb(18, 16, 14);
 }
 
 /* Shared */
@@ -23,15 +23,21 @@ body {
 }
 
 nav a, 
-h3,
+h3, form label,
 .logo, .dropdown-btn, .login-btn, #header, .btn{
     text-transform: uppercase;
     font-family: 'Spectral', serif;
     font-size: 16px;
     color: var(--medium);
 }
+/* --- nav bottom border */
+.container, .photographers-container, .full-article-container{
+border-top: 2px solid var(--light);
+}
 
-
+.photographers-container .container{
+    border: none;
+}
 /*------------------------------ HEADER ------------------------------*/
 
 /*--1. Logo- Dazzling Duck's Photography --*/
@@ -56,7 +62,6 @@ h3,
     padding-left: 90px;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid var(--light);
     height: 85px;
 }
 
@@ -106,15 +111,13 @@ nav a {
 .dropdown-btn, .login-btn {
     background-color: var(--pale);
     height: 80px;
-    border: white;
+    border: var(--pale);
 }
 a:hover, .dropdown-btn:hover, .login-btn:hover{
     color: #B8BDB5;
 }
 /*------------------------------ Home ------------------------------*/
-#border {
-    border: none;
-}
+
 .home-content-container {
     /* max-width: 1200px; */
     /* margin: auto; */
@@ -150,7 +153,7 @@ a:hover, .dropdown-btn:hover, .login-btn:hover{
 
 .home-content-container button {
     background-color: var(--dark);
-    color: #fff;
+    color: var(--pale);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -171,6 +174,14 @@ a:hover, .dropdown-btn:hover, .login-btn:hover{
     height:100vh;
     width:100%;
     
+}
+.form-div span {
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-transform: none;
+    font-weight: 100;
+    line-height: 1;
 }
 .left, .form-div {
     box-shadow: 0px 0px 15px var(--shadow);
@@ -227,7 +238,135 @@ a:hover, .dropdown-btn:hover, .login-btn:hover{
 button:disabled{
     cursor: not-allowed;      
 }
+/*------------------------------ Your Page ------------------------------*/
+/* *{ border: 1px solid red;} */
 
+.your-page-container {
+    border-top: 2px solid var(--light);
+    background-image: url("/images/bokeh.jpg");  
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 900px; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+} 
+.your-page-container h2 {
+    font-size: 36px;
+    color: var(--pale);
+    padding: 30px;
+    text-shadow: 2px 2px 2px rgb(18, 16, 14, 0.6);
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.add-article-form h2 {
+    padding: 5px;
+    color: var(--dark);
+    text-shadow: none;
+    font-size: 24px;
+    text-align: center;
+}
+.add-article-form {
+    margin: 15px 25px 25px 25px;
+    background-color: var(--pale);
+    border-radius: 8px;
+    /* display:block; */
+    /* box-shadow: 3px 3px 15px 5px var(--shadow); */
+     /* box-shadow: 1px 1px 6px 1px rgb(136, 150, 150, 0.5); */
+    width: 70%;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 4px 4px 4px 4px rgb(18, 16, 14, 0.4);
+}
+
+.your-page-container>p, .your-page-container>h2 {
+    text-align: center;
+}
+#title{
+    margin:0;
+}
+.your-page-container h3 {
+    padding: 20px 0px 5px 20px;
+}
+
+.add-article-form label  {
+    display: block;
+    padding: 15px 0 20px 20px;
+}
+.category-container {
+    display: flex;
+    gap: 40px;
+}
+.category-container>label{
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: none;
+}
+
+.category-container input {
+    margin: 7px 0;
+}
+
+.add-article-form input[type="text"], 
+.add-article-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid rgb(136, 150, 150, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 1px 1px 2px rgb(136, 150, 150, 0.3);
+}
+
+.add-article-form input[type="file"] {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid rgb(136, 150, 150, 0.3);
+    border-radius: 8px;
+    border: 1px solid #0056b3;
+    box-shadow: 1px 1px 2px var(--medium);
+}
+
+
+.add-article-form button[type="submit"] {
+    display: inline-block;
+    background-color: var(--dark);
+    color: var(--pale);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.add-article-form button[type="submit"]:hover {
+    background-color: #0056b3;
+    border: 1px solid lightblue;
+}
+
+
+#editor {
+    border: 1px solid rgb(136, 150, 150, 0.3);
+    border-radius: 0 0 8px 8px;
+    min-height: 200px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 1px 0 2px rgb(136, 150, 150, 0.3);
+}
+
+
+.ql-toolbar {
+    border: 1px solid rgb(136, 150, 150, 0.3);
+    border-radius: 8px 8px 0 0;
+    border: 1px solid purple;
+    box-shadow: 1px 1px 2px rgb(136, 150, 150, 0.3);
+    background-color: rgb(136, 150, 150, 0.1);
+}
+.ql-container {
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid lightcoral;
+}
 /*------------------------------ Blog ------------------------------*/
 .container {
     display: grid;
@@ -281,6 +420,7 @@ button:disabled{
     line-height: var(--line-height);
     overflow: hidden;
     position: relative;
+    text-align: justify;
 }
 #article p::before {
     content: "";
@@ -289,7 +429,7 @@ button:disabled{
     width: 100%;
     bottom: 0;
     pointer-events: none;
-    background: linear-gradient(to bottom, transparent, white);
+    background: linear-gradient(to bottom, transparent, var(--pale));
 }
 
 .card-container h2 {
@@ -299,12 +439,12 @@ button:disabled{
 .btn {
     text-transform: capitalize;
     letter-spacing: 2px;
-    /* box-shadow: 1px 1px 1px; */
+    box-shadow: 1px 1px 1px;
     padding: 5px 10px;
     border: none;
-    margin-top: 10px;
     text-align: start;
     width: 130px;
+    text-align: center;
 } 
 /* --- avatar/author/comment container --- */
 .flavicon-container{
@@ -316,7 +456,7 @@ button:disabled{
 }
 
 .author {
-    padding: 0 10px;
+    padding-right: 10px;
 }
 
 a {
@@ -338,16 +478,16 @@ a {
 .full-article-container p {
     text-align: justify;
     font-size: 18px;
+  
 }
 
 .heading {
     font-size: 24px;
-    padding: 35px 0 20px 0;
+    padding: 35px 0 35px 0;
 }
 
-.full-article-container .flavicon-author_container {
+.full-article-container .flavicon-container {
     border: none;
-    margin-bottom: 225px;
 }
 
 .written {
@@ -361,6 +501,15 @@ a {
     margin: 40px;
     border-radius: 8px;
     box-shadow: 8px 8px 8px 1px var(--medium);
+}
+
+/* .full-article-container .btn {
+    
+} */
+.blog-button{
+margin-left: auto;
+padding-right: 20px;
+
 }
  /*------------------------------ Photographer ------------------------------*/
  .photographer-container{
@@ -404,7 +553,7 @@ a {
 #footer {
       height: 200px;
     text-align: right;
-    background: var(--light);
+    background: rgb(136, 150, 150, 0.3);
 }
 .clear {
      clear: right;

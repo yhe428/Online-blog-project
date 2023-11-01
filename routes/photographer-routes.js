@@ -23,7 +23,6 @@ router.get("/photographers", async function(req, res) {
     }catch (error){
         res.status(500).send('Server error');
     }
-    
 
 });
 
@@ -31,15 +30,14 @@ router.get("/photographers/:userId", async function (req, res) {
     res.locals.title = "Photographers";
     let id = req.params['userId'];
     const currentPhotographer = await userDao.retrieveUserById(id);
-
     res.locals.photographer = currentPhotographer;
-
+ 
     const users = await userDao.getAllUsers();
         res.locals.users = users;
 
     const articlesArray = await articlesDao.retrieveArticlesByUserId(id);
     res.locals.articles = articlesArray;
-
+    
     res.render("photographers");
 });
 

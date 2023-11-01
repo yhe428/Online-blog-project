@@ -74,12 +74,44 @@ async function retrieveLifeArticles() {
 async function retrieveArticlesByUserId(userId) {
     const db = await dbPromise;
 
-    const articlesArray = await db.all(SQL`select a.articleId, a.title, a.articleContent
-    from Articles as a, Users as u
+    const articlesArray = await db.all(SQL`select a.articleId, a.title, a.articleContent, a.imageName, a.imageHeight, a.imageWidth, a.articleDate, c.name
+    from Articles as a, Users as u, categories as c
     where a.writerId = u.userId
-    and u.userId = ${userId}`);
+    and c.categoryId = a.categoryId
+    and u.userId = ${userId}
+    order by a.articleDate desc`);
 
-    return articlesArray;
+
+    let newArticlesArray = articlesArray.map(function (article) {
+
+        let calculation = article.imageHeight / article.imageWidth;
+        if (calculation <= 0.8) {
+            return { ...article, imageHeight: "short" };
+        }
+        if (calculation > 0.8 && calculation < 1.2) {
+            return { ...article,  imageHeight: "medium" };
+        }
+        if (calculation >= 1.2 && calculation < 1.5) {
+            return { ...article, imageHeight: "tall" };
+        }
+        if (calculation >= 1.5) {
+            return { ...article, imageHeight: "tallest" };
+        }    
+    });
+
+    return newArticlesArray;
+}
+
+async function retrieveArticleByArticleId(articleId) {
+    const db = await dbPromise;
+
+    const article = await db.get(SQL` select a.articleId, a.imageName, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
+    from Users as u, Articles as a, Categories as c
+    where u.userId = a.writerId
+    and c.categoryId = a.categoryId
+    and a.articleId = ${articleId}`);
+    
+    return article;
 }
 
 
@@ -89,5 +121,6 @@ module.exports = {
     retrieveNatureArticles,
     retrievePortraitArticles,
     retrieveLifeArticles,
-    retrieveArticlesByUserId
+    retrieveArticlesByUserId,
+    retrieveArticleByArticleId
 };
