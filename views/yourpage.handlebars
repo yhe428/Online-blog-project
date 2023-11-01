@@ -14,14 +14,12 @@
         {{{articleContent}}}    
             </div>
             <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit Article</a></button>
-            {{!-- <button class="btn" id="delete-article"><a href="/deleteArticle" data-site="{{articleId}}">Delete Article</a></button> --}}
             <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
             
         
         <div class="flavicon-container">
             <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
                             {{!-- Maybe add #with  -- look at it later --}}
-            {{!-- <h4 class="author"><a href="/photographers">{{fName}} {{lName}}</a></h4> --}}
             <p>{{articleDate}}</p>
             <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
@@ -38,6 +36,13 @@
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
+        <h3 class="category">Category:</h3>
+            <div class="category-container">
+                <label><input type="radio" name="category" value="1">Nature</label>
+                <label><input type="radio" name="category" value="2">Portrait</label>
+                <label><input type="radio" name="category" value="3">Life</label>
+            </div>
+
         <label for="content">Content:</label>
         <textarea id="editor-textarea" name="content" hidden></textarea>
         <div id="editor">
@@ -52,8 +57,6 @@
     </form>
 
 </div>
-
-
 
 
     {{#if toastMessage}}

@@ -5,10 +5,11 @@ const { verifyAuthenticated }= require("../middleware/auth-middleware.js");
 const fs = require("fs");
 const jimp = require("jimp");
 
-
 const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/editArticle", verifyAuthenticated, async function(req,res){
+    res.locals.title = "Edit article";
+
     const articleId = req.query.articleId;
 
     const article = await articlesDao.retrieveArticlesByArticleId(articleId);
@@ -44,19 +45,15 @@ router.post("/submit-editArticle", upload.single("image"), async function(req,re
     const articleId = req.body.articleId;
     const title = req.body.title;
     const content = req.body.content;
+    const categoryId = req.body.category;
     
     const fileInfo = req.file;
     const oldFileName = fileInfo.path;
     const newFileName = `./public/images/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
-    
-     // const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
-     // console.log(imageName);
-     // wasnt giving .jpg, etc 
 
     const imageName = fileInfo.originalname; 
 
-     //get image height from user uploaded picture
     const image = await jimp.read(newFileName);
     const height = image.bitmap.height;
     const width = image.bitmap.width;
@@ -74,7 +71,7 @@ router.post("/submit-editArticle", upload.single("image"), async function(req,re
         imageHeight: height,
         imageWidth: width,
         userId: userId,
-        categoryId: 1 
+        categoryId: categoryId
     }
 
     try{
