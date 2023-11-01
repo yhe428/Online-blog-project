@@ -5,7 +5,7 @@
     height: 90vh;
     padding: 10px;
     margin: auto;
-    top: 105px;
+    top: 50px;
     left: 75px;
     z-index: 1;
     display: none;
@@ -51,15 +51,11 @@
 display: none
 }
 
-button {
+#popup-button {
     background-color: #333;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #555;
 }

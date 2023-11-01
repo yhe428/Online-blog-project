@@ -2,8 +2,6 @@ const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
 async function getAvatarList () {
-
-    //  console.log("in ava-mod - getAvatarList");
     avatarList = [];
     await avatarList.push({src: "https://api.multiavatar.com/bobbyknox.png", name:"bobbyknox"});
     await avatarList.push({src: "https://api.multiavatar.com/sally-ann.png", name:"sally-ann"});
@@ -17,6 +15,15 @@ async function getAvatarList () {
     await avatarList.push({src: "https://api.multiavatar.com/jimbo.png", name:"jimbo"});
     await avatarList.push({src: "https://api.multiavatar.com/robby.png",  name:"robby"});
     await avatarList.push({src: "https://api.multiavatar.com/robbyblue.png", name:"robbyblue"});
+    await avatarList.push({src: "https://api.multiavatar.com/annieblack.png", name:"annieblack"});
+    await avatarList.push({src: "https://api.multiavatar.com/penguin.png", name:"penguin"});
+    await avatarList.push({src: "https://api.multiavatar.com/flossy.png",  name:"flossy"});
+    await avatarList.push({src: "https://api.multiavatar.com/christmas.png", name:"christmas"});
+    await avatarList.push({src: "https://api.multiavatar.com/newzealand.png",  name:"newzealand"});
+    await avatarList.push({src: "https://api.multiavatar.com/sammy.png", name:"sammy"});
+    await avatarList.push({src: "https://api.multiavatar.com/renny.png",  name:"renny"});
+    await avatarList.push({src: "https://api.multiavatar.com/start.png", name:"start"});
+    await avatarList.push({src: "https://api.multiavatar.com/end.png",  name:"end"});
     return avatarList;
 }
 

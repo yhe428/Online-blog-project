@@ -43,15 +43,16 @@
             <label for="description">Description</label>
             <input class="ipt" type="text" name="description" required>
 
-            <input class="ipt" id="avatar-input" type="text" name="avatar" required>
+            <input id="avatar-input" type="text" name="avatar" required>
 
             <button id="popup-button"> Choose an avatar </button>
-            <span id="#remind-avatar" class="message"></span>
+            <span id="#remind-avatar"></span>
+            <p>Choose an avatar before creating account</p>
 
             <button id="submit-account" type="submit">Create your account</button>
 
-            
 
+            
             {{#if toastMessage}}
             <p> {{toastMessage}}</p>
             {{/if}}
