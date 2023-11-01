@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
-//introduce users DAO
 const articlesDao = require("../modules/articles-dao.js");
 
 router.get("/", function (req, res) {
