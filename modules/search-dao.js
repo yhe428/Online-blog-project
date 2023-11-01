@@ -7,7 +7,7 @@ async function retrieveAllSearchResults(input) {
     try {
         const db = await dbPromise;
 
-        const resultsArray = await db.all(SQL`select categoryName, title, content, authorfName, authorlName
+        const resultsArray = await db.all(SQL`select distinct categoryName, title, content, authorfName, authorlName, imageName
         from ArticlesSearch
         where ArticlesSearch MATCH ${input + '*'} order by rank`);
         console.log("search results:", resultsArray);
