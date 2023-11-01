@@ -113,6 +113,54 @@ async function retrieveArticleByArticleId(articleId) {
     
     return article;
 }
+async function retrieveArticleByWriterId(id){
+    const db = await dbPromise;
+
+    const articles = await db.all(SQL`
+    select * from Articles where writerId = ${id}
+    
+    `)
+
+    return articles;
+    
+}
+async function retrieveArticlesByArticleId(id){
+    const db = await dbPromise;
+
+    const article = await db.get(SQL`
+    select * from Articles
+    where articleId = ${id}`);
+
+    return article;
+
+}
+async function updateUserArticle(article){
+    const db = await dbPromise;
+
+    const result = await db.run(SQL`
+    update Articles set
+    title = ${article.title},
+    articleContent = ${article.content},
+    imageName = ${article.imageName},
+    imageHeight = ${article.imageHeight},
+    imageWidth = ${article.imageWidth},
+    writerId = ${article.userId},
+    categoryId = ${article.categoryId}
+    where articleId = ${article.articleId}
+    `)
+
+    return result.changes;
+}
+
+async function deleteArticle(id){
+    const db = await dbPromise;
+
+    await db.run(SQL`delete from Comments where articleCommented = ${id}`);
+
+    const result = await db.run(SQL`delete from Articles where articleId = ${id}`);
+
+    return result.changes;
+}
 
 
 
@@ -122,5 +170,12 @@ module.exports = {
     retrievePortraitArticles,
     retrieveLifeArticles,
     retrieveArticlesByUserId,
-    retrieveArticleByArticleId
+    retrieveArticleByArticleId,
+    retrieveArticleByWriterId,
+    retrieveArticlesByArticleId,
+    updateUserArticle,
+    deleteArticle
+
+
+
 };

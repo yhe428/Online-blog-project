@@ -1,9 +1,38 @@
-<div class="your-page-container">
-    {{!-- <p> welcome! {{user.username}}</p> --}}
-    <h2>Your Page &amp; Articles</h2>
-  
-   
-     <div class="add-article-form">
+
+<div class="container">
+    <p> welcome! {{user.username}}</p>
+    <h1>Your Page & Articles</h1>
+    
+    {{#if articles}}
+    
+    {{#each articles}}
+    <div class="card-container {{imageHeight}}">
+        <img class="card-images" src="./images/{{imageName}}">
+        <h3>{{name}}</h3>
+        <h2>{{title}}</h2>
+        <div id="article">
+        {{{articleContent}}}    
+            </div>
+            <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit Article</a></button>
+            <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
+            
+        
+        <div class="flavicon-container">
+            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+                            {{!-- Maybe add #with  -- look at it later --}}
+            <p>{{articleDate}}</p>
+            <p>{{numberOfComments}}</p>
+            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+        </div>
+    </div>
+    {{/each}}
+
+    {{else}}
+    <p>You don't have any articles! Post your first one!</p>
+
+    {{/if}}
+
+    <div class="add-article-form">
         <h2> Add Article</h2>
         <form action="/submit-article" method="post" enctype="multipart/form-data">
             <label for="title">Title:</label>
@@ -26,8 +55,13 @@
 
             <button type="submit">Submit</button>
         </form>
-     </div>
-    
+    </div>
+
+</div>
+
+
+
+
     {{#if toastMessage}}
     <p>{{toastMessage}}</p>
     {{/if}}

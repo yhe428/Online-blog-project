@@ -47,7 +47,11 @@ app.use(require("./routes/commentHandle.js"));
 //post article route
 app.use(require("./routes/post-article.js"));
 
+//photographer route
 app.use(require("./routes/photographer-routes.js"));
+
+//search route
+app.use(require("./routes/search-routes.js"));
 
 //edit account route
 app.use(require("./routes/editAccount.js"));
@@ -57,6 +61,9 @@ app.use(require("./routes/deleteAccount.js"));
 
 //edit password route
 app.use(require("./routes/editPassword.js"));
+
+//edit article route
+app.use(require("./routes/editArticle.js"));
 
 // Start the server running.
 app.listen(port, function () {
