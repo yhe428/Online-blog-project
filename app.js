@@ -58,6 +58,9 @@ app.use(require("./routes/deleteAccount.js"));
 //edit password route
 app.use(require("./routes/editPassword.js"));
 
+//edit article route
+app.use(require("./routes/editArticle.js"));
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);

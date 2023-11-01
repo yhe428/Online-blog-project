@@ -6,6 +6,7 @@ const { verifyAuthenticated }= require("../middleware/auth-middleware.js");
 
 router.delete("/deleteAccount", verifyAuthenticated, async function (req, res){
     res.locals.title = "Edit account";
+    
     const userIdToDelete = req.cookies.user.userId;
 
     if(!userIdToDelete){

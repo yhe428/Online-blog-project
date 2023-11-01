@@ -2,27 +2,37 @@
 <div class="container">
     <p> welcome! {{user.username}}</p>
     <h1>Your Page & Articles</h1>
+
+    {{#if articles}}
     
-    {{!-- {{#if articles}}
-        {{#each articles}}
-        <div class="card-container tall">
-        <img class="card-images" src="./images/{{aricles.imageUrl}}" alt="british blue cat">
-        <h3>{{article.category}}</h3>
-        <h2>{{article.title}}</h2>
-        <p class="article">{{article.content}}</p>
-        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+    {{#each articles}}
+    <div class="card-container {{imageHeight}}">
+        <img class="card-images" src="./images/{{imageName}}">
+        <h3>{{name}}</h3>
+        <h2>{{title}}</h2>
+        <div id="article">
+        {{{articleContent}}}    
+            </div>
+            <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit Article</a></button>
+            {{!-- <button class="btn" id="delete-article"><a href="/deleteArticle" data-site="{{articleId}}">Delete Article</a></button> --}}
+            <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
+            
+        
         <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author">Josie Walker</h4>
-            <p>2</p>
+            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+                            {{!-- Maybe add #with  -- look at it later --}}
+            {{!-- <h4 class="author"><a href="/photographers">{{fName}} {{lName}}</a></h4> --}}
+            <p>{{articleDate}}</p>
+            <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
         </div>
-        {{/each}}
-    
-    {{else}}
-    <p>You haven't uploaded any images yet. Please use the form below to add some!</p>
-    {{/if}} --}}
+    </div>
+    {{/each}}
 
+    {{else}}
+    <p>You don't have any articles! Post your first one!</p>
+
+    {{/if}}
 
     <form action="/submit-article" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
