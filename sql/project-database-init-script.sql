@@ -26,7 +26,8 @@ drop table if exists Users;
  email varchar(254),
  address varchar(64),
  phone varchar(15),
- birthDate date
+ birthDate date,
+ avatar varchar(50)
  );
  
  create table if not exists Categories (

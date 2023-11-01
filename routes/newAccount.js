@@ -6,10 +6,14 @@ const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
+const avatarImport = require("../modules/avatar.js");
 
 //route handler deal with new account creation
-router.get("/newAccount", function (req, res) {
-    res.render("new-account");
+router.get("/newAccount", async function (req, res) {
+    //res.render("new-account");
+    avatarListCompact = [];
+    avatarListCompact =  await avatarImport.getAvatarList();
+    res.render("new-account", { avatarListCompact: avatarListCompact});
 });
 
 //get user info from frontend and create into databse
@@ -23,6 +27,7 @@ router.post("/newAccount", async function (req, res) {
     const phone = req.body.phone.trim();
     const email = req.body.email.trim();
     const description = req.body.description.trim();
+    const avatar = req.body.avatar.trim();
 
     //bcrypt    
     const hashPassword = await bcrypt.hash(req.body.password, 10)
@@ -37,7 +42,8 @@ router.post("/newAccount", async function (req, res) {
         address: address,
         phone: phone,
         email: email,
-        description: description
+        description: description,
+        avatar: avatar
     }
 
     try {
@@ -90,7 +96,7 @@ router.post("/login", async function (req, res) {
             if (validPassword) {
                 if (!user.authToken) {
                     user.authToken = uuid();
-                    await userDao.updateUser(user);
+                    await userDao.updateAuthToken(user);
                 }
                 
                 res.cookie("authToken", user.authToken);

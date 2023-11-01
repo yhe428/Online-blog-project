@@ -1,8 +1,7 @@
 #popup-window{
-    /* background-color: hsl(60, 15%, 97%); */
-  
-    position: fixed; */
-    width: 90%;
+    background-color: hsl(60, 15%, 97%);
+    position: fixed;
+    width: 90vw;
     height: 90vh;
     padding: 10px;
     margin: auto;
@@ -21,13 +20,9 @@
     margin: 0 20px;
     box-sizing: border-box;
     display: flex;
-    border: lightgrey solid 1px;
-    background-color: plum;
 }
 
 .items-div {
-    /* background-color: hsl(77, 3%, 90%); */
-    background-color: pink;
     gap: 10px;
     display: flex;
     flex-flow: row wrap;
@@ -36,13 +31,35 @@
 }
 
 .avatar-button {
-    border: black solid 1px;
-    /* background-color:  hsl(60, 15%, 97%); */
-    background-color: red;
+    background-color:  hsl(60, 15%, 97%);
+    height: 153px;
+    border: hsl(60, 15%, 97%) solid 1px;
 }
 
 .avatar-button img {
     height: 150px;
 }
 
+.avatar-img  {
+    height: 120px;
+    padding: 10px;
+}
+
 .no-click {pointer-events: none;}
+
+#avatar-input {
+display: none
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}

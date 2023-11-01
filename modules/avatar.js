@@ -20,32 +20,7 @@ async function getAvatarList () {
     return avatarList;
 }
 
-//get userid from where?
-async function retrieveUserAvatar(id) {
-    console.log("In getAvatar ava");
-    const db = await dbPromise;
-
-    const user = await db.get(SQL`
-        select * from users
-        where id = ${id}`);
-
-    return user;
-}
-
-async function updateUserAvatar(id) {
-    console.log("In getAvatar ava");
-    const db = await dbPromise;
-
-    await db.run(SQL`
-    update users
-    set avatar = ${user.avatar}
-    where userId = ${user.userId}`);
-    return user;
-}
-
 module.exports = {
     getAvatarList,
-    retrieveUserAvatar,
-    updateUserAvatar
 
 };
