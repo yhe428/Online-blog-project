@@ -1,19 +1,20 @@
-
 <div class="full-article-container">
 
-    <img class="full-image" src="./images/{{imageName}}">
+    <img class="full-image" src="/images/{{imageName}}">
     <div class="article-item">
 
         <h2 class="heading">{{title}}</h2>
         <div class="full-article">{{{articleContent}}}
 
-        <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="female avatar flavicon" width="40" height="40">
-            <a href="./photographers"><h4 class="author">{{fname}} {{lname}}</h4></a>
-            <h4 class="written">{{articleDate}} </h4>
-            <i class="fa-regular fa-comment"></i>
-        </div>
+            <div class="flavicon-container">
+                <a href="/photographers">
+                    <h4 class="author">{{fName}} {{lName}}</h4>
+                </a>
+                <h4 class="written">{{articleDate}} </h4>
+                <i class="fa-regular fa-comment"></i>
+                    <button class="btn blog-button"><a href="/blog"> Blog</a></button>
 
+        </div>
+        
+        </div>
     </div>
-    <button><a href="/blog"> Blog</a></button>
-</div>
