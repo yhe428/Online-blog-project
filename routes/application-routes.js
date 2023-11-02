@@ -13,6 +13,7 @@ router.get("/blog", async function (req, res) {
     const articles = await articlesDao.retrieveAllArticles();
     res.locals.articles = articles;
 
+
     res.render("blog");
 });
 // router.get("/full-article/:articleId", async function(req, res)

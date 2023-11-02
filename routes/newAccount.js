@@ -2,14 +2,18 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
 const bcrypt = require("bcrypt");
+const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+const avatarImport = require("../modules/avatar.js");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
-router.get("/newAccount", function (req, res) {
-    res.locals.title = "Create your account";
-    res.render("new-account");
+router.get("/newAccount", async function (req, res) {
+    
+    avatarListCompact = [];
+    avatarListCompact =  await avatarImport.getAvatarList();
+    res.render("new-account", { avatarListCompact: avatarListCompact});
 });
 
 //get user info from frontend and create into databse
@@ -17,12 +21,12 @@ router.post("/newAccount", async function (req, res) {
     const username = req.body.username.trim();
     const firstname = req.body.firstname.trim();
     const lastname = req.body.lastname.trim();
-   // const password = req.body.password.trim();
     const birth = req.body.birth.trim();
     const address = req.body.address.trim();
     const phone = req.body.phone.trim();
     const email = req.body.email.trim();
     const description = req.body.description.trim();
+    const avatar = req.body.avatar;
 
     //bcrypt    
     const hashPassword = await bcrypt.hash(req.body.password, 10)
@@ -37,7 +41,8 @@ router.post("/newAccount", async function (req, res) {
         address: address,
         phone: phone,
         email: email,
-        description: description
+        description: description,
+        avatar: avatar
     }
 
     try {
@@ -91,7 +96,7 @@ router.post("/login", async function (req, res) {
             if (validPassword) {
                 if (!user.authToken) {
                     user.authToken = uuid();
-                    await userDao.updateUser(user);
+                    await userDao.updateAuthToken(user);
                 }
                 
                 res.cookie("authToken", user.authToken);
