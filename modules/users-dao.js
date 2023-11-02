@@ -49,7 +49,7 @@ async function retrieveUserWithAuthToken(authToken) {
 
     return user;
 }
-async function updateUser(user) {
+async function updateAuthToken(user) {
 
     const db = await dbPromise;
 
