@@ -1,18 +1,24 @@
 <script src="./javascript/search.js"></script>
 
+<div id="search-container">
+
+<div id="search-form-container">
 <form action="./search" method="POST">
 
-<label for="searchquery">Search</label>
-<input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+<div id="search-input-field">
+    <label for="txtSearchInput" id="search-label">Search</label>
+    <input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+</div>
 
-<button type="submit" id="search-button">Search!</button>
-
+<button type="submit" id="search-button" class="btn">Search!</button>
 </form>
+</div>
 
-<div id="results-display">
 
-    <div class="container">
-
+{{#if results}}
+    
+    <div class="container" id="results-container">
+    
     {{#each results}}
     <div class="card-container {{this.imageHeight}}">
         <img class="card-images" src="./images/{{this.imageName}}">
@@ -20,7 +26,7 @@
         <h2>{{this.title}}</h2>
         <div id="article">
         {{{this.content}}}    
-            </div>
+    </div>
         
         
         <div class="flavicon-container">
@@ -34,10 +40,21 @@
         </div>
     </div>
     {{/each}}
-</div>
+    
+    
+    {{else}}
+
+    <div id="image-display">
+        <img src="./images/search-page-image.jpg" alt="Field Landscape" id="search-image">
+    </div>
+
+   {{/if}}
+
+
 
     {{#if toastmessage}} 
     <p>{{toastmessage}}</p>
     {{/if}}
 
+    </div>
 </div>
