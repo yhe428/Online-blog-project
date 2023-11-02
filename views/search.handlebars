@@ -1,3 +1,5 @@
+<script src="./javascript/search.js"></script>
+
 <form action="./search" method="POST">
 
 <label for="searchquery">Search</label>
@@ -12,14 +14,14 @@
     <div class="container">
 
     {{#each results}}
-    <div class="card-container {{imageHeight}}">
+    <div class="card-container {{this.imageHeight}}">
         <img class="card-images" src="./images/{{this.imageName}}">
         <h3>{{this.categoryName}}</h3>
         <h2>{{this.title}}</h2>
         <div id="article">
         {{{this.content}}}    
             </div>
-            <button class="btn" data-site="{{this.articleId}}"> <a href="./full-article">Full Article</a></button>
+        
         
         <div class="flavicon-container">
             <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
@@ -28,6 +30,7 @@
             <p>{{this.articleDate}}</p>
             <p>{{this.numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+             <button class="btn" data-id="{{articleId}}"> <a href="/full-article/{{articleId}}">Full Article</a></button>
         </div>
     </div>
     {{/each}}
