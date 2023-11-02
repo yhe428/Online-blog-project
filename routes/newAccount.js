@@ -3,14 +3,14 @@ const router = express.Router();
 const { v4: uuid } = require("uuid");
 const bcrypt = require("bcrypt");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+const avatarImport = require("../modules/avatar.js");
 
 //introduce users DAO
 const userDao = require("../modules/users-dao.js");
-const avatarImport = require("../modules/avatar.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", async function (req, res) {
-    //res.render("new-account");
+    
     avatarListCompact = [];
     avatarListCompact =  await avatarImport.getAvatarList();
     res.render("new-account", { avatarListCompact: avatarListCompact});
@@ -27,7 +27,7 @@ router.post("/newAccount", async function (req, res) {
     const phone = req.body.phone.trim();
     const email = req.body.email.trim();
     const description = req.body.description.trim();
-    const avatar = req.body.avatar.trim();
+    const avatar = req.body.avatar;
 
     //bcrypt    
     const hashPassword = await bcrypt.hash(req.body.password, 10)
@@ -45,6 +45,7 @@ router.post("/newAccount", async function (req, res) {
         description: description,
         avatar: avatar
     }
+    console.log(obj);
 
     try {
         const userId = await userDao.createAccount(obj);

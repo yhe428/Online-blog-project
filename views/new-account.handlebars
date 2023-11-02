@@ -1,5 +1,5 @@
 <div id="register-box">
-     
+
     <div class="left">
         <img src="./images/newAccount-image.jpg" alt="new account image">
     </div>
@@ -43,16 +43,16 @@
             <label for="description">Description</label>
             <input class="ipt" type="text" name="description" required>
 
-            <input id="avatar-input" type="text" name="avatar" required>
+            <input id="avatar-input" type="text" name="avatar" hidden>
 
-            <button id="popup-button"> Choose an avatar </button>
-            <span id="#remind-avatar"></span>
-            <p>Choose an avatar before creating account</p>
+            <button id="popup-button" type="button"> Choose an avatar </button>
+            <div id="remind-avatar">
+                <img src="./images/default-avatar.jpg" height="70px" width="70px">
+            </div>
+            
 
             <button id="submit-account" type="submit">Create your account</button>
 
-
-            
             {{#if toastMessage}}
             <p> {{toastMessage}}</p>
             {{/if}}
@@ -74,7 +74,7 @@
             <div class="items-div">
 
                 {{#each avatarListCompact}}
-                <button id="{{name}}" class="avatar-button"><img class="no-click" src="{{src}}"></button>
+                <button id="{{name}}" class="avatar-button" data-id="{{name}}"><img class="no-click" src="{{src}}"></button>
                 {{/each}}
 
             </div>
