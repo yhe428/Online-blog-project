@@ -21,7 +21,6 @@ router.post("/newAccount", async function (req, res) {
     const username = req.body.username.trim();
     const firstname = req.body.firstname.trim();
     const lastname = req.body.lastname.trim();
-   // const password = req.body.password.trim();
     const birth = req.body.birth.trim();
     const address = req.body.address.trim();
     const phone = req.body.phone.trim();
@@ -45,7 +44,6 @@ router.post("/newAccount", async function (req, res) {
         description: description,
         avatar: avatar
     }
-    console.log(obj);
 
     try {
         const userId = await userDao.createAccount(obj);

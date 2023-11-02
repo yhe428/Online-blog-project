@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
     //     avatarInput(buttonName);
     //    // return buttonName
     // }
-     
+    
     // function avatarInput(buttonName) {
     //  document.querySelector("#avatar-input").defaultValue = buttonName;
     // }

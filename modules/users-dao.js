@@ -72,7 +72,8 @@ async function editUserAccount(user){
             email = ${user.email},
             address = ${user.address},
             phone = ${user.phone},
-            birthDate = ${user.birthDate}
+            birthDate = ${user.birthDate},
+            avatar = ${user.avatar}
             WHERE userId = ${user.userId}
     `);
 
