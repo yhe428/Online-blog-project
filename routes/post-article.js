@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 const postDao = require("../modules/post-dao.js");
+const articlesDao = require("../modules/articles-dao.js");
 const path = require("path");
 
 // Import required middleware and packages
@@ -10,39 +10,39 @@ const fs = require("fs");
 const jimp = require("jimp");
 
 router.get("/yourPage", async function (req, res) {
+    res.locals.title = "Your page"
+
     const user = req.cookies.user;
-    //console.log(user); 
+    const userId = user.userId;
     res.locals.user= user; 
-    res.locals.userLogIn = true;
+    
+    const articles = await articlesDao.retrieveArticleByWriterId(userId);
+    res.locals.articles = articles;
+
     res.render("yourpage");
 });
 
 router.post("/submit-article", upload.single("image"), async function(req,res){
 
-
-    
-    //retrieve title from user
     const title = req.body.title;
-    // console.log(title); working
-    //retrieve content from user
     const content = req.body.content;
-    // console.log(content); working
+    const categoryId = req.body.category;
 
     const fileInfo = req.file;
     const oldFileName = fileInfo.path;
     const newFileName = `./public/images/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
     
-    const imageName = path.basename(fileInfo.originalname,path.extname(fileInfo.originalname));
-    // console.log(imageName);working
 
+    const imageName = fileInfo.originalname; 
 
     //get image height from user uploaded picture
     const image = await jimp.read(newFileName);
     const height = image.bitmap.height;
-    // console.log(height); working
+    const width = image.bitmap.width;
+    
+    
     const userId = req.cookies.user.userId;
-    // console.log(userId);working
 
     const obj = {
         title: title,
@@ -50,9 +50,9 @@ router.post("/submit-article", upload.single("image"), async function(req,res){
         imageName:imageName,
         imageUrl: newFileName,
         imageHeight: height,
+        imageWidth: width,
         userId: userId,
-        categoryId: 1 
-
+        categoryId: categoryId 
     }
 
     try{

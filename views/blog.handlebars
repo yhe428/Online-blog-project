@@ -1,111 +1,22 @@
 <div class="container">
 
-    <div class="card-container short">
-        <img class="card-images" src="./images/pancakep.jpg" alt="pancakes">
-        <h3>Life </h3>
-        <h2>The best pancakes around</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus
-        </p>
-        <a href="./full-article"><button class="btn">Full Article</button></a>
-        <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
-            <p>2</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
-        </div>
-    </div>
-
-    <div class="card-container tallest">
-        <img class="card-images" src="./images/tulipsp.jpg" alt="tulips">
-        <h3>Nature</h3>
-        <h2>Check out the beautiful tulips!</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-        <a href="/full-article"><button class="btn">Full Article</button></a>
-        <div class="flavicon-container">
-            <img src="./images/male_avatarp.png" alt="male avatar flavicon" width="40" height="40">
-            <h4 class="author">Brett Sayles</h4>
-            <p>1</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
-        </div>
-    </div>
-
-    <div class="card-container tall">
-        <img class="card-images" src="./images/british_blue_catp.jpg" alt="british blue cat">
-        <h3>Nature</h3>
-        <h2>A pretty british blue cat</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus doloremque aliquid rerum</p>
-        <a href="./full-article"><button class="btn">Full Article</button></a>
-        <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author">Josie Walker</h4>
-            <p>2</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
-        </div>
-    </div>
-    <div class="card-container short">
-        <img class="card-images" src="./images/womanp.jpg">
-        <h3>Life </h3>
-        <h2>The best pancakes around</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus
-        </p>
-        <a href="./full-article"><button class="btn">Full Article</button></a>
-        <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
-            <p>2</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
-        </div>
-    </div>
-
-    <div class="card-container short">
-        <img class="card-images" src="./images/mount_taranaki2.jpg">
-        <h3>Life </h3>
-        <h2>The best pancakes around</h2>
-        <p class="article">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, qui minus,
-            veritatis
-            consequatur doloribus officia sequi corporis impedit, omnis consequuntur quibusdam quia nostrum
-            harum fugit incidunt accusamus
-        </p>
-        <a href="./full-article"><button class="btn">Full Article</button></a>
-        <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author"><a href="/photographers"></a> Deborah Smith</h4>
-            <p>2</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
-        </div>
-    </div>
-
-
     {{#each articles}}
-    {{this.log}}
-    <div class="card-container {{pictureOrientation}}">
-        <img class="card-images" src="{{imageUrl}}">
+    <div class="card-container {{imageHeight}}">
+        <img class="card-images" src="./images/{{imageName}}">
         <h3>{{name}}</h3>
         <h2>{{title}}</h2>
-        <p class="article">{{articleContent}}</p>
-        <form>
-            <input type="text" id="input">
-            <button id="post" class="btn" data-site="{{articleId}}"> <a href="./full-article">Full Article</a></button>
-        </form>
+        <div id="article">
+        {{{articleContent}}}    
+            </div>
+           
+        
         <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
-
             <h4 class="author"><a href="/photographers">{{fName}} {{lName}}</a></h4>
             <p>{{articleDate}}</p>
             <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            
+            <button class="btn blog-button" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
         </div>
     </div>
     {{/each}}

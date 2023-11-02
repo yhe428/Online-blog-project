@@ -26,12 +26,14 @@ app.use(cookieParser());
 
 // Make the "public" folder available statically
 const path = require("path");
-const { addUserToLocals, verifyAuthenticated } = require("./middleware/auth-middleware.js");
 const { verify } = require("crypto");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Use the toaster middleware
 app.use(require("./middleware/toaster-middleware.js"));
+
+const { addUserToLocals } = require("./middleware/auth-middleware.js");
+app.use(addUserToLocals);
 
 // Setup routes
 app.use(require("./routes/application-routes.js"));
@@ -45,7 +47,23 @@ app.use(require("./routes/commentHandle.js"));
 //post article route
 app.use(require("./routes/post-article.js"));
 
+//photographer route
 app.use(require("./routes/photographer-routes.js"));
+
+//search route
+app.use(require("./routes/search-routes.js"));
+
+//edit account route
+app.use(require("./routes/editAccount.js"));
+
+//delete account route
+app.use(require("./routes/deleteAccount.js"));
+
+//edit password route
+app.use(require("./routes/editPassword.js"));
+
+//edit article route
+app.use(require("./routes/editArticle.js"));
 
 // Start the server running.
 app.listen(port, function () {

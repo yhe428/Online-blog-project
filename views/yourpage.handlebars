@@ -11,42 +11,58 @@
     
 
     {{#if articles}}
-        {{#each articles}}
-        <div class="card-container tall">
-        <img class="card-images" src="./images/{{aricles.imageUrl}}" alt="british blue cat">
-        <h3>{{article.category}}</h3>
-        <h2>{{article.title}}</h2>
-        <p class="article">{{article.content}}</p>
-        <a href="./full_article.html"><button class="btn">Full Article</button></a>
+    
+    {{#each articles}}
+    <div class="card-container {{imageHeight}}">
+        <img class="card-images" src="./images/{{imageName}}">
+        <h3>{{name}}</h3>
+        <h2>{{title}}</h2>
+        <div id="article">
+        {{{articleContent}}}    
+            </div>
+            <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit Article</a></button>
+            <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
+            
+        
         <div class="flavicon-container">
-            <img src="./images/brown-hair-womanp.png" alt="female avatar flavicon" width="40" height="40">
-            <h4 class="author">Josie Walker</h4>
-            <p>2</p>
+            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+                            {{!-- Maybe add #with  -- look at it later --}}
+            <p>{{articleDate}}</p>
+            <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
         </div>
-        {{/each}}
-    
+    </div>
+    {{/each}}
+
     {{else}}
-    <p>You haven't uploaded any images yet. Please use the form below to add some!</p>
+    <p>You don't have any articles! Post your first one!</p>
+
     {{/if}}
 
+    <div class="add-article-form">
+        <h2> Add Article</h2>
+        <form action="/submit-article" method="post" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <h3 class="category">Category:</h3>
+            <div class="category-container">
+                <label><input type="radio" name="category" value="1">Nature</label>
+                <label><input type="radio" name="category" value="2">Portrait</label>
+                <label><input type="radio" name="category" value="3">Life</label>
+            </div>
+            <label for="content">Content:</label>
+            <textarea id="editor-textarea" name="content" hidden></textarea>
+            <div id="editor">
+                <p>Article here</p>
 
-    <form action="/submit-article" method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
+            </div>
 
-        <label for="content">Content:</label>
-        <textarea id="editor-textarea" name="content" hidden></textarea>
-        <div id="editor">
-            <p>Hello world!</p>
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
 
-        </div>
-
-        <label for="image">Upload Image:</label>
-        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
-
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
 </div>
 
@@ -57,4 +73,3 @@
     <p>{{toastMessage}}</p>
     {{/if}}
 </div>
-
