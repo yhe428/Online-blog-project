@@ -32,45 +32,38 @@ async function retrieveAllArticles() {
     return newArticlesArray;
 }
 
-
-async function retrieveNatureArticles() {
-
-    const db = await dbPromise;
-
-    const natureArticles = await db.all(SQL` SELECT a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
-    from Users as u, Articles as a, Categories as c
-    where u.userId = a.writerId
-    and c.categoryID = a.categoryId
-    and c.name = 'Nature'`);
-
-    return natureArticles;
-}
-
-async function retrievePortraitArticles() {
+retrieveCategoryArticles("Nature")
+async function retrieveCategoryArticles(category) {
 
     const db = await dbPromise;
 
-    const portraitArticles = await db.all(SQL`SELECT a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
+    const articlesArray = await db.all(SQL` select a.articleId, a.imageName, a.imageHeight, a.imageWidth, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
     from Users as u, Articles as a, Categories as c
     where u.userId = a.writerId
-    and c.categoryID = a.categoryId
-    and c.name = 'Portrait'`);
+    and c.categoryId = a.categoryId
+    and c.name = ${category}
+    order by a.articleDate desc`);
 
-    return portraitArticles;
+    let newArticlesArray = articlesArray.map(function (article) {
+
+        let calculation = article.imageHeight / article.imageWidth;
+        if (calculation <= 0.8) {
+            return { ...article, imageHeight: "short" };
+        }
+        if (calculation > 0.8 && calculation < 1.2) {
+            return { ...article,  imageHeight: "medium" };
+        }
+        if (calculation >= 1.2 && calculation < 1.5) {
+            return { ...article, imageHeight: "tall" };
+        }
+        if (calculation >= 1.5) {
+            return { ...article, imageHeight: "tallest" };
+        }    
+    });
+    console.log(newArticlesArray)
+    return newArticlesArray; 
 }
 
-async function retrieveLifeArticles() {
-
-    const db = await dbPromise;
-
-    const lifeArticles = await db.all(SQL`SELECT a.articleId, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
-    from Users as u, Articles as a, Categories as c
-    where u.userId = a.writerId
-    and c.categoryID = a.categoryId
-    and c.name = 'Life'`);
-
-    return lifeArticles;
-}
 async function retrieveArticlesByUserId(userId) {
     const db = await dbPromise;
 
@@ -166,16 +159,11 @@ async function deleteArticle(id){
 
 module.exports = {
     retrieveAllArticles,
-    retrieveNatureArticles,
-    retrievePortraitArticles,
-    retrieveLifeArticles,
+    retrieveCategoryArticles,
     retrieveArticlesByUserId,
     retrieveArticleByArticleId,
     retrieveArticleByWriterId,
     retrieveArticlesByArticleId,
     updateUserArticle,
     deleteArticle
-
-
-
 };

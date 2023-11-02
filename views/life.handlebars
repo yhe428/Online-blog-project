@@ -1,19 +1,21 @@
-   <div class="container">
-   {{#each articles}}
-   <div class="card-container {{pictureOrientation}}">
-        <img class="card-images" src="{{imageUrl}}">
+<div class="container">
+
+    {{#each articles}}
+    <div class="card-container {{imageHeight}}">
+        <img class="card-images" src="./images/{{imageName}}">
         <h3>{{name}}</h3>
         <h2>{{title}}</h2>
-        <p class="article">{{articleContent}}</p>
-        <a href="./full-article"><button class="btn">Full Article</button></a>
-
+        <div id="article">
+        {{{articleContent}}}    
+            </div>
+           
         <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
-
             <h4 class="author"><a href="/photographers">{{fName}} {{lName}}</a></h4>
             <p>{{articleDate}}</p>
             <p>{{numberOfComments}}</p>
             <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            
+            <button class="btn blog-button" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
         </div>
     </div>
     {{/each}}
