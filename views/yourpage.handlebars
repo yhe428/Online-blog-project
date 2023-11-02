@@ -1,8 +1,14 @@
 
 <div class="container">
-    <p> welcome! {{user.username}}</p>
+    <div>
+        <p> welcome! {{user.username}}</p>
+        
+        <img  class="avatar-img" src="{{user.avatar}}">
+    </div>
+
     <h1>Your Page & Articles</h1>
     
+
     {{#if articles}}
     
     {{#each articles}}
@@ -18,7 +24,7 @@
             
         
         <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+            {{!-- <img src="{{user.avatar}}" alt="avatar flavicon" width="70" height="70"> --}}
                             {{!-- Maybe add #with  -- look at it later --}}
             <p>{{articleDate}}</p>
             <p>{{numberOfComments}}</p>

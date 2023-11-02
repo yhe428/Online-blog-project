@@ -14,7 +14,8 @@ drop table if exists Users;
  email varchar(254),
  address varchar(64),
  phone varchar(15),
- birthDate date
+ birthDate date,
+ avatar varchar(200)
  );
  create table if not exists Categories (
  categoryId integer not null primary key,
@@ -54,10 +55,10 @@ drop table if exists Users;
  categoryName,
  imageName
  );
-insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate) VALUES
-(1, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq', 'user1', 'Derek', 'Hughes', 'I got my first camera at 10 - a Brownie 127 - still have it and it still works! Most of my own photography is inspired by Nature. Our natural environment needs protecting. If my photographs make someone appreciate what we have a little bit more then I’m well rewarded. Photography for me is my relaxation technique. The view through the camera becomes my focus for a while and lets me shut out the cluttered world we live in.', 'darkroom@derek.co.nz', '116 Lemon Street, New Plymouth 4312', '0276580327', '1980-01-01'),
-(2, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq','user2','Linda','Smith','I love capturing the beauty of the world. Nature and landscapes are my go-to subjects.','linda@photos.com', '8 Revel Ave, Auckland 1041','0276580327','1993-10-05'),
-(3, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq','user3','Mike','Ford', 'A passionate photographer who loves black and white classics.','michael@bwphotos.com','456 Retro Rd, Auckland, 1132', '0212363136','1990-10-10');
+insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate, avatar) VALUES
+(1, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq', 'user1', 'Derek', 'Hughes', 'I got my first camera at 10 - a Brownie 127 - still have it and it still works! Most of my own photography is inspired by Nature. Our natural environment needs protecting. If my photographs make someone appreciate what we have a little bit more then I’m well rewarded. Photography for me is my relaxation technique. The view through the camera becomes my focus for a while and lets me shut out the cluttered world we live in.', 'darkroom@derek.co.nz', '116 Lemon Street, New Plymouth 4312', '0276580327', '1980-01-01', 'https://api.multiavatar.com/bobbyknox.png'),
+(2, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq','user2','Linda','Smith','I love capturing the beauty of the world. Nature and landscapes are my go-to subjects.','linda@photos.com', '8 Revel Ave, Auckland 1041','0276580327','1993-10-05','https://api.multiavatar.com/bobbyknox.png'),
+(3, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq','user3','Mike','Ford', 'A passionate photographer who loves black and white classics.','michael@bwphotos.com','456 Retro Rd, Auckland, 1132', '0212363136','1990-10-10','https://api.multiavatar.com/bobbyknox.png');
 
 insert into Categories (categoryId, name) VALUES
 (1, 'Nature'),
