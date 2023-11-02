@@ -4,7 +4,7 @@
 :root {
     /* main colours */
     --pale: #fffffe;
-    --light: #E0E2DB;
+    --light: rgb(223, 225, 218);
     --medium: rgb(136, 150, 150);
     --dark: rgb(18, 16, 14);
 }
@@ -239,40 +239,34 @@ button:disabled{
     cursor: not-allowed;      
 }
 /*------------------------------ Your Page ------------------------------*/
-/* *{ border: 1px solid red;} */
-
 .your-page-container {
-    border-top: 2px solid var(--light);
-    background-image: url("/images/bokeh.jpg");  
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 900px; 
+    background-image: url("/images/neutral.jpg"); 
     background-position: center; 
     background-repeat: no-repeat; 
-    background-size: cover;
+    background-size: cover; 
 } 
-.your-page-container h2 {
-    font-size: 36px;
-    color: var(--pale);
-    padding: 30px;
-    text-shadow: 2px 2px 2px rgb(18, 16, 14, 0.6);
-    letter-spacing: 2px;
-    font-weight: bold;
+
+.image-overlay {
+    height: 80vh;
+    background-color:rgb(255, 255, 255, 0.5);
 }
-.add-article-form h2 {
-    padding: 5px;
-    color: var(--dark);
-    text-shadow: none;
+.your-page-container h1, .welcome{
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6); 
+     padding: 20px;
+     color: var(--dark);
+     letter-spacing: 2px;
+     text-align: center;
+}
+.your-page-container h1 {
     font-size: 24px;
-    text-align: center;
+    padding-top: 0;
 }
+
 .add-article-form {
     margin: 15px 25px 25px 25px;
     background-color: var(--pale);
-    border-radius: 8px;
-    /* display:block; */
-    /* box-shadow: 3px 3px 15px 5px var(--shadow); */
-     /* box-shadow: 1px 1px 6px 1px rgb(136, 150, 150, 0.5); */
-    width: 70%;
+    border-radius: 14px;
+    width: 90%;
     margin: auto;
     padding: 30px;
     box-shadow: 4px 4px 4px 4px rgb(18, 16, 14, 0.4);
@@ -281,40 +275,61 @@ button:disabled{
 .your-page-container>p, .your-page-container>h2 {
     text-align: center;
 }
-#title{
-    margin:0;
+
+.article-title {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
+
+.radiobox-categories{
+    display: flex;
+    gap: 40px;
+   /* justify-content: space-between; */
+}  
+
 .your-page-container h3 {
-    padding: 20px 0px 5px 20px;
+    /* padding: 20px 0px 5px 0px; */
+    align-self: center;
 }
 
 .add-article-form label  {
     display: block;
-    padding: 15px 0 20px 20px;
+    padding: 10px 0;
 }
+
+.your-page-container .container {
+    border: none;
+}
+
 .category-container {
     display: flex;
-    gap: 40px;
+    gap: 50px;
 }
+
 .category-container>label{
     color: var(--dark);
     font-family: 'Montserrat', sans-serif;
     text-transform: none;
+    padding: 0px 20px;
 }
 
 .category-container input {
-    margin: 7px 0;
+    margin: 10px;
 }
 
 .add-article-form input[type="text"], 
 .add-article-form textarea {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 2px solid rgb(136, 150, 150, 0.3);
+    margin: 5px 0;
+    border: 1px solid rgb(136, 150, 150, 0.3);
     border-radius: 8px;
     font-size: 14px;
-    box-shadow: 1px 1px 2px rgb(136, 150, 150, 0.3);
+    }
+
+.add-article-form input[type="text"] {
+    box-shadow: none;
 }
 
 .add-article-form input[type="file"] {
@@ -325,7 +340,6 @@ button:disabled{
     border: 1px solid #0056b3;
     box-shadow: 1px 1px 2px var(--medium);
 }
-
 
 .add-article-form button[type="submit"] {
     display: inline-block;
@@ -341,32 +355,43 @@ button:disabled{
 
 .add-article-form button[type="submit"]:hover {
     background-color: #0056b3;
-    border: 1px solid lightblue;
 }
-
 
 #editor {
-    border: 1px solid rgb(136, 150, 150, 0.3);
-    border-radius: 0 0 8px 8px;
     min-height: 200px;
-    padding: 10px;
     font-size: 14px;
-    box-shadow: 1px 0 2px rgb(136, 150, 150, 0.3);
 }
-
 
 .ql-toolbar {
     border: 1px solid rgb(136, 150, 150, 0.3);
     border-radius: 8px 8px 0 0;
-    border: 1px solid purple;
     box-shadow: 1px 1px 2px rgb(136, 150, 150, 0.3);
     background-color: rgb(136, 150, 150, 0.1);
 }
+
 .ql-container {
     border-top: none;
     border-radius: 0 0 8px 8px;
-    border: 1px solid lightcoral;
 }
+
+.your-page-container .container {
+   height: 100vh;
+}
+
+.empty-space{
+    background-color: var(--pale);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.buttons>button {
+    width: 160px;
+}
+
 /*------------------------------ Blog ------------------------------*/
 .container {
     display: grid;
@@ -385,19 +410,20 @@ button:disabled{
     padding: 20px 10px;
 } 
 
-/* NOTE!!! These classes to be added to articles div and car-container,based on condition of landscape, portrait and large portait */
-
  .short {
-    grid-row: span 6;
+    grid-row: span 5;
 }
+      
 .medium {
     grid-row: span 7;
 }
 
 .tall {
-    grid-row: span 8;
+    grid-row: span 7;
 }
-
+.tall .flavicon-container{
+    margin-bottom: 20px;
+}
 .tallest {
     grid-row: span 9;
 }
