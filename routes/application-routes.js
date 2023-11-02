@@ -19,12 +19,12 @@ router.get("/blog", async function (req, res) {
 // router.get("/full-article/:articleId", async function(req, res)
 
 router.get("/full-article/:articleId", async function(req, res) {
-     let id = req.params['articleId'];
+    let id = req.params['articleId'];
     const article = await articlesDao.retrieveArticleByArticleId(id);
     // console.log(article);
     // res.locals.article = article;
     
-    res.render("full-article", article);
+    res.render("full-article", { ...article, articleId: id });
 
 });
 

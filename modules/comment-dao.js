@@ -5,12 +5,12 @@ async function createComment(comment){
     const db = await dbPromise;
 
     const result = await db.run(SQL`
-    insert into Comments (commentId, parentId, commentDateTime, content, posterId, articleCommented) VALUES
+    insert into Comments (parentId, commentDateTime, content, posterId, articleCommented) VALUES
     (${comment.parentId || null}, datetime ('now'), ${comment.content},${comment.posterId}, ${comment.articleCommented})
     
     `);
-    comment.id = result.lastID;
-    return comment.id;
+    comment.commentId = result.lastID;
+    return comment.commentId;
 
 }
 
@@ -22,14 +22,15 @@ async function getAllCommentsByAricleID(articleId){
     const allComments = await db.all(SQL`
     select * from Comments
     where articleCommented = ${articleId}
+    order by commentDateTime desc
     `)
 
     //get replies of comments
-    for (let comment of allComments) {
-        comment.replies = await db.all(SQL`
-            SELECT * FROM Comments WHERE parentId = ${comment.commentId}
-        `);
-    }
+    // for (let comment of allComments) {
+    //     comment.replies = await db.all(SQL`
+    //         SELECT * FROM Comments WHERE parentId = ${comment.commentId}
+    //     `);
+    // }
     return allComments;//return back an array
 
 }

@@ -14,7 +14,36 @@
                 <i class="fa-regular fa-comment"></i>
                     <button class="btn blog-button"><a href="/blog"> Blog</a></button>
 
-        </div>
+            </div>
         
         </div>
     </div>
+
+    {{!-- ------------------------------comments part ------------------------------}}
+
+    <div class="comments-section">
+        <h2>Comments</h2>
+        <ul class="comments-list">
+            {{#each comments}}
+            <li class="comment">
+                <img src="{{this.avatar}}" alt="{{this.name}}" class="comment-avatar">
+                <div class="comment-content">
+                    <h3>{{this.name}} - {{this.date}}</h3>
+                    <p>{{this.message}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+
+        <form action="/createComment" method="POST" class="add-comment">
+            <input type="hidden" name="articleId" value="{{articleId}}">
+            <input type="text" name = "comment" placeholder="Add a comment...">
+            {{!-- <h4>{{user.avatar}}</h4> working--}}
+            <button type="submit">Save comment</button>
+        </form>
+
+    </div>
+
+
+
+</div>

@@ -44,6 +44,8 @@ drop table if exists Users;
  articleCommented integer not null,
  foreign key (posterId) references Users(userId)ON DELETE CASCADE,
  foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE
+ FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
+
  );
  
   create virtual table if not exists ArticlesSearch using fts5 (
