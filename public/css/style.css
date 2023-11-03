@@ -116,6 +116,11 @@ nav a {
 a:hover, .dropdown-btn:hover, .login-btn:hover{
     color: #B8BDB5;
 }
+
+#nav-avatar{
+    height: 30px;
+    margin:  5px 20px 0;
+}
 /*------------------------------ Home ------------------------------*/
 
 .home-content-container {

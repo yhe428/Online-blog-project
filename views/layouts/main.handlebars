@@ -54,7 +54,7 @@
                 <div class="dropdown">
                     <button class="dropdown-btn">
                         {{#if user}}
-                        <li><a href="/yourPage">{{user.username}}</a></li>
+                        <li><a href="/yourPage"><img id="nav-avatar" src="{{user.avatar}}">{{user.username}}</a></li>
                         {{else}}
                         <li><a href="/login">Login</a></li>
                         {{/if}}
