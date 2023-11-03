@@ -11,30 +11,10 @@ async function retrieveAllArticles() {
     and c.categoryId = a.categoryId
     order by a.articleDate desc` );
 
-    let newArticlesArray = articles.map(function (article) {
-
-        let calculation = article.imageHeight / article.imageWidth;
-        if (calculation <= 0.8) {
-            return { ...article, imageHeight: "short" };
-        }
-        if (calculation > 0.8 && calculation < 1.2) {
-            return { ...article,  imageHeight: "medium" };
-        }
-        if (calculation >= 1.2 && calculation < 1.5) {
-            return { ...article, imageHeight: "tall" };
-        }
-        if (calculation >= 1.5) {
-            return { ...article, imageHeight: "tallest" };
-        }
-        
-    });
-   
-    return newArticlesArray;
+    return articles;
 }
 
-retrieveCategoryArticles("Nature")
 async function retrieveCategoryArticles(category) {
-
     const db = await dbPromise;
 
     const articlesArray = await db.all(SQL` select a.articleId, a.imageName, a.imageHeight, a.imageWidth, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
@@ -44,24 +24,7 @@ async function retrieveCategoryArticles(category) {
     and c.name = ${category}
     order by a.articleDate desc`);
 
-    let newArticlesArray = articlesArray.map(function (article) {
-
-        let calculation = article.imageHeight / article.imageWidth;
-        if (calculation <= 0.8) {
-            return { ...article, imageHeight: "short" };
-        }
-        if (calculation > 0.8 && calculation < 1.2) {
-            return { ...article,  imageHeight: "medium" };
-        }
-        if (calculation >= 1.2 && calculation < 1.5) {
-            return { ...article, imageHeight: "tall" };
-        }
-        if (calculation >= 1.5) {
-            return { ...article, imageHeight: "tallest" };
-        }    
-    });
-    console.log(newArticlesArray)
-    return newArticlesArray; 
+    return articlesArray;
 }
 
 async function retrieveArticlesByUserId(userId) {
@@ -74,25 +37,7 @@ async function retrieveArticlesByUserId(userId) {
     and u.userId = ${userId}
     order by a.articleDate desc`);
 
-
-    let newArticlesArray = articlesArray.map(function (article) {
-
-        let calculation = article.imageHeight / article.imageWidth;
-        if (calculation <= 0.8) {
-            return { ...article, imageHeight: "short" };
-        }
-        if (calculation > 0.8 && calculation < 1.2) {
-            return { ...article,  imageHeight: "medium" };
-        }
-        if (calculation >= 1.2 && calculation < 1.5) {
-            return { ...article, imageHeight: "tall" };
-        }
-        if (calculation >= 1.5) {
-            return { ...article, imageHeight: "tallest" };
-        }    
-    });
-
-    return newArticlesArray;
+    return articlesArray;
 }
 
 async function retrieveArticleByArticleId(articleId) {
@@ -103,21 +48,20 @@ async function retrieveArticleByArticleId(articleId) {
     where u.userId = a.writerId
     and c.categoryId = a.categoryId
     and a.articleId = ${articleId}`);
-    
+
     return article;
 }
-async function retrieveArticleByWriterId(id){
+async function retrieveArticleByWriterId(id) {
     const db = await dbPromise;
 
     const articles = await db.all(SQL`
-    select * from Articles where writerId = ${id}
-    
+    select * from Articles where writerId = ${id} 
     `)
 
     return articles;
-    
 }
-async function retrieveArticlesByArticleId(id){
+
+async function retrieveArticlesByArticleId(id) {
     const db = await dbPromise;
 
     const article = await db.get(SQL`
@@ -125,9 +69,9 @@ async function retrieveArticlesByArticleId(id){
     where articleId = ${id}`);
 
     return article;
-
 }
-async function updateUserArticle(article){
+
+async function updateUserArticle(article) {
     const db = await dbPromise;
 
     const result = await db.run(SQL`
@@ -140,12 +84,12 @@ async function updateUserArticle(article){
     writerId = ${article.userId},
     categoryId = ${article.categoryId}
     where articleId = ${article.articleId}
-    `)
+    `);
 
     return result.changes;
 }
 
-async function deleteArticle(id){
+async function deleteArticle(id) {
     const db = await dbPromise;
 
     await db.run(SQL`delete from Comments where articleCommented = ${id}`);
