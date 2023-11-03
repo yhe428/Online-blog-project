@@ -1,3 +1,4 @@
+drop table if exists ArticlesSearch;
 drop table if exists Comments;
 drop table if exists Articles;
 drop table if exists Categories;
@@ -36,20 +37,6 @@ drop table if exists Users;
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
 
- 
- create table if not exists Comments (
- commentId integer not null primary key,
- parentId integer,
- commentDateTime timestamp not null,
- content varchar(255),
- posterId integer not null,
- articleCommented integer not null,
- foreign key (posterId) references Users(userId)ON DELETE CASCADE,
- foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE,
- FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
- );
- 
- 
  create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
