@@ -5,8 +5,8 @@ async function createAccount(user) {
     const db = await dbPromise;
 
     const result = await db.run(SQL`
-    insert into Users (password, username, fName, lName, userDescription, email, address, phone, birthDate) values
-    (${user.password}, ${user.username}, ${user.firstname}, ${user.lastname}, ${user.description}, ${user.email}, ${user.address}, ${user.phone}, ${user.birth})
+    insert into Users (password, username, fName, lName, userDescription, email, address, phone, birthDate, avatar) values
+    (${user.password}, ${user.username}, ${user.firstname}, ${user.lastname}, ${user.description}, ${user.email}, ${user.address}, ${user.phone}, ${user.birth}, ${user.avatar})
     
     `)
     // Get the auto-generated ID value, and assign it back to the user object.
@@ -49,7 +49,7 @@ async function retrieveUserWithAuthToken(authToken) {
 
     return user;
 }
-async function updateUser(user) {
+async function updateAuthToken(user) {
 
     const db = await dbPromise;
 
@@ -72,7 +72,8 @@ async function editUserAccount(user){
             email = ${user.email},
             address = ${user.address},
             phone = ${user.phone},
-            birthDate = ${user.birthDate}
+            birthDate = ${user.birthDate},
+            avatar = ${user.avatar}
             WHERE userId = ${user.userId}
     `);
 
@@ -115,7 +116,7 @@ module.exports = {
     retrieveUserByName,
     retrieveUserWithCredentials,
     retrieveUserWithAuthToken,
-    updateUser,
+    updateAuthToken,
     getAllUsers,
     retrieveUserById,
     deleteUser,

@@ -1,67 +1,72 @@
-
-<div class="container">
-    <p> welcome! {{user.username}}</p>
-    <h1>Your Page & Articles</h1>
-    
-    {{#if articles}}
-    
-    {{#each articles}}
-    <div class="card-container {{imageHeight}}">
-        <img class="card-images" src="./images/{{imageName}}">
-        <h3>{{name}}</h3>
-        <h2>{{title}}</h2>
-        <div id="article">
-        {{{articleContent}}}    
-            </div>
-            <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit Article</a></button>
-            <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
-            
+<div class="your-page-container">
+    <div class="image-overlay">
+        <div class="add-article-form">
+        <h3 class="page-title">Your Page &amp; Articles</h3>
+     <p class="welcome"> Welcome! {{user.username}}</p>
         
-        <div class="flavicon-container">
-            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
-                            {{!-- Maybe add #with  -- look at it later --}}
-            <p>{{articleDate}}</p>
-            <p>{{numberOfComments}}</p>
-            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            {{!-- <h2> Add Article</h2> --}}
+            <form action="/submit-article" method="post" enctype="multipart/form-data">
+                <div class="article-title">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="radiobox-categories">
+                    <h3 class="category">Category:</h3>
+                    <div class="category-container">
+                        <label><input type="radio" name="category" value="1">Nature</label>
+                        <label><input type="radio" name="category" value="2">Portrait</label>
+                        <label><input type="radio" name="category" value="3">Life</label>
+                    </div>
+                </div>
+                <label for="content">Content:</label>
+                <textarea id="editor-textarea" name="content" hidden></textarea>
+                <div id="editor">
+                    <p>Article here</p>
+
+                </div>
+
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
+
+                <button type="submit">Submit</button>
+            </form>
         </div>
+
+        
     </div>
-    {{/each}}
+    <div class="empty-space">
 
-    {{else}}
-    <p>You don't have any articles! Post your first one!</p>
+    <div class="container">
+        {{#if articles}}
 
-    {{/if}}
-
-    <div class="add-article-form">
-        <h2> Add Article</h2>
-        <form action="/submit-article" method="post" enctype="multipart/form-data">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-            <h3 class="category">Category:</h3>
-            <div class="category-container">
-                <label><input type="radio" name="category" value="nature">Nature</label>
-                <label><input type="radio" name="category" value="portrait">Portrait</label>
-                <label><input type="radio" name="category" value="life">Life</label>
+        {{#each articles}}
+        <div class="card-container {{imageHeight}}">
+            <img class="card-images" src="./images/{{imageName}}">
+            <h3>{{name}}</h3>
+            <h2>{{title}}</h2>
+            <div id="article">
+                {{{articleContent}}}
             </div>
-            <label for="content">Content:</label>
-            <textarea id="editor-textarea" name="content" hidden></textarea>
-            <div id="editor">
-                <p>Article here</p>
-
+            <div class="buttons">
+                <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit
+                        Article</a></button>
+                <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
             </div>
+            <div class="flavicon-container">
+                <p>{{articleDate}}</p>
+                <p>{{numberOfComments}}</p>
+                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+            </div>
+        </div>
+        {{/each}}
 
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
+        {{else}}
+        <p>You don't have any articles! Post your first one!</p>
 
-            <button type="submit">Submit</button>
-        </form>
+        {{/if}}
+        
     </div>
-
-</div>
-
-
-
-
+    </div>
     {{#if toastMessage}}
     <p>{{toastMessage}}</p>
     {{/if}}

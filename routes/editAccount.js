@@ -3,11 +3,15 @@ const router = express.Router();
 
 const userDao = require("../modules/users-dao.js");
 const { verifyAuthenticated }= require("../middleware/auth-middleware.js");
+const avatarImport = require("../modules/avatar.js");
 
-router.get("/editAccount", verifyAuthenticated, function (req, res){
+router.get("/editAccount", verifyAuthenticated, async function (req, res){
     res.locals.title = "Edit account";
     res.locals.user = req.cookies.user;
-    res.render("edit-account");
+
+    avatarListCompact = [];
+    avatarListCompact =  await avatarImport.getAvatarList();
+    res.render("edit-account", { avatarListCompact: avatarListCompact});
 });
 
 router.post("/editAccount", verifyAuthenticated, async function (req, res){
@@ -20,6 +24,7 @@ router.post("/editAccount", verifyAuthenticated, async function (req, res){
     const phone = req.body.phone.trim();
     const email = req.body.email.trim();
     const description = req.body.description.trim();
+    const avatar = req.body.avatar;
 
     const user = {
         userId:id,
@@ -30,8 +35,10 @@ router.post("/editAccount", verifyAuthenticated, async function (req, res){
         address:address,
         phone: phone,
         email:email,
-        description:description
+        description:description,
+        avatar:avatar
     }
+    
 
     try{
         const changes = await userDao.editUserAccount(user);
