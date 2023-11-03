@@ -41,6 +41,8 @@ router.get("/full-article/:articleId", async function(req, res) {
 
 
 router.get("/nature", async function (req, res) {
+    res.locals.title = "Nature";
+
     const natureArticles = await articlesDao.retrieveCategoryArticles("Nature");
 
     res.locals.articles = natureArticles;
@@ -48,12 +50,14 @@ router.get("/nature", async function (req, res) {
 });
 
 router.get("/portrait", async function (req, res) {
+    res.locals.title = "Portrait";
     const portraitArticles = await articlesDao.retrieveCategoryArticles("Portrait");
     res.locals.articles = portraitArticles;
     res.render("portrait");
 });
 
 router.get("/life", async function (req, res) {
+    res.locals.title = "Life";
     const lifeArticles = await articlesDao.retrieveCategoryArticles("Life");
     res.locals.articles = lifeArticles;
     res.render("life");
