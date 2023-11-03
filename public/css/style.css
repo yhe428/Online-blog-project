@@ -31,7 +31,7 @@ h3, form label,
     color: var(--medium);
 }
 /* --- nav bottom border */
-.container, .photographers-container, .full-article-container{
+.container, .photographers-container, .full-article-container {
 border-top: 2px solid var(--light);
 }
 
@@ -567,7 +567,7 @@ padding-right: 20px;
  .photographer-container{
    display: flex;
    width: 1300px;
-   margin: auto; 
+   margin: auto;
    /* box-shadow: 1px 1px 4px 1px ; */
   }
  .photographer-heading {
