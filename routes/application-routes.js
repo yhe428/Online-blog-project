@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const articlesDao = require("../modules/articles-dao.js");
+const commentDao = require("../modules/comment-dao.js");
 
 router.get("/", function (req, res) {
     res.locals.title = "Dazzling Duck Photography"
@@ -10,8 +11,13 @@ router.get("/", function (req, res) {
 
 router.get("/blog", async function (req, res) {
     res.locals.title = "Blog";
+
+    //yang change 
     const articles = await articlesDao.retrieveAllArticles();
     res.locals.articles = articles;
+
+    // const articles = await articlesDao.retrieveAllArticlesWithCommentCount();
+    // res.locals.articles = articles;
 
 
     res.render("blog");
@@ -24,7 +30,12 @@ router.get("/full-article/:articleId", async function(req, res) {
     // console.log(article);
     // res.locals.article = article;
     
-    res.render("full-article", { ...article, articleId: id });
+    //yang's codes for comments
+    const comments = await commentDao.getNestedCommentsByArticleID(id);
+    const commentsCount = await commentDao.countCommentsByArticleID(id);
+    
+
+    res.render("full-article", { ...article, articleId: id, comments:comments, commentsCount:commentsCount});
 
 });
 

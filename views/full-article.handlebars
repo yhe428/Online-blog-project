@@ -11,7 +11,7 @@
                     <h4 class="author">{{fName}} {{lName}}</h4>
                 </a>
                 <h4 class="written">{{articleDate}} </h4>
-                <i class="fa-regular fa-comment"></i>
+                <i class="fa-regular fa-comment">{{commentsCount}}</i>
                     <button class="btn blog-button"><a href="/blog"> Blog</a></button>
 
             </div>
@@ -24,16 +24,55 @@
     <div class="comments-section">
         <h2>Comments</h2>
         <ul class="comments-list">
-            {{#each comments}}
+
+        {{#each comments}}
             <li class="comment">
-                <img src="{{this.avatar}}" alt="{{this.name}}" class="comment-avatar">
+                
                 <div class="comment-content">
-                    <h3>{{this.name}} - {{this.date}}</h3>
-                    <p>{{this.message}}</p>
+                    <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
+                    <div class="comment-details">
+                        <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
+                        <p>{{content}}</p>
+                    </div>
+                    
+                    {{!-- <button class="reply-btn" data-comment-id="{{commentId}}">Reply</button> --}}
+                    {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
+                    <i class="fas fa-reply reply-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Reply"></i>
+                    <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
                 </div>
+
+                {{#if this.replies}}
+                <ul class="replies">
+                    {{#each this.replies}}
+                    <li class="comment">
+                        
+                        <div class="comment-content">
+                            <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
+                            <div class="comment-details">
+                                <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
+                                <p>{{content}}</p>
+                            </div>
+                            {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
+                            <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
             </li>
-            {{/each}}
+        {{/each}}
         </ul>
+
+        <div class="reply-window" hidden>
+            <form action="/createReply" method="POST">
+                <div class="comment-content">
+                    <input type="hidden" name="articleId" value="{{articleId}}">
+                    <textarea id="reply-textarea" rows="4" name="replyComment" placeholder="Type your reply..."></textarea>
+                    <button type="submit" class="submit-reply-btn" data-comment-id="{{commentId}}">Submit!</button>
+                </div>
+            </form>
+                
+        </div>
 
         <form action="/createComment" method="POST" class="add-comment">
             <input type="hidden" name="articleId" value="{{articleId}}">
