@@ -35,9 +35,21 @@ drop table if exists Users;
  foreign key (writerId) references Users(userId) ON DELETE CASCADE,
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
+
+ create table if not exists Comments (
+ commentId integer not null primary key,
+ parentId integer,
+ commentDateTime timestamp not null,
+ content varchar(255),
+ posterId integer not null,
+ articleCommented integer not null,
+ foreign key (posterId) references Users(userId)ON DELETE CASCADE,
+ foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE,
+ FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
+ );
  
  
-  create virtual table if not exists ArticlesSearch using fts5 (
+create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
  content,
@@ -64,6 +76,9 @@ cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 1),
 (3, 'Mysteries Behind the Veil', '<p>The allure of mystery often lies in the eyes. A glimpse, a fleeting emotion, or the hint of a story waiting to be told. The fabric enveloping her not only conceals but adds a touch of intrigue, drawing the viewer in. What thoughts play behind those eyes? Is it contemplation, a memory, or perhaps the anticipation of the unknown?</p>', date('now'), 3, 'womanp.jpg', 427, 640, 2),
 (4, 'The Delightful World of Pancakes', '<p>Who can resist the allure of a fluffy stack of pancakes, especially when drizzled with a generous amount of syrup? The aroma alone is enough to pull you out of bed on a lazy morning. Pancakes have been a breakfast favorite for generations, bringing warmth and comfort to countless breakfast tables.</p>', date('now'), 1, 'pancakep.jpg', 1257, 2560, 3),
 (5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 1024, 768,1);
+
+
+
 
 INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, imageName)
 SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.imageName
