@@ -20,6 +20,7 @@ router.post("/search", async function (req, res) {
         if(results.length > 0) {
             res.locals.results = results;
             console.log(results);
+            res.locals.input = input;
         }
     
         else {

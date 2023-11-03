@@ -515,7 +515,7 @@ padding-right: 20px;
  .photographer-container{
    display: flex;
    width: 1300px;
-   margin: auto; 
+   margin: auto;
    /* box-shadow: 1px 1px 4px 1px ; */
   }
  .photographer-heading {

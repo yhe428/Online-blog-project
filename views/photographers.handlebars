@@ -1,12 +1,14 @@
 <script src="./javascript/photographers-client.js"></script>
 <div class="photographers-container">
   
-<div id="jump-to-container">
-  <a href="#all-photographers-heading"><button id="jump-to-button">All photographers</button></a>
-</div>
+    <div id="photographers-jump-to">
+      <button class="btn" id="all-photographers-button"><a href="#all-photographers">All photographers</a><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+ 
   
     <h2 class="photographer-heading">{{photographer.fName}} {{photographer.lName}}</h2>
     <div class="photographer-container">
+ 
       <div class="contact-icons">
         <ul>
           <li><i class="fa-solid fa-phone"></i>{{photographer.phone}}</li>
@@ -45,8 +47,8 @@
 
     </div>
 
-    <div id="photographers-list">
-      <h3 id="all-photographers-heading">All Photographers</h3>
+   <div id="photographers-list">
+      <h3 id="all-photographers">All Photographers</h3><br>
       <ul>
     {{#each users}}
     <a href="/photographers/{{this.userId}}">

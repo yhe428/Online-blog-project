@@ -9,6 +9,11 @@
 
 }
 
+#txtSearchInput {
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
 #txtSearchInput, #search-label {
     width: 400px;
     display: flex;
@@ -37,13 +42,62 @@
 
 #search-button {
     margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #search-form-container {
-    margin-left: 200px;
-    padding: 20px;
+ padding: 20px 0px 20px 0px;
 }
 
 #results-container {
     height: 100vh;
+}
+
+#all-photographers-button {
+    width: 250px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-top: 70px;
+}
+
+#all-photographers-button > a {
+    color: var(--medium);
+}
+
+.name-button {
+    border: none;
+    padding: 10px;
+    background-color: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    background-color: transparent;
+}
+
+#photographers-list {
+    margin-bottom: 30px;
+    margin-left: 40px;
+    margin-right: 50px;
+    
+}
+
+#photographers-list ul {
+    list-style-type: none;
+}
+
+
+.photographers-container {
+    border-top: 2px solid var(--light);
+    width: 1400px;
+    margin: auto;
+}
+
+#search-container {
+    border-top: 2px solid var(--light);
+    width: 1400px;
+    margin: auto;
+}
+
+#results-message {
+    border: none;
+    padding: 20px;
 }

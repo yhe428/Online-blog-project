@@ -2,23 +2,14 @@
 
 <div id="search-container">
 
-<div id="search-form-container">
-<form action="./search" method="POST">
-
-<div id="search-input-field">
-    <label for="txtSearchInput" id="search-label">Search</label>
-    <input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
-</div>
-
-<button type="submit" id="search-button" class="btn">Search!</button>
-</form>
-</div>
-
-
 {{#if results}}
     
-    <div class="container" id="results-container">
+    <div id="results-message">
+    <p>Showing results for "{{input}}"</p>
+    </div>
     
+    <div class="container" id="results-container">
+        
     {{#each results}}
     <div class="card-container {{this.imageHeight}}">
         <img class="card-images" src="./images/{{this.imageName}}">
@@ -40,21 +31,34 @@
         </div>
     </div>
     {{/each}}
-    
+    </div>
     
     {{else}}
+        <div id="search-form-container">
+            <form action="./search" method="POST">
 
-    <div id="image-display">
-        <img src="./images/search-page-image.jpg" alt="Field Landscape" id="search-image">
-    </div>
+            <div id="search-input-field">
+                <label for="txtSearchInput" id="search-label">Search</label>
+                <input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+            </div>
 
+            <button type="submit" id="search-button" class="btn">Search!</button>
+            </form>
+        </div>
+
+        <div id="image-display">
+            <img src="./images/search-page-image.jpg" alt="Field Landscape" id="search-image">
+        </div>
+   
    {{/if}}
-
-
 
     {{#if toastmessage}} 
     <p>{{toastmessage}}</p>
     {{/if}}
 
-    </div>
+
+
+   
+
+    
 </div>
