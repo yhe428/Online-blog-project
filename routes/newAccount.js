@@ -121,7 +121,7 @@ router.get("/logout", function (req, res) {
     res.clearCookie("authToken");
     res.clearCookie("user");
     res.setToastMessage("Successfully logged out!");
-    res.redirect("./login");
+    res.redirect("/");
 });
 
 module.exports = router;
