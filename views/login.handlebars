@@ -1,24 +1,30 @@
 <div id="login-container">
+
     <div id="login-div">
-        <p> </p>
-        <h1>Login</h1>
-        <form action="./login" method="POST">
+        <h1 class="heading">Login</h1>
+        <div id="login-form-div">
+            <form action="./login" method="POST">
 
-            <p><label for="idUserName"> Username </label>
-                <input type="text" name="username" id="idUserName" required>
-            </p>
+                <p><label for="idUserName"> Username </label>
+                    <input class="login-ipt" type="text" name="username" id="idUserName" required>
+                </p>
 
 
-            <p><label for="txtPassword">Password </label>
-                <input type="password" name="password" id="txtPassword" required>
-            </p>
+                <p><label for="txtPassword">Password </label>
+                    <input class="login-ipt" type="password" name="password" id="txtPassword" required>
+                </p>
+                <div>
+                    <button id="login-button" class="btn" type="submit">Log in </button>
+                </div>
+            </form>
+            <p>Do you need to create an account? <a href="./newAccount"> <br>Create new account</a></p>
+            <div id="login-toast">
+                {{#if toastMessage}}
+                <p>{{toastMessage}}</p>
+                {{/if}}
+            </div>
+        </div>
 
-            <button id="login-button" class="btn" type="submit">Log in </button>
-        </form>
-        <p>Do you need to create an account? <a href="./newAccount"> <br>Create new account</a></p>
     </div>
 
-    {{#if toastMessage}}
-    <p>{{toastMessage}}</p>
-    {{/if}}
 </div>

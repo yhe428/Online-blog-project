@@ -32,13 +32,15 @@
         <h2>{{title}}</h2>
         <div id="article">
           {{{articleContent}}}
-        </div>
-        <button class="btn" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Full Article</a></button>
+        </div> 
+
         <div class="flavicon-container">
-        
+
           <p>{{articleDate}}</p>
           <p>{{numberOfComments}}</p>
           <img class="flavicon-comment" src="/images/comment-white-oval-bubblep.png" alt="Comment bubble">
+
+           <button class="btn" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
         </div>
       </div>
       {{/each}}

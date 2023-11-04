@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postDao = require("../modules/post-dao.js");
 const articlesDao = require("../modules/articles-dao.js");
+const { imageOrientation } = require("../modules/select.js");
 const path = require("path");
 
 // Import required middleware and packages
@@ -17,8 +18,7 @@ router.get("/yourPage", async function (req, res) {
     res.locals.user= user; 
     
     const articles = await articlesDao.retrieveArticleByWriterId(userId);
-    res.locals.articles = articles;
-
+    res.locals.articles = imageOrientation(articles);
     res.render("yourpage");
 });
 
