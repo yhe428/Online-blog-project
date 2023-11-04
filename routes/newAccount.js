@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
 const bcrypt = require("bcrypt");
-const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+// const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 const avatarImport = require("../modules/avatar.js");
 
 //introduce users DAO

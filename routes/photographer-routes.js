@@ -31,7 +31,7 @@ router.get("/photographers/:userId", async function (req, res) {
     let id = req.params['userId'];
     const currentPhotographer = await userDao.retrieveUserById(id);
     res.locals.photographer = currentPhotographer;
- 
+
     const users = await userDao.getAllUsers();
     res.locals.users = users;
 

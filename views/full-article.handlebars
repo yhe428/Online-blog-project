@@ -36,8 +36,6 @@
                         <p>{{content}}</p>
                     </div>
                     
-                    {{!-- <button class="reply-btn" data-comment-id="{{commentId}}">Reply</button> --}}
-                    {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
                     <i class="fas fa-reply reply-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Reply"></i>
                     <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
                 </div>
@@ -53,7 +51,6 @@
                                 <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
                                 <p>{{content}}</p>
                             </div>
-                            {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
                             <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
                         </div>
                     </li>
@@ -78,7 +75,6 @@
         <form action="/createComment" method="POST" class="add-comment">
             <input type="hidden" name="articleId" value="{{articleId}}">
             <input type="text" name = "comment" placeholder="Add a comment...">
-            {{!-- <h4>{{user.avatar}}</h4> working--}}
             <button type="submit">Save comment</button>
         </form>
 
