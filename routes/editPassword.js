@@ -13,7 +13,7 @@ router.get("/editPassword", verifyAuthenticated, function (req,res){
 
 router.post("/editPassword", verifyAuthenticated, async function(req,res){
     const password = req.body.password.trim();
-    //get user id
+    
     const id = req.cookies.user.userId;
 
     const hashPassword = await bcrypt.hash(password, 10);
