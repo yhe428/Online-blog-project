@@ -12,13 +12,11 @@ router.post("/search", async function (req, res) {
 
     try {
         const input = req.body.searchquery;
-        console.log(input);
 
         const results = await searchDao.retrieveAllSearchResults(input);
 
         if (results.length > 0) {
             res.locals.results = results;
-            console.log(results);
             res.locals.input = input;
         }
 

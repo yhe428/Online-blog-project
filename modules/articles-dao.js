@@ -1,5 +1,6 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
+const { countCommentsByArticleID } = require('./comment-dao.js');
 
 async function retrieveAllArticles() {
   const db = await dbPromise;
@@ -32,6 +33,11 @@ async function retrieveCategoryArticles(category) {
     and c.name = ${category}
     order by a.articleDate desc`);
 
+    //yang
+    for (let article of articlesArray) {
+      article.commentsCount = await countCommentsByArticleID(article.articleId);
+    }
+
     return articlesArray;
 }
 
@@ -45,6 +51,11 @@ async function retrieveArticlesByUserId(userId) {
     and c.categoryId = a.categoryId
     and u.userId = ${userId}
     order by a.articleDate desc`);
+
+    //yang
+    for (let article of articlesArray) {
+      article.commentsCount = await countCommentsByArticleID(article.articleId);
+    }
 
     return articlesArray;
 }
