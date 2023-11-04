@@ -1,31 +1,31 @@
-<div class="container">
+<div class="container-editArticle">
 
     {{#if toastMessage}}
     <p> {{toastMessage}}</p>
     {{/if}}
 
-    <form action="/submit-editArticle" method="post" enctype="multipart/form-data">
+    <form action="/submit-editArticle" method="post" enctype="multipart/form-data" id="editArticle-form">
 
         <input type="hidden" name="articleId" value="{{article.articleId}}">
 
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value= "{{article.title}}" required>
+        <label for="editArticle-title">Title:</label>
+        <input type="text" id="editArticle-title" name="title" value= "{{article.title}}" required>
         <div class="category-container">
                 <label><input type="radio" name="category" value="1" required>Nature</label>
                 <label><input type="radio" name="category" value="2">Portrait</label>
                 <label><input type="radio" name="category" value="3">Life</label>
             </div>
 
-        <label for="content">Content:</label>
+        <label for="editArticle-content">Content:</label>
         <textarea id="editor-textarea" name="content" hidden></textarea>
         <div id="editor">
             {{{article.articleContent}}}
         </div>
 
-        <label for="image">Upload Image: please upload image</label>
-        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif" required>
+        <label for="editArticle-image">Upload Image: please upload image</label>
+        <input type="file" id="editArticle-image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif" required>
         
-        <button type="submit">Submit</button>
+        <button type="submit" id="editArticle-submit">Submit</button>
         
     </form>
 
