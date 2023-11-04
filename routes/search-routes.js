@@ -4,9 +4,8 @@ const router = express.Router();
 const searchDao = require("../modules/search-dao.js");
 
 router.get("/search", function (req, res) {
-
-res.render("search");
-
+    res.locals.title = "Search";
+    res.render("search");
 });
 
 router.post("/search", async function (req, res) {
@@ -17,19 +16,19 @@ router.post("/search", async function (req, res) {
 
         const results = await searchDao.retrieveAllSearchResults(input);
 
-        if(results.length > 0) {
+        if (results.length > 0) {
             res.locals.results = results;
             console.log(results);
             res.locals.input = input;
         }
-    
+
         else {
             res.setToastMessage("Your search did not return any results");
         }
-        
+
         res.render("search");
     }
-   
+
     catch (error) {
         res.status(500).send("An error occurred during the search");
     }
@@ -45,14 +44,6 @@ router.post("/search", async function (req, res) {
    res.render("full-article", {article: article});*/
 
 //});
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

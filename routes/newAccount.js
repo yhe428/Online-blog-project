@@ -10,7 +10,7 @@ const userDao = require("../modules/users-dao.js");
 
 //route handler deal with new account creation
 router.get("/newAccount", async function (req, res) {
-    
+    res.locals.title = "New Account";
     avatarListCompact = [];
     avatarListCompact =  await avatarImport.getAvatarList();
     res.render("new-account", { avatarListCompact: avatarListCompact});
