@@ -51,6 +51,7 @@ drop table if exists Users;
  FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
  );
  
+ 
 create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
