@@ -35,6 +35,7 @@ drop table if exists Users;
  imageWidth integer,
  writerId integer not null,
  categoryId integer not null,
+ articleComments integer,
  foreign key (writerId) references Users(userId) ON DELETE CASCADE,
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
@@ -62,7 +63,8 @@ create virtual table if not exists ArticlesSearch using fts5 (
  articleDate,
  imageName,
  imageHeight,
- avatar
+ avatar,
+ numberComments
  );
  
 insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate, avatar) VALUES
@@ -84,9 +86,15 @@ cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 1),
 (4, 'The Delightful World of Pancakes', '<p>Who can resist the allure of a fluffy stack of pancakes, especially when drizzled with a generous amount of syrup? The aroma alone is enough to pull you out of bed on a lazy morning. Pancakes have been a breakfast favorite for generations, bringing warmth and comfort to countless breakfast tables.</p>', date('now'), 1, 'pancakep.jpg', 1257, 2560, 3),
 (5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 1024, 768,1);
 
+UPDATE Articles
+SET articleComments = (
+    SELECT COUNT(*)
+    FROM Comments
+    WHERE Comments.articleCommented = Articles.articleId
+);
 
-INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, articleDate, imageName, imageHeight, avatar)
-SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.articleDate, a.imageName, a.imageHeight, u.avatar
+INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, articleDate, imageName, imageHeight, avatar, numberComments)
+SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.articleDate, a.imageName, a.imageHeight, u.avatar, a.articleComments
 FROM Articles AS a
 JOIN Users AS u ON a.WriterId = u.userId
 JOIN Categories AS c ON a.categoryId = c.categoryId;
