@@ -21,7 +21,6 @@ async function retrieveAllSearchResults(input) {
    
 }
 
-
 module.exports = {
     retrieveAllSearchResults
 };
