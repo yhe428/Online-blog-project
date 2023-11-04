@@ -26,7 +26,7 @@ async function getAllCommentsByAricleID(articleId){
     ORDER BY Comments.commentDateTime DESC
     `)
 
-    return allComments;//return back an array
+    return allComments;
 
 }
 

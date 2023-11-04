@@ -36,6 +36,7 @@ drop table if exists Users;
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
 
+ 
  create table if not exists Comments (
  commentId integer not null primary key,
  parentId integer,
@@ -49,7 +50,7 @@ drop table if exists Users;
  );
  
  
-create virtual table if not exists ArticlesSearch using fts5 (
+ create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
  content,
@@ -58,6 +59,7 @@ create virtual table if not exists ArticlesSearch using fts5 (
  categoryName,
  imageName
  );
+ 
 insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate, avatar) VALUES
 (1, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq', 'user1', 'Derek', 'Hughes', 'I got my first camera at 10 - a Brownie 127 - still have it and it still works! Most of my own photography is inspired by Nature. Our natural environment needs protecting. If my photographs make someone appreciate what we have a little bit more then I’m well rewarded. Photography for me is my relaxation technique. The view through the camera becomes my focus for a while and lets me shut out the cluttered world we live in.', 'darkroom@derek.co.nz', '116 Lemon Street, New Plymouth 4312', '0276580327', '1980-01-01', 'https://api.multiavatar.com/bobbyknox.png'),
 (2, '$2b$10$2s3mTALA0wZELabZ3405w.mDbLuqh0imNis9Zooszh9CK/pm2eQHq','user2','Linda','Smith','I love capturing the beauty of the world. Nature and landscapes are my go-to subjects.','linda@photos.com', '8 Revel Ave, Auckland 1041','0276580327','1993-10-05','https://api.multiavatar.com/bobbyknox.png'),
@@ -76,8 +78,6 @@ cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 1),
 (3, 'Mysteries Behind the Veil', '<p>The allure of mystery often lies in the eyes. A glimpse, a fleeting emotion, or the hint of a story waiting to be told. The fabric enveloping her not only conceals but adds a touch of intrigue, drawing the viewer in. What thoughts play behind those eyes? Is it contemplation, a memory, or perhaps the anticipation of the unknown?</p>', date('now'), 3, 'womanp.jpg', 427, 640, 2),
 (4, 'The Delightful World of Pancakes', '<p>Who can resist the allure of a fluffy stack of pancakes, especially when drizzled with a generous amount of syrup? The aroma alone is enough to pull you out of bed on a lazy morning. Pancakes have been a breakfast favorite for generations, bringing warmth and comfort to countless breakfast tables.</p>', date('now'), 1, 'pancakep.jpg', 1257, 2560, 3),
 (5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 1024, 768,1);
-
-
 
 
 INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, imageName)

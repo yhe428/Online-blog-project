@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const postDao = require("../modules/post-dao.js");
+const commentDao = require("../modules/comment-dao.js");
+
 const articlesDao = require("../modules/articles-dao.js");
+const { imageOrientation } = require("../modules/select.js");
 const path = require("path");
 
 // Import required middleware and packages
@@ -17,8 +20,14 @@ router.get("/yourPage", async function (req, res) {
     res.locals.user= user; 
     
     const articles = await articlesDao.retrieveArticleByWriterId(userId);
-    res.locals.articles = articles;
 
+    for (let article of articles) {
+        article.commentsCount = await commentDao.countCommentsByArticleID(article.articleId);
+    }
+    
+    res.locals.articles = imageOrientation(articles);
+
+    
     res.render("yourpage");
 });
 

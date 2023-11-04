@@ -4,7 +4,7 @@
         <h3 class="page-title">Your Page &amp; Articles</h3>
      <p class="welcome"> Welcome! {{user.username}}</p>
         
-            {{!-- <h2> Add Article</h2> --}}
+        
             <form action="/submit-article" method="post" enctype="multipart/form-data">
                 <div class="article-title">
                     <label for="title">Title:</label>
@@ -13,7 +13,7 @@
                 <div class="radiobox-categories">
                     <h3 class="category">Category:</h3>
                     <div class="category-container">
-                        <label><input type="radio" name="category" value="1">Nature</label>
+                        <label><input type="radio" name="category" value="1" required>Nature</label>
                         <label><input type="radio" name="category" value="2">Portrait</label>
                         <label><input type="radio" name="category" value="3">Life</label>
                     </div>
@@ -24,11 +24,12 @@
                     <p>Article here</p>
 
                 </div>
-
+                <div class="choose-file">
                 <label for="image">Upload Image:</label>
-                <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
+                <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif" required>
 
                 <button type="submit">Submit</button>
+                </div>
             </form>
         </div>
 
@@ -48,14 +49,15 @@
                 {{{articleContent}}}
             </div>
             <div class="buttons">
-                <button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit
-                        Article</a></button>
-                <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
+                
             </div>
             <div class="flavicon-container">
+                
                 <p>{{articleDate}}</p>
-                <p>{{numberOfComments}}</p>
-                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+                <p>{{commentsCount}}</p>
+                <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble"><button class="btn"><a href="/editArticle?articleId={{articleId}}" data-site="{{articleId}}">Edit
+                        Article</a></button>
+                <button class="btn" id="delete-article" data-site="{{articleId}}">Delete Article</button>
             </div>
         </div>
         {{/each}}

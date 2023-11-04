@@ -9,9 +9,9 @@
         <input type="hidden" name="articleId" value="{{article.articleId}}">
 
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value= "{{article.title}}">
+        <input type="text" id="title" name="title" value= "{{article.title}}" required>
         <div class="category-container">
-                <label><input type="radio" name="category" value="1">Nature</label>
+                <label><input type="radio" name="category" value="1" required>Nature</label>
                 <label><input type="radio" name="category" value="2">Portrait</label>
                 <label><input type="radio" name="category" value="3">Life</label>
             </div>
@@ -23,7 +23,7 @@
         </div>
 
         <label for="image">Upload Image: please upload image</label>
-        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif">
+        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.bmp,.gif" required>
         
         <button type="submit">Submit</button>
         
