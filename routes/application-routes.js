@@ -12,20 +12,16 @@ router.get("/", function (req, res) {
 
 router.get("/blog", async function (req, res) {
   res.locals.title = "Blog";
-
-    //yang change 
-    const articles = await articlesDao.retrieveAllArticles();
-    res.locals.articles = imageOrientation(articles);
-    res.render("blog");
+  const articles = await articlesDao.retrieveAllArticles();
+  res.locals.articles = imageOrientation(articles);
+  res.render("blog");
 });
 
 router.get("/full-article/:articleId", async function (req, res) {
   let id = req.params["articleId"];
   const article = await articlesDao.retrieveArticleByArticleId(id);
-  // console.log(article);
-  // res.locals.article = article;
+  
 
-  //yang's codes for comments
   const comments = await commentDao.getNestedCommentsByArticleID(id);
   const commentsCount = await commentDao.countCommentsByArticleID(id);
 

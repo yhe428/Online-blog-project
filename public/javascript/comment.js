@@ -1,9 +1,9 @@
 window.addEventListener("load", function(){
     
-    const replyWindow = this.document.querySelector('.reply-window');
+    const replyWindow = document.querySelector('.reply-window');
     const replyButtons = document.querySelectorAll('.reply-btn');
-    const submitbutton = this.document.querySelector('.submit-reply-btn');
-    const deleteButton = this.document.querySelectorAll('.delete-btn');
+    const submitbutton = document.querySelector('.submit-reply-btn');
+    const deleteButton = document.querySelectorAll('.delete-btn');
 
     const hiddenParentIdInput = document.createElement("input");
     hiddenParentIdInput.type = "hidden";
@@ -14,9 +14,9 @@ window.addEventListener("load", function(){
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
             let commentId = btn.getAttribute('data-comment-id');
-            // console.log(commentId);working
+            
             hiddenParentIdInput.value = commentId;
-            // console.log(hiddenParentIdInput.value);working
+            
 
             replyWindow.removeAttribute('hidden');
             submitbutton.setAttribute('data-comment-id', commentId);
@@ -42,9 +42,8 @@ window.addEventListener("load", function(){
                 if (response.ok) {
                     const data = await response.json();
                     if (data.success) {
-                        // Remove comment from the DOM or refresh the page.
                         alert("Comment deleted successfully!");
-                        location.reload(); // Reload the page
+                        location.reload(); 
                     } else {
                         alert("Failed to delete comment.");
                     }
