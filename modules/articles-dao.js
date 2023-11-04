@@ -5,11 +5,26 @@ const dbPromise = require("./database.js");
 async function retrieveAllArticles() {
     const db = await dbPromise;
 
-    const articles = await db.all(SQL` select a.articleId, a.imageName, a.imageHeight, a.imageWidth, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
-    from Users as u, Articles as a, Categories as c
-    where u.userId = a.writerId
-    and c.categoryId = a.categoryId
-    order by a.articleDate desc` );
+    // const articles = await db.all(SQL` 
+    // select a.articleId, a.imageName, a.imageHeight, a.imageWidth, a.title, a.articleContent, a.articleDate, u.fName, u.lName, c.name
+    // from Users as u, Articles as a, Categories as c
+    // where u.userId = a.writerId
+    // and c.categoryId = a.categoryId
+    // order by a.articleDate desc` );
+
+    const articles = await db.all(SQL`
+        SELECT 
+            a.articleId, a.imageName, a.imageHeight, a.imageWidth, 
+            a.title, a.articleContent, a.articleDate, 
+            u.fName, u.lName, c.name,
+            COALESCE(COUNT(com.commentId), 0) as commentCount
+        FROM Users as u
+        JOIN Articles as a ON u.userId = a.writerId
+        JOIN Categories as c ON c.categoryId = a.categoryId
+        LEFT JOIN Comments as com ON com.articleCommented = a.articleId
+        GROUP BY a.articleId
+        ORDER BY a.articleDate DESC
+    `);
 
     return articles;
 }
@@ -99,6 +114,17 @@ async function deleteArticle(id) {
     return result.changes;
 }
 
+async function retrieveAllArticlesWithCommentCount() {
+    const db = await dbPromise;
+    const articlesWithCount = await db.all(SQL`
+        SELECT Articles.*, COUNT(Comments.commentId) as commentCount 
+        FROM Articles
+        LEFT JOIN Comments ON Articles.articleId = Comments.articleCommented
+        GROUP BY Articles.articleId
+    `);
+    return articlesWithCount;
+}
+
 
 
 module.exports = {
@@ -109,5 +135,6 @@ module.exports = {
     retrieveArticleByWriterId,
     retrieveArticlesByArticleId,
     updateUserArticle,
-    deleteArticle
+    deleteArticle,
+    retrieveAllArticlesWithCommentCount
 };

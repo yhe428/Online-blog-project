@@ -1,26 +1,64 @@
-<form action="./search" method="POST">
+<script src="./javascript/search.js"></script>
 
-<label for="searchquery">Search</label>
-<input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+<div id="search-container">
 
-<button type="submit" id="search-button">Search!</button>
-
-</form>
-
-<div id="results-display">
-
-    <p>Results will be displayed here</p>
-
+{{#if results}}
+    
+    <div id="results-message">
+    <p>Showing results for "{{input}}"</p>
+    </div>
+    
+    <div class="container" id="results-container">
+        
     {{#each results}}
-    <p>{{this.categoryName}}</p>
-    <p>{{this.title}}</p>
-    <p>{{this.content}}</p>
-    <p>{{this.authorfName}} {{this.authorlName}}</p>
+    <div class="card-container {{this.imageHeight}}">
+        <img class="card-images" src="./images/{{this.imageName}}">
+        <h3>{{this.categoryName}}</h3>
+        <h2>{{this.title}}</h2>
+        <div id="article">
+        {{{this.content}}}    
+    </div>
+        
+        
+        <div class="flavicon-container">
+            <img src="{{flaviconAvatarUrl}}" alt="avatar flavicon" width="40" height="40">
+                            {{!-- Maybe add #with  -- look at it later --}}
+            <h4 class="author"><a href="/photographers">{{this.authorfName}} {{this.authorlName}}</a></h4>
+            <p>{{this.articleDate}}</p>
+            <p>{{this.numberOfComments}}</p>
+            <img class="flavicon-comment" src="./images/comment-white-oval-bubblep.png" alt="Comment bubble">
+             <button class="btn" data-id="{{articleId}}"> <a href="/full-article/{{articleId}}">Full Article</a></button>
+        </div>
+    </div>
     {{/each}}
+    </div>
+    
+    {{else}}
+        <div id="search-form-container">
+            <form action="./search" method="POST">
 
+            <div id="search-input-field">
+                <label for="txtSearchInput" id="search-label">Search</label>
+                <input class="ipt" type="text" name="searchquery" id="txtSearchInput" placeholder="Please enter your search terms here" required>
+            </div>
+
+            <button type="submit" id="search-button" class="btn">Search!</button>
+            </form>
+        </div>
+
+        <div id="image-display">
+            <img src="./images/search-page-image.jpg" alt="Field Landscape" id="search-image">
+        </div>
+   
+   {{/if}}
 
     {{#if toastmessage}} 
     <p>{{toastmessage}}</p>
     {{/if}}
 
+
+
+   
+
+    
 </div>

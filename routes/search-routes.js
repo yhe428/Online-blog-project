@@ -19,6 +19,7 @@ router.post("/search", async function (req, res) {
         if (results.length > 0) {
             res.locals.results = results;
             console.log(results);
+            res.locals.input = input;
         }
 
         else {
@@ -32,8 +33,17 @@ router.post("/search", async function (req, res) {
         res.status(500).send("An error occurred during the search");
     }
 
-
 });
+
+/*router.get("/full-article/:articleId", async function(req, res) {
+    let id = req.params['articleId'];
+   const article = await articlesDao.retrieveArticleByArticleId(id);
+   // console.log(article);
+   // res.locals.article = article;
+   
+   res.render("full-article", {article: article});*/
+
+//});
 
 
 module.exports = router;

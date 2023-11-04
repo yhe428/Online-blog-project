@@ -35,6 +35,7 @@ drop table if exists Users;
  foreign key (writerId) references Users(userId) ON DELETE CASCADE,
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
+
  create table if not exists Comments (
  commentId integer not null primary key,
  parentId integer,
@@ -43,10 +44,12 @@ drop table if exists Users;
  posterId integer not null,
  articleCommented integer not null,
  foreign key (posterId) references Users(userId)ON DELETE CASCADE,
- foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE
+ foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE,
+ FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
  );
  
-  create virtual table if not exists ArticlesSearch using fts5 (
+ 
+create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
  content,
@@ -68,11 +71,14 @@ insert into Categories (categoryId, name) VALUES
 insert into Articles (articleId, title, articleContent, articleDate, writerId, imageName, imageHeight, imageWidth, categoryId) VALUES
 (1, 'Scream for no reason at 4 am whos the baby', '<p>Cats are fats i like to pets them they like to meow back&nbsp;making sure that fluff gets into the owners eyes&nbsp;and&nbsp;miaow then turn around and show you my bum.&nbsp;Whenever a door is opened, rush in before the human&nbsp;pet me pet me dont pet me when owners are asleep, cry for no apparent reason&nbsp;but&nbsp;do doodoo in the litter-box, clickityclack on the piano, be frumpygrumpy stuff and things&nbsp;curl up and sleep on the freshly laundered towels;Human is washing you why halp oh the horror flee scratch hiss bite&nbsp;cough furball into food bowl then scratch owner for a new one. Nap all day&nbsp;find empty spot in cupboard and sleep all day&nbsp;for&nbsp;claw at curtains stretch and yawn nibble on tuna ignore human bite human hand&nbsp;and&nbsp;sit on human&nbsp;and&nbsp;soft kitty warm kitty little ball of furr&nbsp;but&nbsp;has closed eyes but still sees you.&nbsp;When in doubt, wash&nbsp;bite off humans toes&nbsp;for&nbsp;cough hairball on conveniently placed pants&nbsp;eat the rubberband.&nbsp;If it fits,
 or need to chase tail&nbsp;cats are cute&nbsp;suddenly go on wild-eyed crazy rampage.meow to be let out&nbsp;cat gets stuck in tree firefighters try to get cat down firefighters get stuck in tree cat eats firefighter; Gimme attention gimme attention gimme attention gimme attention gimme attention gimme attention just kidding i dont want it anymore meow bye eats owners hair then claws head vomit my furball really tie the room together attack the child&nbsp;carefully drink from water glass and then spill it everywhere and proceed to lick the puddle&nbsp;i see a bird i stare at it i meow at it i do a wiggle come here birdy.&nbsp;Time to go zooooom. Thinking longingly about tuna brine&nbsp;throw down all the stuff in the kitchen morning beauty routine of licking self shredded your linens for you pretend not to be evil.&nbsp;Jump around on couch, meow constantly until given food,caticus cuteicus cat dog hate mouse eat string barf pillow no baths hate everything&nbspscoot butt on the rug. Run in circles nap all day&nbsp;damn that dog&nbsp;lounge in doorway&nbsp;and&nbsp;taco cat backwards spells taco cat.&nbsp;Human is washing you why halp oh the horror flee scratch hiss bite.&nbsp;Climb a tree, wait for a fireman jump to fireman then scratch his face. Gnaw the corn
-cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 3),
-(2, 'The Timeless Beauty of Tulips', '<p>Tulips, with their vibrant colors and elegant form, have always been a favorite among garden enthusiasts and photographers alike. Originating from Central Asia, these spring-blooming perennials have played a significant role in history, even causing a financial craze called "Tulip Mania" in the Netherlands during the 17th century.</p>', date('now'),2, 'tulipsp.jpg', 960, 640, 3),
-(3, 'Mysteries Behind the Veil', '<p>The allure of mystery often lies in the eyes. A glimpse, a fleeting emotion, or the hint of a story waiting to be told. The fabric enveloping her not only conceals but adds a touch of intrigue, drawing the viewer in. What thoughts play behind those eyes? Is it contemplation, a memory, or perhaps the anticipation of the unknown?</p>', date('now'), 3, 'womanp.jpg', 640, 427, 2),
+cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 1),
+(2, 'The Timeless Beauty of Tulips', '<p>Tulips, with their vibrant colors and elegant form, have always been a favorite among garden enthusiasts and photographers alike. Originating from Central Asia, these spring-blooming perennials have played a significant role in history, even causing a financial craze called "Tulip Mania" in the Netherlands during the 17th century.</p>', date('now'),2, 'tulipsp.jpg', 960, 640, 1),
+(3, 'Mysteries Behind the Veil', '<p>The allure of mystery often lies in the eyes. A glimpse, a fleeting emotion, or the hint of a story waiting to be told. The fabric enveloping her not only conceals but adds a touch of intrigue, drawing the viewer in. What thoughts play behind those eyes? Is it contemplation, a memory, or perhaps the anticipation of the unknown?</p>', date('now'), 3, 'womanp.jpg', 427, 640, 2),
 (4, 'The Delightful World of Pancakes', '<p>Who can resist the allure of a fluffy stack of pancakes, especially when drizzled with a generous amount of syrup? The aroma alone is enough to pull you out of bed on a lazy morning. Pancakes have been a breakfast favorite for generations, bringing warmth and comfort to countless breakfast tables.</p>', date('now'), 1, 'pancakep.jpg', 1257, 2560, 3),
-(5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 768, 1024,1);
+(5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 1024, 768,1);
+
+
+
 
 INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, imageName)
 SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.imageName
