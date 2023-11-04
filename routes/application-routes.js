@@ -42,7 +42,6 @@ router.get("/full-article/:articleId", async function(req, res) {
 
 router.get("/nature", async function (req, res) {
     const natureArticles = await articlesDao.retrieveCategoryArticles("Nature");
-
     res.locals.articles = natureArticles;
     res.render("nature");
 });
