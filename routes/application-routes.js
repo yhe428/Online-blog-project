@@ -6,32 +6,31 @@ const articlesDao = require("../modules/articles-dao.js");
 const commentDao = require("../modules/comment-dao.js");
 
 router.get("/", function (req, res) {
-    res.locals.title = "Dazzling Duck Photography"
-    res.render("home");
+  res.locals.title = "Dazzling Duck Photography";
+  res.render("home");
 });
 
 router.get("/blog", async function (req, res) {
-    res.locals.title = "Blog";
-
-    //yang change 
-    const articles = await articlesDao.retrieveAllArticles();
-    res.locals.articles = imageOrientation(articles);
-    res.render("blog");
+  res.locals.title = "Blog";
+  const articles = await articlesDao.retrieveAllArticles();
+  res.locals.articles = imageOrientation(articles);
+  res.render("blog");
 });
 
-router.get("/full-article/:articleId", async function(req, res) {
-    let id = req.params['articleId'];
-    const article = await articlesDao.retrieveArticleByArticleId(id);
-    // console.log(article);
-    // res.locals.article = article;
-    
-    //yang's codes for comments
-    const comments = await commentDao.getNestedCommentsByArticleID(id);
-    const commentsCount = await commentDao.countCommentsByArticleID(id);
-    
+router.get("/full-article/:articleId", async function (req, res) {
+  let id = req.params["articleId"];
+  const article = await articlesDao.retrieveArticleByArticleId(id);
+  
 
-    res.render("full-article", { ...article, articleId: id, comments:comments, commentsCount:commentsCount});
+  const comments = await commentDao.getNestedCommentsByArticleID(id);
+  const commentsCount = await commentDao.countCommentsByArticleID(id);
 
+  res.render("full-article", {
+    ...article,
+    articleId: id,
+    comments: comments,
+    commentsCount: commentsCount,
+  });
 });
 
 router.get("/nature", async function (req, res) {

@@ -8,15 +8,12 @@ const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 router.post("/createComment", verifyAuthenticated, async function(req,res){
 
-
     let posterId = req.cookies.user.userId;
-    // console.log(posterId);
-
+    
     let content = req.body.comment;
-    // console.log(content);
 
     const articleId = req.body.articleId;
-    // console.log(articleId);
+
 
     const comment = {
         content:content,
@@ -24,7 +21,7 @@ router.post("/createComment", verifyAuthenticated, async function(req,res){
         articleCommented: articleId
     }
 
-    // console.log(comment);
+    
 
     try{
         if(articleId){
@@ -57,7 +54,7 @@ router.post("/createReply", verifyAuthenticated, async function(req,res){
         posterId: posterId,
         articleCommented: articleId
     }
-    // console.log(commentReply);
+    
 
     try{
         if(parentId){

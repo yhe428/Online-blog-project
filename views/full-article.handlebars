@@ -26,46 +26,40 @@
             <h2>Comments</h2>
             <ul class="comments-list">
 
-                {{#each comments}}
-                <li class="comment">
-
-                    <div class="comment-content">
-                        <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
-                        <div class="comment-details">
-                            <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
-                            <p>{{content}}</p>
-                        </div>
-
-                        {{!-- <button class="reply-btn" data-comment-id="{{commentId}}">Reply</button> --}}
-                        {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
-                        <i class="fas fa-reply reply-btn" data-comment-id="{{commentId}}" aria-hidden="true"
-                            title="Reply"></i>
-                        <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true"
-                            title="Delete"></i>
+        {{#each comments}}
+            <li class="comment">
+                
+                <div class="comment-content">
+                    <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
+                    <div class="comment-details">
+                        <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
+                        <p>{{content}}</p>
                     </div>
+                    
+                    <i class="fas fa-reply reply-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Reply"></i>
+                    <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
+                </div>
 
-                    {{#if this.replies}}
-                    <ul class="replies">
-                        {{#each this.replies}}
-                        <li class="comment">
-
-                            <div class="comment-content">
-                                <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
-                                <div class="comment-details">
-                                    <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
-                                    <p>{{content}}</p>
-                                </div>
-                                {{!-- <button class="delete-btn" data-comment-id="{{commentId}}">Delete</button> --}}
-                                <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true"
-                                    title="Delete"></i>
+                {{#if this.replies}}
+                <ul class="replies">
+                    {{#each this.replies}}
+                    <li class="comment">
+                        
+                        <div class="comment-content">
+                            <img src="{{avatar}}" alt="{{fName}} {{lName}}" class="comment-avatar">
+                            <div class="comment-details">
+                                <h3>{{fName}} {{lName}} - {{commentDateTime}}</h3>
+                                <p>{{content}}</p>
                             </div>
-                        </li>
-                        {{/each}}
-                    </ul>
-                    {{/if}}
-                </li>
-                {{/each}}
-            </ul>
+                            <i class="fas fa-trash delete-btn" data-comment-id="{{commentId}}" aria-hidden="true" title="Delete"></i>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </li>
+        {{/each}}
+        </ul>
 
             <div class="reply-window" hidden>
                 <form action="/createReply" method="POST">
@@ -79,15 +73,13 @@
 
             </div>
 
-            <form action="/createComment" method="POST" class="add-comment">
-                <input type="hidden" name="articleId" value="{{articleId}}">
-                <input type="text" name="comment" placeholder="Add a comment...">
-                {{!-- <h4>{{user.avatar}}</h4> working--}}
-                <button type="submit">Save comment</button>
-            </form>
+        <form action="/createComment" method="POST" class="add-comment">
+            <input type="hidden" name="articleId" value="{{articleId}}">
+            <input type="text" name = "comment" placeholder="Add a comment...">
+            <button type="submit">Save comment</button>
+        </form>
 
         </div>
-
 
 
     </div>

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const postDao = require("../modules/post-dao.js");
+const commentDao = require("../modules/comment-dao.js");
+
 const articlesDao = require("../modules/articles-dao.js");
 const { imageOrientation } = require("../modules/select.js");
 const path = require("path");
@@ -18,7 +20,14 @@ router.get("/yourPage", async function (req, res) {
     res.locals.user= user; 
     
     const articles = await articlesDao.retrieveArticleByWriterId(userId);
+
+    for (let article of articles) {
+        article.commentsCount = await commentDao.countCommentsByArticleID(article.articleId);
+    }
+    
     res.locals.articles = imageOrientation(articles);
+
+    
     res.render("yourpage");
 });
 

@@ -6,8 +6,7 @@ window.addEventListener("load", function(){
         button.addEventListener("click", async function(event){
             event.preventDefault();
             
-            const articleId = this.dataset.site;   // 获取文章ID
-            console.log(articleId);
+            const articleId = this.dataset.site;   
 
             const userConfirmation = confirm("Are you sure you want to delete this article?");
             
@@ -18,7 +17,7 @@ window.addEventListener("load", function(){
                     
                     if(data.success){
                         alert("Article deleted successfully!");
-                        location.reload();  // 刷新页面或重定向到其他页面
+                        location.reload();  
                     } else {
                         alert("Failed to delete article!");
                     }
