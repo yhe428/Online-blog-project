@@ -47,7 +47,7 @@ drop table if exists Users;
  content varchar(255),
  posterId integer not null,
  articleCommented integer not null,
- foreign key (posterId) references Users(userId),
+ foreign key (posterId) references Users(userId) ON DELETE CASCADE,
  foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE,
  FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
  );
