@@ -1,30 +1,30 @@
+<div class="main-container">
+    <div class="full-article-container">
 
-<div class="full-article-container">
+        <img class="full-image" src="/images/{{imageName}}">
+        <div class="article-item">
 
-    <img class="full-image" src="/images/{{imageName}}">
-    <div class="article-item">
+            <h2 class="heading">{{title}}</h2>
+            <div class="full-article">{{{articleContent}}}
 
-        <h2 class="heading">{{title}}</h2>
-        <div class="full-article">{{{articleContent}}}
-
-            <div class="flavicon-container">
-                <a href="/photographers">
-                    <h4 class="author">{{fName}} {{lName}}</h4>
-                </a>
-                <h4 class="written">{{articleDate}} </h4>
-                <i class="fa-regular fa-comment">{{commentsCount}}</i>
+                <div class="flavicon-container">
+                    <a href="/photographers">
+                        <h4 class="author">{{fName}} {{lName}}</h4>
+                    </a>
+                    <h4 class="written">{{articleDate}} </h4>
+                    <i class="fa-regular fa-comment">{{commentsCount}}</i>
                     <button class="btn blog-button"><a href="/blog"> Blog</a></button>
 
+                </div>
+
             </div>
-        
         </div>
-    </div>
 
-    {{!-- ------------------------------comments part ------------------------------}}
+        {{!-- ------------------------------comments part ------------------------------}}
 
-    <div class="comments-section">
-        <h2>Comments</h2>
-        <ul class="comments-list">
+        <div class="comments-section">
+            <h2>Comments</h2>
+            <ul class="comments-list">
 
         {{#each comments}}
             <li class="comment">
@@ -61,16 +61,17 @@
         {{/each}}
         </ul>
 
-        <div class="reply-window" hidden>
-            <form action="/createReply" method="POST">
-                <div class="comment-content">
-                    <input type="hidden" name="articleId" value="{{articleId}}">
-                    <textarea id="reply-textarea" rows="4" name="replyComment" placeholder="Type your reply..."></textarea>
-                    <button type="submit" class="submit-reply-btn" data-comment-id="{{commentId}}">Submit!</button>
-                </div>
-            </form>
-                
-        </div>
+            <div class="reply-window" hidden>
+                <form action="/createReply" method="POST">
+                    <div class="comment-content">
+                        <input type="hidden" name="articleId" value="{{articleId}}">
+                        <textarea id="reply-textarea" rows="4" name="replyComment"
+                            placeholder="Type your reply..."></textarea>
+                        <button type="submit" class="submit-reply-btn" data-comment-id="{{commentId}}">Submit!</button>
+                    </div>
+                </form>
+
+            </div>
 
         <form action="/createComment" method="POST" class="add-comment">
             <input type="hidden" name="articleId" value="{{articleId}}">
@@ -78,8 +79,8 @@
             <button type="submit">Save comment</button>
         </form>
 
+        </div>
+
+
     </div>
-
-
-
 </div>

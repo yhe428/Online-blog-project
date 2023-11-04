@@ -1,14 +1,16 @@
 <script src="./javascript/photographers-client.js"></script>
-<div class="photographers-container">
-  
+<div class="main-container">
+  <div class="photographers-container">
+
     <div id="photographers-jump-to">
-      <button class="btn" id="all-photographers-button"><a href="#all-photographers">All photographers</a><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="btn" id="all-photographers-button"><a href="#all-photographers">All photographers</a><i
+          class="fa-solid fa-magnifying-glass"></i></button>
     </div>
- 
-  
+
+
     <h2 class="photographer-heading">{{photographer.fName}} {{photographer.lName}}</h2>
     <div class="photographer-container">
- 
+
       <div class="contact-icons">
         <ul>
           <li><i class="fa-solid fa-phone"></i>{{photographer.phone}}</li>
@@ -32,7 +34,7 @@
         <h2>{{title}}</h2>
         <div id="article">
           {{{articleContent}}}
-        </div> 
+        </div>
 
         <div class="flavicon-container">
 
@@ -40,22 +42,24 @@
           <p>{{commentsCount}}</p>
           <img class="flavicon-comment" src="/images/comment-white-oval-bubblep.png" alt="Comment bubble">
 
-           <button class="btn" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
+          <button class="btn" data-site="{{articleId}}"> <a href="/full-article/{{articleId}}">Article</a></button>
         </div>
       </div>
       {{/each}}
 
-    
+
 
     </div>
 
-   <div id="photographers-list">
+    <div id="photographers-list">
       <h3 id="all-photographers">All Photographers</h3><br>
       <ul>
-    {{#each users}}
-    <a href="/photographers/{{this.userId}}">
-      <li><button class="name-button" data-id="{{this.userId}}">{{this.fName}} {{this.lName}}</button></li>
-    </a>
-    {{/each}}
-  </ul>
+        {{#each users}}
+        <a href="/photographers/{{this.userId}}">
+          <li><button class="name-button" data-id="{{this.userId}}">{{this.fName}} {{this.lName}}</button></li>
+        </a>
+        {{/each}}
+      </ul>
     </div>
+  </div>
+</div>
