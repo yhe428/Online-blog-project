@@ -1,3 +1,4 @@
+drop table if exists ArticlesSearch;
 drop table if exists Comments;
 drop table if exists Articles;
 drop table if exists Categories;
@@ -17,10 +18,12 @@ drop table if exists Users;
  birthDate date,
  avatar varchar(200)
  );
+ 
  create table if not exists Categories (
  categoryId integer not null primary key,
  name varchar(32)
  );
+ 
  create table if not exists Articles (
  articleId integer not null primary key,
  title varchar(32),
@@ -36,7 +39,6 @@ drop table if exists Users;
  foreign key (categoryId) references Categories(categoryId) ON DELETE CASCADE
  );
 
- 
  create table if not exists Comments (
  commentId integer not null primary key,
  parentId integer,
@@ -44,20 +46,23 @@ drop table if exists Users;
  content varchar(255),
  posterId integer not null,
  articleCommented integer not null,
- foreign key (posterId) references Users(userId)ON DELETE CASCADE,
+ foreign key (posterId) references Users(userId),
  foreign key (articleCommented) references Articles(articleId) ON DELETE CASCADE,
  FOREIGN KEY (parentId) REFERENCES Comments(commentId) ON DELETE CASCADE
  );
  
  
- create virtual table if not exists ArticlesSearch using fts5 (
+create virtual table if not exists ArticlesSearch using fts5 (
  articleId,
  title,
  content,
  authorfName,
  authorlName,
  categoryName,
- imageName
+ articleDate,
+ imageName,
+ imageHeight,
+ avatar
  );
  
 insert into Users (userId, password, username, fName, lName, userDescription, email, address, phone, birthDate, avatar) VALUES
@@ -80,8 +85,8 @@ cob</p>', date('now'), 1, 'british_blue_catp.jpg', 2560, 2010, 1),
 (5, 'Mount Taranaki', '<p>The serene beauty of nature is often found in the tranquil moments just before the world awakens. One such moment is captured in the photograph of a snow-capped mountain, reflecting perfectly in the still waters below.</p>', date('now'),2, 'mount_taranaki.jpg', 1024, 768,1);
 
 
-INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, imageName)
-SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.imageName
+INSERT INTO ArticlesSearch (articleId, title, content, authorfName, authorlName, categoryName, articleDate, imageName, imageHeight, avatar)
+SELECT a.articleId, a.title, a.articleContent, u.fName, u.lName, c.name, a.articleDate, a.imageName, a.imageHeight, u.avatar
 FROM Articles AS a
 JOIN Users AS u ON a.WriterId = u.userId
 JOIN Categories AS c ON a.categoryId = c.categoryId;
