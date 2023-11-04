@@ -20,12 +20,13 @@ window.addEventListener('load', function () {
 
   
 
-  const natureBtn = document.querySelector(".nature-btn");
+  // const natureBtn = document.querySelector(".nature-btn");
   
 
-  natureBtn.addEventListener("click", async function (event) {
-    let name = event.target.innerText; 
-    await fetch(`./categories/${name}`);   
-  });
+  // natureBtn.addEventListener("click", async function (event) {
+  //   let name = event.target.innerText; 
+  //   await fetch(`./categories/${name}`);   
+  // });
 
+  
 });
