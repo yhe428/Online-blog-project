@@ -38,11 +38,6 @@ form label,
     color: var(--medium);
 }
 
-/* --- nav bottom border */
-/* .container,
-.photographers-container,
-.full-article-container  */
-
 .main-container {
 
     border-top: 2px solid var(--light);
@@ -93,8 +88,9 @@ form label,
     padding-right: 50px;
     padding-left: 90px;
     display: flex;
+    flex-direction:row;
     align-items: center;
-    height: 85px;
+    justify-content: flex-start;
 }
 
 nav ul li {
@@ -112,8 +108,11 @@ nav {
 nav a {
     text-decoration: none;
 }
-
-/* Hoverable dropdown menu  */
+.drop-menu {
+    display: flex;
+    justify-content: flex-start;
+}
+/* ---Hoverable dropdown menu---  */
 
 .dropdown {
     position: relative;
@@ -146,6 +145,26 @@ nav a {
     border: var(--pale);
 }
 
+ul .avatar-login {
+    list-style-type: none
+}
+
+ul .avatar-login a {
+    color: var(--medium);
+ margin: -20px 40px 0;
+    
+}
+
+.user {
+    transform: translate(0, -10px);
+}
+
+.dropdown-content a {
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: none;
+}
+
 a:hover,
 .dropdown-btn:hover,
 .login-btn:hover {
@@ -154,6 +173,10 @@ a:hover,
 
 a:active {
     color: var(--dark);
+}
+
+#menu {
+    display: none;
 }
 
 /*------------------------------ Small article cards for blog, photographers, categories, yourPage------------------------------*/
@@ -258,27 +281,6 @@ a:active {
 
 }
 
-.short>.flavicon-container {
-    position: absolute;
-    top: 610px;
-
-}
-
-.medium>.flavicon-container {
-    position: absolute;
-    top: 760px;
-}
-
-.tall>.flavicon-container {
-    position: absolute;
-    top: 880px;
-}
-
-.tallest>.flavicon-container {
-    position: absolute;
-    top: 950px;
-}
-
 .author {
     padding-right: 10px;
 }
@@ -317,7 +319,6 @@ a {
 #nav-avatar {
     width: 35px;
     height: 35px;
-
     transform: translate(-10px, 5px);
 }
 
@@ -428,7 +429,6 @@ a {
 }
 
 .home-content-container button {
-
     grid-column: 6 / 8;
     grid-row: 10 / 11;
     z-index: 1;
@@ -1084,7 +1084,6 @@ button:disabled {
 
 
 .photographers-container {
-    /* max-width: 1400px; */
     padding: 50px 50px;
     margin: auto;
     position: relative;
@@ -1170,7 +1169,7 @@ i {
 @media screen and (max-width: 1350px) {
 
     .header {
-        padding: 0 20px;
+        padding: 20px;
     }
 
     nav li {
@@ -1179,6 +1178,10 @@ i {
 
     .header h2 {
         font-size: 18px;
+    }
+
+    .avatar-login { 
+        font-size: 14px;
     }
 
     nav a,
@@ -1220,10 +1223,6 @@ i {
 
     #search-container .container {
         grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-    }
-
-    #article p {
-        --max-lines: 5;
     }
 
     .photographer-container {
@@ -1275,6 +1274,79 @@ i {
 /* --- small screens --- */
 @media screen and (max-width: 860px) {
 
+    .header {
+        position: relative;
+    }
+
+    .header h2 {
+        position: absolute;
+        top: 20px;
+        right: -90px;
+        z-index: 1;
+        text-align: end;
+    }
+
+    .home {
+        font-size: 24px;
+    }
+    
+    nav a {
+
+        margin: 17px;
+    }
+
+    nav li {
+        font-size: 14px;
+    }
+
+    .header {
+        display: inline-block;
+    }
+
+    nav ul li {
+        display: block;
+        width: 100%;
+    }
+
+    .dropdown-btn {
+        padding: 0;
+    }
+
+    .avatar-login {
+        transform: translate(-15px, -23px);
+    }
+    .menu-content {
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .dropdown-menu {
+        padding: 20px;  
+    }
+
+    .dropdown-menu label {
+        display: block;
+        cursor: pointer;
+        background: url("/images/bars.svg") no-repeat left center;
+        padding: 15px 0 15px 10px;
+        margin-bottom: 20px;
+    }
+    
+    .category-content a {
+        padding: 15px;
+        display: inline;
+        text-align: left;
+        line-height: 2.5;
+    }
+
+    input#menu {
+        display: none;
+    }
+
+    input:checked~.menu-content {
+        max-height: 100%
+    }
+
     .home-content-container h1 {
         font-size: 28px;
         grid-column: 3/4;
@@ -1303,9 +1375,6 @@ i {
         grid-template-columns: repeat(auto-fill, minmax(80%, 1fr));
     }
 
-    #article p {
-        --max-lines: 5;
-    }
 
     #search-container .container {
 
@@ -1332,11 +1401,12 @@ i {
 
     .form-buttons {
         display: block;
-        /* margin-top: none; */
-        /* width: 130px; */
         transform: translate(0, -40px);
         margin-left: 100px;
+    }
 
+    .header {
+        padding: 0;
     }
 
     .button-submit {
@@ -1379,6 +1449,10 @@ i {
         text-align: justify
     }
 
+    .page-title{
+        font-size: 1.2em;
+    }
+
     #all-photographers-button {
         margin: 10px 0 0 20px;
         position: static;
@@ -1386,9 +1460,12 @@ i {
 
     .contact-icons ul {
         padding: 0;
-
     }
 
+    #edit-box{
+        width: 470px;
+    }
+    
     .full-image {
         width: 90%;
         transform: translate(-20px, 0);
