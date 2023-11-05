@@ -1149,19 +1149,52 @@ i {
 }
 
 /*------------------------------ Footer ------------------------------*/
+
 #footer {
+    display: flexbox;
     height: 200px;
     text-align: right;
+    height: 200px;
+    text-align: justify;
     background: rgb(136, 150, 150, 0.3);
 }
 
 .clear {
-    clear: right;
+     clear: right;
+}
+
+#photography-tips{
+    position: relative;
+    top: 75px;
+    right: 1200px;
 }
 
 #footer>p {
+    text-align: right;
     padding-top: 28px;
     padding-right: 86px;
+}
+
+#photography-tips{
+    position: relative;
+    top: 0px;
+    left: 200px;
+
+}
+
+#social-symbols-div{
+    position: relative;
+    width: 500px;
+    top: 0px;
+    left: 400px;
+}
+
+#social-symbols{
+    position: relative;
+    top: 0px;
+    left: 600px;
+    height: 40px;
+    background-image: url("/images/social_sybols.png");
 }
 
 /*------------------------------ Media Queries ------------------------------*/
