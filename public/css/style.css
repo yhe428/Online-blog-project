@@ -232,6 +232,13 @@ a:active {
     overflow: hidden;
 }
 
+  /*****
+   * Description: find a css method which limits the line of Text
+   * Author: Web Dev Simplified
+   * Date: October 28th, 2023
+   * URL: https://www.youtube.com/watch?v=OhCzEjXvY9A
+  *****/
+
 #article p {
     --max-lines: 11;
     --line-height: 1.4;
@@ -844,6 +851,131 @@ button:disabled {
     padding: 20px 2px;
 }
 
+#edit_password {
+    background-image: url('../images/tree_from_above.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px;
+}
+
+.edit_form {
+    background: rgba(255, 255, 255, 0.8); 
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.edit_form h1 {
+    color: var(--dark);
+    text-align: center;
+}
+
+.edit_passwordbutton {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.edit_passwordbutton i {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: var(--dark);
+}
+
+.edit_passwordbutton input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button.edit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: var(--dark); 
+    color: var(--pale);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button.edit:hover {
+    background-color: var(--dark); 
+}
+
+/*-------------------edit article----------------------------*/
+
+.container-editArticle {
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.container-editArticle form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.container-editArticle input[type="text"],
+.container-editArticle textarea,
+.container-editArticle input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+#editArticle-editor-textarea {
+    display: none;
+}
+
+#editArticle-submit {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#editArticle-submit:hover {
+    background-color: #333;
+}
+
+.category-container {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.category-container label {
+    cursor: pointer;
+}
+
+.category-container input[type="radio"] {
+    cursor: pointer;
+}
+
+#editor {
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-height: 150px; 
+}
+
+label[for="editArticle-title"],
+label[for="editArticle-content"],
+label[for="editArticle-image"] {
+    font-weight: bold;
+}
 /* -----------------------------Full article ------------------------ */
 .full-article-container {
 
@@ -1176,14 +1308,14 @@ i {
 
 #photography-tips{
     position: relative;
-    top: 0px;
+    top: 80px;
     left: 200px;
 
 }
 
 #social-symbols-div{
     position: relative;
-    width: 500px;
+    width: 600px;
     top: 0px;
     left: 400px;
 }
@@ -1301,6 +1433,14 @@ i {
         transform: translate(-20px, 0);
         margin-right: 60px;
     }
+    
+    .photography-tips {
+        left: 80px;
+        top: 60px
+    }
+    #social-symbols{
+        left: 0px;
+    }
 }
 
 /* --- small screens --- */
@@ -1347,6 +1487,7 @@ i {
     .avatar-login {
         transform: translate(-15px, -23px);
     }
+
     .menu-content {
         max-height: 0;
         overflow: hidden;
@@ -1368,7 +1509,7 @@ i {
         padding: 15px;
         display: inline;
         text-align: left;
-        line-height: 2.5;
+        line-height: 1.8;
     }
 
     input#menu {
@@ -1406,7 +1547,6 @@ i {
     .container {
         grid-template-columns: repeat(auto-fill, minmax(80%, 1fr));
     }
-
 
     #search-container .container {
 
@@ -1506,5 +1646,10 @@ i {
 
     .flavicon-container {
         margin-left: 5px;
+    }
+
+    #photography-tips {
+        top: 20px;
+        left: 30px
     }
 }
