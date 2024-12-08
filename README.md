@@ -3,6 +3,8 @@ Dazzling Duck's Photography Web App
 ### **Overview**
 Dazzling Duck's Photography is a web application designed for amateur photographers to showcase their skills, share articles, and interact with an engaged community of photography enthusiasts. Users can upload photos, write articles, and browse contributions from others, fostering a vibrant platform for learning and inspiration.
 
+![main page](https://github.com/yhe428/Online-blog-project/blob/main/page.png)
+
 ### **Key Features**
 1. **Account Management**:
    - **Creation of a new account**: On the home page, users can create an account by entering their personal details, including username, name, password, and more.
